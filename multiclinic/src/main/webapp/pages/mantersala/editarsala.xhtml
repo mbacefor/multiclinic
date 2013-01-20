@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+	<ui:define name="tituloPagina">Tela de Edição de Salas</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/Criação de Salas</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar uma nova sala.</ui:define>
+	<ui:define name="criadorEntidade"> #{editarSalaMB.sala.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText value="#{editarSalaMB.sala.dataCadastro}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+	
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup rendered="#{(editarSalaMB.sala.id!=null)}">
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" rendered="true" maxlength="10" size="10"
+							value="#{editarSalaMB.sala.id}" readonly="true" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Nome" for="nome" />
+						<br />
+						<p:inputText id="nome" rendered="true" required="true"
+							maxlength="30" size="40" 
+							value="#{editarSalaMB.sala.nome}"
+							requiredMessage="Campo NOME não informado." />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Descrição" for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao" required="true" maxlength="250"
+							value="#{editarSalaMB.sala.descricao}" cols="50"
+							requiredMessage="Campo DESCRIÇÂO deve ser informado."></p:inputTextarea>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputText value="* Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true"
+							requiredMessage="Campo SITUAÇÂO deve ser informado."
+							value="#{editarSalaMB.sala.situacao}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Data Construção" for="construcao" />
+						<br />
+						<p:calendar id="construcao"
+							value="#{editarSalaMB.sala.dataConstrucao}"
+							requiredMessage="Campo DATA DE CONSTRUÇÃO não informado."></p:calendar>
+					</p>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Qtde Banheiros" for="banheiros" />
+						<br />
+						<p:inputText id="banheiros" rendered="true" required="true"
+							maxlength="10" size="10" value="#{editarSalaMB.sala.banheiro}"
+							requiredMessage="Campo QTDE BANHEIROS não informado." />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Tamanho" for="tamanho" />
+						<br />
+						<p:inputText id="tamanho" rendered="true" required="true"
+							maxlength="10" size="10" value="#{editarSalaMB.sala.tamanho}"
+							requiredMessage="Campo TAMANHO não informado." />
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:fieldset>
+		
+		<p:fieldset legend="Equipamento" toggleable="true">
+			<p:pickList id="pickList"
+				value="#{editarSalaMB.equipamentosDualList}"
+				var="equipamento" itemLabel="#{equipamento.nome}"
+				itemValue="#{equipamento}" converter="defaultConverterJSF2"
+				showSourceFilter="true" showTargetFilter="true"
+				filterMatchMode="contains">
+				<f:facet name="sourceCaption">Disponível</f:facet>
+				<f:facet name="targetCaption">Selecionado</f:facet>
+			</p:pickList>
+
+		</p:fieldset>
+		<br />
+
+	</ui:define>
+		
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" value="Salvar"
+			action="#{editarSalaMB.salvar}" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" value="Cancelar"
+			action="#{editarSalaMB.cancelar}" immediate="true" />
+	</ui:define>
+</ui:composition>
+
+</html>

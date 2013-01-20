@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateAdministracao.xhtml">
+	<ui:define name="tituloPagina">Tela de Exclusão de Perfil</ui:define>
+	<ui:define name="subtituloPagina">Tela de Exclusão de Perfil</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite excluir um perfil</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" value="#{excluirPerfilMB.perfil.id}" readonly="true" rendered="true" required="true" maxlength="10" size="10" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Nome" for="nome" />
+						<br />
+						<p:inputText id="nome" value="#{excluirPerfilMB.perfil.nome}" readonly="true" rendered="true" required="true" maxlength="30" size="40" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Data Cadastro" for="dataCadastro" />
+						<br />
+						<p:calendar id="dataCadastro" pattern="dd/MM/yyyy" value="#{excluirPerfilMB.perfil.dataCadastro}" disabled="true" required="true"/>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+	       				<h:outputText value="* Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true" disabled="true"
+							value="#{editarPerfilMB.perfil.situacao}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:fieldset>
+		
+		<br />
+		
+		<p:fieldset legend="Funcionalidades" toggleable="true">
+			<p:pickList id="pickFuncionalidades" disabled="true"
+				value="#{editarPerfilMB.funcionalidades}"
+				var="funcionalidade" itemLabel="#{funcionalidade.nome}"
+				itemValue="#{funcionalidade}" converter="defaultConverterJSF2"
+				showSourceFilter="true" showTargetFilter="true"
+				 filterMatchMode="contains">
+				<f:facet name="sourceCaption">Disponível</f:facet>
+				<f:facet name="targetCaption">Selecionado</f:facet>
+			</p:pickList>
+		</p:fieldset>	
+	</ui:define>
+	
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" action="#{excluirPerfilMB.excluir}" value="Excluir" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton immediate="true" ajax="false" action="#{excluirPerfilMB.sairSemExcluir}" value="Cancelar" />
+	</ui:define>
+</ui:composition>
+
+</html>

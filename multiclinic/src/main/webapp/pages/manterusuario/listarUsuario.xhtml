@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/listarTemplateUsuario.xhtml">
+	<ui:param name="bean" value="#{listarUsuarioMB}" />
+	<ui:define name="tituloPagina">Tela de listagem de usuarios</ui:define>
+	<ui:define name="subtituloPagina">Tela de listagem de usuarios</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os usuarios cadastrados</ui:define>
+
+	<ui:define name="camposListagem">
+		<p:column filterBy="#{linhaCorrente.email}" filterMatchMode="contains"
+			headerText="Nome">
+			<h:outputText value="#{linhaCorrente.email}" />
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
+			filterMatchMode="contains" headerText="Situação">
+			<h:outputText value="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" />
+
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.dataCadastroFormatada}"
+			filterMatchMode="contains" headerText="Data Cadastro">
+
+			<h:outputText value="#{linhaCorrente.dataCadastroFormatada}">
+			</h:outputText>
+
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}"
+			filterMatchMode="contains" headerText="e-Mail Criador">
+			<h:outputText value="#{linhaCorrente.usuarioCriador.email}" />
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+
+</html>

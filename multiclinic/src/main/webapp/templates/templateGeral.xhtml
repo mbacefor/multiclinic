@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Adornment  
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20090802
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title><ui:insert name="title">
+		MultiClinic
+	</ui:insert></title>
+	<ui:insert name="css">
+		<link
+			href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css"
+			rel="stylesheet" type="text/css" media="screen" />
+	</ui:insert>
+</h:head>
+<h:body>
+	<p:growl autoUpdate="true"></p:growl>
+	<div id="imagem"></div>
+	<div id="wrapper">
+		<div id="header">
+			<div id="logo">
+				<h1>Multi Clinic</h1>
+				<br />
+				<p>
+					Desenvolvido por <a href="http://www.fa7.edu.br/">SI Fa7</a> -
+					<h:outputText value="#{geralMB.usuarioLogado.email}" />
+				</p>
+			</div>
+			<ui:insert name="search">
+				<div id="search">
+					<form method="get" action="">
+						<fieldset>
+							<input type="text" name="s" id="search-text" size="15" /> <input
+								type="submit" id="search-submit" value="GO" />
+						</fieldset>
+					</form>
+				</div>
+			</ui:insert>
+			<div class="top_menu">
+				<ui:insert name="menuLogin">
+					<a href="#" class="login">login</a>
+				</ui:insert>
+				<ui:insert name="menuConsulta">
+					<a href="#" class="sign_up">Consultas</a>
+				</ui:insert>
+			</div>
+		</div>
+		<!-- end #header -->
+		<ui:insert name="menu">
+			<div id="menu">
+				<ul>
+					<h:form>
+						<li class="current_page_item"><a
+							href="#{facesContext.externalContext.requestContextPath}">Home</a></li>
+						<li><h:commandLink value="Usuários"
+								action="/pages/geral/indexUsuario.xhtml" /></li>
+						<li><h:commandLink value="Clínicas"
+								action="/pages/geral/indexClinicas.xhtml" /></li>
+						<li><a
+							href="#{facesContext.externalContext.requestContextPath}/templates/templateAdministracao.jsf">Administração</a></li>
+						<li><h:commandLink value="Mapa"
+								action="/pages/geral/indexMapa.xhtml" /></li>
+						<li><a href="#">Contact</a></li>
+					</h:form>
+				</ul>
+			</div>
+			<!-- end #menu -->
+		</ui:insert>
+		<div id="page">
+			<div id="page-bgtop">
+				<div id="page-bgbtm">
+
+					<div id="content">
+						<ui:insert name="content">
+							<div class="post">
+								<h2 class="title">
+									<a href="#">Welcome to Adornment </a>
+								</h2>
+								<p class="meta">
+									Posted by <a href="#">Someone</a> on March 10, 2008
+									&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments
+										(64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full
+										article</a>
+								</p>
+								<div class="entry">
+									<p>
+										This is <strong>Adornment </strong>, a free, fully
+										standards-compliant CSS template designed by FreeCssTemplates<a
+											href="http://www.nodethirtythree.com/"></a> for <a
+											href="http://www.freecsstemplates.org/">Free CSS
+											Templates</a>. This free template is released under a <a
+											href="http://creativecommons.org/licenses/by/2.5/">Creative
+											Commons Attributions 2.5</a> license, so you’re pretty much free
+										to do whatever you want with it (even use it commercially)
+										provided you keep the links in the footer intact. Aside from
+										that, have fun with it :)
+									</p>
+									<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis.
+										Nam bibendum. In nulla tortor, elementum ipsum. Proin
+										imperdiet est. Phasellus dapibus semper urna. Pellentesque
+										ornare, orci in felis. Donec ut ante. In id eros. Suspendisse
+										lacus turpis, cursus egestas at sem.</p>
+									<p>
+										<a href="#" class="links">Read More</a>
+									</p>
+								</div>
+							</div>
+							<div class="post">
+								<h2 class="title">
+									<a href="#">Lorem ipsum sed aliquam</a>
+								</h2>
+								<p class="meta">
+									Posted by <a href="#">Someone</a> on March 8, 2008
+									&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments
+										(64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full
+										article</a>
+								</p>
+								<div class="entry">
+									<p>
+										Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam
+										bibendum. In nulla tortor, elementum vel, tempor at, varius
+										non, purus. Mauris vitae nisl nec metus placerat consectetuer.
+										Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus
+											semper urna</a>. Pellentesque ornare, orci in consectetuer
+										hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis
+										ac diam. Etiam non felis. Donec ut ante. In id eros.
+										Suspendisse lacus turpis, cursus egestas at sem. Mauris quam
+										enim, molestie in, rhoncus ut, lobortis a, est.
+									</p>
+									<p>Praesent ac lectus. Lorem ipsum dolor sit amet,
+										consectetuer adipiscing elit. Vivamus augue. Fusce eget tellus
+										ultrices ligula volutpat adipiscing. Aenean ligula lectus,
+										vehicula in, dictum a, fermentum nec, felis. Nunc ac turpis in
+										leo posuere imperdiet.</p>
+									<p>
+										<a href="#" class="links">Read More</a>
+									</p>
+								</div>
+							</div>
+							<div class="post">
+								<h2 class="title">
+									<a href="#">Phasellus pellentesque turpis </a>
+								</h2>
+								<p class="meta">
+									Posted by <a href="#">Someone</a> on March 8, 2008
+									&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments
+										(64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full
+										article</a>
+								</p>
+								<div class="entry">
+									<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis.
+										Nam bibendum. In nulla tortor, elementum vel, tempor at,
+										varius non, purus. Mauris vitae nisl nec metus placerat
+										consectetuer. Donec ipsum. Proin imperdiet est. Pellentesque
+										ornare, orci in consectetuer hendrerit, urna elit eleifend
+										nunc, ut consectetuer nisl felis ac diam. Etiam non felis.
+										Donec ut ante. In id eros. Suspendisse lacus turpis, cursus
+										egestas at sem. Phasellus pellentesque. Mauris quam enim
+										molestie rhoncus lobortis a, est.</p>
+									<p>
+										<a href="#" class="links">Read More</a>
+									</p>
+								</div>
+							</div>
+							<div style="clear: both;">&nbsp;</div>
+						</ui:insert>
+					</div>
+					<!-- end #content -->
+					<ui:insert name="sidebar">
+						<div id="sidebar">
+							<ul>
+								<li>
+									<h2>NET Clínicas</h2>
+									<p>Mauris vitae nisl nec metus placerat perdiet est.
+										Phasellus dapibus semper consectetuer hendrerit.</p>
+								</li>
+								<li>
+									<h2>Categories</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+								<li>
+									<h2>Blogroll</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+								<li>
+									<h2>Archives</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<!-- end #sidebar -->
+					</ui:insert>
+					<div style="clear: both;">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #page -->
+	</div>
+	<div id="footer">
+		<p>
+			Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
+				href="http://www.fa7.edu.br/">Faculdade 7 de Setembro</a>.
+		</p>
+	</div>
+	<!-- end #footer -->
+</h:body>
+</html>

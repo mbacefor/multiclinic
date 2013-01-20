@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/templateGeral.xhtml">
+
+		<ui:define name="title">Clínicas</ui:define>
+
+		<ui:define name="search">
+			<div id="search">
+				<h:form method="get" action="">
+					<fieldset>
+						<p:selectOneMenu value="#{indexClinicasMB.clinicaAtual}"
+							converter="defaultConverterJSF2" style="width: 80%;">
+							<f:selectItems value="#{indexClinicasMB.listaClinicasSelectItem}"
+								var="clinica" itemValue="#{clinica}" />
+						</p:selectOneMenu>
+						<input type="submit" id="search-submit" value="GO" />
+					</fieldset>
+				</h:form>
+			</div>
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="post">
+				<h2 class="title">Clínica: #{indexClinicasMB.clinicaAtual.nome}</h2>
+				<p class="meta">
+					Postador por <a href="#">Xico Junior</a> em 22/10/2012
+					&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a>
+					&nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a>
+				</p>
+				<div class="entry">
+
+					<p>
+						Nesta seção do site você terá acesso a todas as funcionalidades
+						para gerenciar a sua clínica na Web.<br></br> Para você ter acesso
+						a todas funcionalidades você deve esta logado no site.
+					</p>
+					<a href="#" class="links">Read More</a>
+
+				</div>
+			</div>
+		</ui:define>
+
+		<ui:define name="sidebar">
+
+			<div id="sidebar">
+				<h:form>
+					<ul>
+						<li>
+							<h2>Clínicas</h2> <br />
+							<div style="padding: 10px; float: left; position: relative;">
+								<img
+									src="#{facesContext.externalContext.requestContextPath}/resources/images/icon2.png"
+									alt="" />
+							</div>
+							<p>Nesta seção do site você terá acesso a todas as
+								funcionalidades para gerenciar a sua clínica na Web.</p>
+
+						</li>
+						<li><br />
+							<h2>Clínicas</h2>
+							<ul>
+								<li><h:commandLink value="Cadastro de Clínicas"
+										action="#{editarClinicaMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de Clínicas"
+										action="#{listarClinicaMB.prepararListar}" /></li>
+							</ul></li>
+						<li>
+							<h2>Salas</h2>
+							<ul>
+								<li><h:commandLink value="Cadastro de Sala"
+										action="#{editarSalaMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de sala"
+										action="#{listarSalaMB.prepararListar}" /></li>
+
+							</ul>
+						</li>
+						<li>
+							<h2>Equipamento</h2>
+							<ul>
+								<li><h:commandLink value="Cadastro de Equipamento"
+										action="#{editarEquipamentoMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de Equipamento"
+										action="#{listarEquipamentoMB.prepararListar}" /></li>
+							</ul>
+						</li>
+						<li>
+							<h2>Especialidade</h2>
+							<ul>
+
+								<li><h:commandLink value="Consulta de Especialidade"
+										action="/pages/manterespecialidade/listarEspecialidade" /></li>
+								<li><h:commandLink value="Cadastro de Especialidade"
+										action="#{editarAreaEspecialidadeMB.prepararNovo()}" /></li>
+
+							</ul>
+						</li>
+						<li>
+							<h2>Convênios</h2>
+							<ul>
+								<li><h:commandLink value="Novo Convênio"
+										action="#{listarConvenioMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de Convênios"
+										action="#{listarConvenioMB.prepararListar}" /></li>
+							</ul>
+						</li>
+						<li>
+							<h2>Paciente</h2>
+							<ul>
+								<li><h:commandLink value="Novo de Paciente"
+										action="#{listarPaciente.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de Paciente"
+										action="#{listarPaciente.lista}" /></li>
+							</ul>
+						</li>
+						<li>
+							<h2>Profissional</h2>
+							<ul>
+								<li><h:commandLink value="Novo Profissional"
+										action="#{editarProfissionalMB.prepararNovo}" /></li>
+								<!-- CAMINHO DE TELA OK. -->
+								<li><h:commandLink value="Listagem de Profissionais"
+										action="#{listarProfissionalMB.prepararListar}" /></li>
+
+
+							</ul>
+						</li>
+
+					</ul>
+				</h:form>
+			</div>
+			<!-- end #sidebar -->
+
+		</ui:define>
+
+
+	</ui:composition>
+</body>
+</html>

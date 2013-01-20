@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/templateGeral.xhtml">
+
+		<ui:define name="css">
+			<link
+				href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css"
+				rel="stylesheet" type="text/css" media="screen" />
+
+			<script>
+<!-- 
+function initialize() {
+    var mapOptions = {
+      center: new google.maps.LatLng(-33.8688, 151.2195),
+      zoom: 13,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById('map_canvas'),
+      mapOptions);
+
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.bindTo('bounds', map);
+
+    var infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+      map: map
+    });
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      var place = autocomplete.getPlace();
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+      }
+
+      var image = new google.maps.MarkerImage(
+          place.icon,
+          new google.maps.Size(71, 71),
+          new google.maps.Point(0, 0),
+          new google.maps.Point(17, 34),
+          new google.maps.Size(35, 35));
+      marker.setIcon(image);
+      marker.setPosition(place.geometry.location);
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.open(map, marker);
+    });
+
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    function setupClickListener(id, types) {
+      var radioButton = document.getElementById(id);
+      google.maps.event.addDomListener(radioButton, 'click', function() {
+        autocomplete.setTypes(types);
+      });
+    }
+
+    setupClickListener('changetype-all', []);
+    setupClickListener('changetype-establishment', ['establishment']);
+    setupClickListener('changetype-geocode', ['geocode']);
+  }
+
+			function loadScript() {
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&'
+						+ 'callback=initialize&libraries=places';
+				document.body.appendChild(script);
+				alert('Oi');
+			}
+						
+			window.onload = loadScript;
+			
+//-->			
+			</script>
+
+			<style>
+body {
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+#map_canvas {
+	height: 400px;
+	width: 600px;
+	margin-top: 0.6em;
+}
+</style>
+		</ui:define>
+
+
+		<ui:define name="search">
+		</ui:define>
+
+
+		<ui:define name="content">
+
+			<div>
+				<input id="searchTextField" type="text" size="50" /> <input
+					type="radio" name="type" id="changetype-all" checked="checked" />
+				<label for="changetype-all">All</label> <input type="radio"
+					name="type" id="changetype-establishment" /> <label
+					for="changetype-establishment">Establishments</label> <input
+					type="radio" name="type" id="changetype-geocode" /> <label
+					for="changetype-geocode">Geocodes</label>
+			</div>
+			<div id="map_canvas"></div>
+		</ui:define>
+
+		<ui:define name="sidebar">
+
+			<div id="sidebar">
+				<ul>
+					<li>
+						<h2>Administraçao</h2> <br />
+						<div style="padding: 10px; float: left; position: relative;">
+							<img
+								src="#{facesContext.externalContext.requestContextPath}/resources/images/admin2.JPG"
+								alt="" height="60px" />
+						</div>
+						<p>Ambiente desenvolvido para o gerenciamento de clínicas da
+							área da saúde na Web.</p> <br />
+
+					</li>
+					<li>
+						<h2>Funcionalidades</h2>
+						<ul>
+							<h:form>
+								<li><h:commandLink value="Cadastrar Area de Especialidades" /></li>
+								<li><h:commandLink value="Nova Funcionalidade"
+										action="/pages/manterfuncionalidade/editarFuncionalidade" /></li>
+								<li><h:commandLink value="Perfil"
+										action="/pages/manterperfil/editarPerfil" /></li>
+							</h:form>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<!-- end #sidebar -->
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

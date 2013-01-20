@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+	<ui:define name="tituloPagina">Tela de Edição de paciente</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/criação de paciente</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo paciente</ui:define>
+	<ui:define name="camposFormulario">
+
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Foto" toggleable="true">
+				<h:panelGrid columns="3">
+					<p:photoCam widgetVar="pc" listener="#{editarPacienteMB.oncapture}"
+						update="photos" />
+
+					<p:commandButton type="button" value="Capturar"
+						onclick="pc.capture()" />
+
+					<p:imageSwitch effect="zoom" id="photos">
+
+						<p:graphicImage
+							value="/photocam/#{editarPacienteMB.paciente.nomeFoto}.png" />
+
+					</p:imageSwitch>
+				</h:panelGrid>
+			</p:fieldset>
+		</div>
+
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Dados de Identificação" toggleable="true">
+				<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="CPF" for="cpf" />
+							<br />
+							<p:inputMask id="cpf" mask="999.999.999-99" label="cpf"
+								value="#{editarPacienteMB.paciente.cpf}"
+								maxlength="#{editarPacienteMB.paciente.tamanhoCpf}"
+								immediate="true">
+								<f:convertNumber maxIntegerDigits="11" minIntegerDigits="11"
+									integerOnly="true" />
+							</p:inputMask>
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Nome" for="nome" />
+							<br />
+							<p:inputText id="nome" required="true"
+								maxlength="#{editarPacienteMB.paciente.tamanhoNome}" size="60"
+								value="#{editarPacienteMB.paciente.nome}" />
+						</p>
+
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Fone" for="fone" />
+							<br />
+							<p:inputMask id="fone"
+								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="10"
+								value="#{editarPacienteMB.paciente.fone}" required="true"
+								mask="(99) 9999-9999">
+							</p:inputMask>
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Fone Adicional (Celular)" for="celular" />
+							<br />
+							<p:inputMask id="celular"
+								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="10"
+								value="#{editarPacienteMB.paciente.foneAdicional}"
+								mask="(99) 9999-9999" />
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Sexo" for="sexo" />
+							<br />
+							<p:selectOneMenu id="sexo"
+								value="#{editarPacienteMB.paciente.sexo}" required="true">
+								<f:selectItem itemLabel="Masculino" itemValue="M" />
+								<f:selectItem itemLabel="Feminino" itemValue="F" />
+							</p:selectOneMenu>
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Data Aniversario" for="aniversario" />
+							<br />
+							<p:calendar id="aniversario"
+								value="#{editarPacienteMB.paciente.dataAniversario}"
+								required="true" pattern="dd/MM/yyyy">
+							</p:calendar>
+						</p>
+					</h:panelGroup>
+
+				</h:panelGrid>
+			</p:fieldset>
+		</div>
+
+		<script>
+<!-- 
+function initialize() {
+
+    var input = document.getElementById('formUsuario:endereco');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+      alert('<div><strong>' + place.name + '</strong><br>' + address+ 'XY='+place.geometry.location);
+      
+    });
+
+  }
+
+			function loadScript() {
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&'
+						+ 'callback=initialize&libraries=places';
+				document.body.appendChild(script);
+			}
+						
+			window.onload = loadScript;
+			
+//-->			
+			</script>
+
+
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Dados Adicionais" toggleable="true">
+				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Endereço" for="endereco" />
+							<br />
+							<p:inputText id="endereco" size="100"
+								maxlength="#{editarPacienteMB.paciente.tamanhoEndereco}"
+								value="#{editarPacienteMB.paciente.endereco}" />
+						</p>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Observação" for="observacao" />
+							<br />
+							<p:inputTextarea id="observacao"
+								value="#{editarPacienteMB.paciente.descricao}" rows="3"
+								cols="100" />
+						</p>
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+			</p:fieldset>
+		</div>
+		<br />
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" action="#{editarPacienteMB.salvar}"
+			value="Salvar" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false"
+			action="#{editarPacienteMB.sairSemSalvar}" value="Sair sem Salvar" />
+	</ui:define>
+</ui:composition>
+
+</html>

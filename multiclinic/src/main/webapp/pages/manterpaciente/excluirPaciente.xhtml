@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+	<ui:define name="tituloPagina">Tela de Exclusão de paciente</ui:define>
+	<ui:define name="subtituloPagina">Tela de Exclusão de paciente</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite excluir um paciente</ui:define>
+	<ui:define name="camposFormulario">
+
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+
+			<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+
+				<h:panelGroup>
+					<p:graphicImage
+						value="/photocam/#{excluirPaciente.paciente.nomeFoto}.png" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:panelGrid columns="1">
+						<h:panelGroup>
+							<p>
+								<h:outputLabel value="* Nome" for="nome" />
+								<br />
+								<p:inputText id="nome" required="true" maxlength="80" size="45"
+									value="#{excluirPaciente.paciente.nome}" readonly="true" />
+							</p>
+						</h:panelGroup>
+						<h:panelGrid columns="3" width="90%" cellpadding="3"
+							cellspacing="3">
+							<h:panelGroup>
+								<p>
+									<h:outputLabel value=" Fone" for="fone" />
+									<br />
+									<p:inputText id="fone" maxlength="10" size="10"
+										value="#{excluirPaciente.paciente.fone}" readonly="true" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<h:outputLabel value=" Celular" for="celular" />
+									<br />
+									<p:inputText id="celular" maxlength="10" size="10"
+										value="#{excluirPaciente.paciente.celular}" readonly="true" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<h:outputLabel value=" CPF" for="cpf" />
+									<br />
+									<p:inputText id="cpf" maxlength="11" size="10"
+										value="#{excluirPaciente.paciente.cpf}" readonly="true" />
+								</p>
+							</h:panelGroup>
+
+						</h:panelGrid>
+						<h:panelGroup>
+							<p>
+								<h:outputLabel value="* E-mail" for="email" />
+								<br />
+								<p:inputText id="email" required="true" maxlength="60" size="45"
+									value="#{excluirPaciente.paciente.email}" readonly="true" />
+							</p>
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Endereço" for="endereco" />
+						<br />
+						<p:inputText id="endereco" required="true" size="100"
+							maxlength="100" value="#{excluirPaciente.paciente.endereco}"
+							readonly="true" />
+					</p>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="Observação" for="observacao" />
+						<br />
+						<p:inputTextarea id="observacao" maxlength="255"
+							value="#{excluirPaciente.paciente.observacao}" rows="3"
+							cols="100" readonly="true" />
+					</p>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+		</p:fieldset>
+		<br />
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" action="#{excluirPaciente.excluir}" value="Excluir" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" action="#{excluirPaciente.sairSemExcluir}"
+			value="Sair sem Excluir" />
+	</ui:define>
+</ui:composition>
+
+</html>

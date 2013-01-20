@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/templateGeral.xhtml">
+
+		<ui:define name="search">
+		</ui:define>
+
+
+		<ui:define name="content">
+
+			<div class="post">
+				<h2 class="title">Bem-vindo ao Net Clínicas</h2>
+				<p class="meta">
+					Postador por <a href="#">Marcelo Bezerrra</a> em 07/04/2012
+					&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a>
+					&nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a>
+				</p>
+				<div class="entry">
+
+					<p>Este ambiente foi desenvolvido para a criação de um ambiente
+						colaborativo que possibilite o gerenciamento de clínicas médicas e
+						ajude a seus clientes encontrarem os profissionais desejados de
+						forma rápida e segura.</p>
+					<p>Você dono de clínica, encontrará neste novo espaço um
+						ambiente seguro e rápido para administração e divulgação de sua
+						clínica.</p>
+					<p>Outra coisa importante, este ambiente é totalmente grátis,
+						veja as considerações ...</p>
+					<p>
+						<a href="#" class="links">Read More</a>
+					</p>
+				</div>
+			</div>
+		</ui:define>
+
+		<ui:define name="sidebar">
+
+			<div id="sidebar">
+				<ul>
+					<li>
+						<h2>Net Clínicas</h2> <br />
+						<div style="float: left; position: relative;">
+							<img src="resources/images/icon1.png" alt="" />
+						</div>
+						<p>Ambiente desenvolvido para o gerenciamento de clínicas da
+							área da saúde na Web.</p> <br />
+
+					</li>
+					<li>
+						<h2>Funcionalidades</h2>
+						<ul>
+							<h:form>
+								<li><h:commandLink value="Consulta Profissionais" /></li>
+								<li><h:commandLink value="Consulta Clinicas" /></li>
+								<li><h:commandLink value="Cadastro de Clinicas" /></li>
+								<li><h:commandLink value="Cadastro de Profissionais" /></li>
+							</h:form>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<!-- end #sidebar -->
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

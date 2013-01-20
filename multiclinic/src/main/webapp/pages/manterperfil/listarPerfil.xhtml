@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/listarTemplateAdminstracao.xhtml">
+	<ui:param name="bean" value="#{listarPerfilMB}" />
+	<ui:define name="tituloPagina">Tela de listagem de perfis</ui:define>
+	<ui:define name="subtituloPagina">Tela de listagem de perfis</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os perfis cadastrados</ui:define>
+	
+	<ui:define name="camposListagem">
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains" headerText="Nome">
+			<h:outputText value="#{linhaCorrente.nome}" />
+		</p:column>
+		
+		<p:column filterBy="#{linhaCorrente.ativo}" filterMatchMode="exact" filterOptions="#{listarPerfilMB.opcoesSituacao}" headerText="Situação">
+			<h:outputText value="#{linhaCorrente.ativo ? 'Ativo' : 'Inativo'}" />
+		</p:column>
+		
+		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}" filterMatchMode="contains" headerText="Email Criador" >
+			<h:outputText value="#{linhaCorrente.usuarioCriador.email}"/>
+		</p:column>
+		
+		<p:column headerText="Data Cadastro" >
+			<h:outputText value="#{linhaCorrente.dataCadastro}">
+                <f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo"/>  
+            </h:outputText>  
+		</p:column>
+	</ui:define>
+</ui:composition>
+
+</html>

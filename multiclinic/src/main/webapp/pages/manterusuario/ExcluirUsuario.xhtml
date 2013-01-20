@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateAdministracao.xhtml">
+	<ui:define name="tituloPagina">Tela de Excluir de Usuario</ui:define>
+	<ui:define name="subtituloPagina">Tela de Excluir de Usuario</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite criar um novo usuário</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Email" for="email" />
+						<br />
+						<p:inputText id="email" value="#{excluirUsuarioMB.usuario.email}" rendered="true" required="true" maxlength="10" size="20" readonly="true"/>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Descrição" for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao" value="#{excluirUsuarioMB.usuario.descricao}" required="true" maxlength="250" cols="50" readonly="true"></p:inputTextarea>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					
+				</h:panelGroup>
+								
+			</h:panelGrid>
+		</p:fieldset>
+		<br />	
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" action="#{excluirUsuarioMB.excluir}" value="Excluir" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" action="#{excluirUsuarioMB.desistirExcluir}" value="Desistir Exclusão" />
+	</ui:define>
+</ui:composition>
+
+</html>

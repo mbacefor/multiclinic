@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateAdministracao.xhtml">
+	<ui:define name="tituloPagina">Tela de Edição de Perfil</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/Criação de Perfil</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo perfil</ui:define>
+	<ui:define name="criadorEntidade"> #{editarPerfilMB.perfil.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText value="#{editarPerfilMB.perfil.dataCadastro}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup rendered="#{editarPerfilMB.perfil.id != null}">
+					<p>
+						<p:outputLabel value="Id" for="id" />
+						<br />
+						<p:inputText id="id" value="#{editarPerfilMB.perfil.id}"
+							rendered="true" readonly="true" required="true" maxlength="10"
+							size="10" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Nome" for="nome" />
+						<br />
+						<p:inputText id="nome" value="#{editarPerfilMB.perfil.nome}"
+							rendered="true" required="true"
+							requiredMessage="Campo NOME não informado." maxlength="30"
+							size="40" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Descrição" for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao"
+							value="#{editarPerfilMB.perfil.descricao}"
+							requiredMessage="Campo DESCRIÇÃO não informado." maxlength="250"
+							cols="50"></p:inputTextarea>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true"
+							requiredMessage="Campo SITUAÇÃO não informado."
+							value="#{editarPerfilMB.perfil.ativo}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:fieldset>
+
+		<br />
+
+		<p:fieldset legend="Funcionalidades" toggleable="true">
+			<p:pickList id="pickFuncionalidades"
+				value="#{editarPerfilMB.funcionalidades}" required="true"
+				requiredMessage="Nenhuma FUNCIONALIDADE selecionada."
+				var="funcionalidade" itemLabel="#{funcionalidade.nome}"
+				itemValue="#{funcionalidade}" converter="defaultConverterJSF2">
+				<f:facet name="sourceCaption">Disponível</f:facet>
+				<f:facet name="targetCaption">Selecionado</f:facet>
+			</p:pickList>
+		</p:fieldset>
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton action="#{editarPerfilMB.salvar}" value="Salvar" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton immediate="true" ajax="false"
+			action="#{editarPerfilMB.sairSemSalvar}" value="Cancelar" />
+	</ui:define>
+</ui:composition>
+
+</html>

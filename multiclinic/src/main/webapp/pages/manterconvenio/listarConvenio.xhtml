@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/listarTemplateClinicas.xhtml">
+	<ui:param name="bean" value="#{listarConvenioMB}" />
+	<ui:define name="tituloPagina">Tela de listagem de convênios</ui:define>
+	<ui:define name="subtituloPagina">Tela de listagem de convênios</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os convênios cadastrados</ui:define>
+
+	<ui:define name="camposListagem">
+		<p:column>
+			<f:facet name="header">
+				<h:outputLabel value="id"></h:outputLabel>
+			</f:facet>
+			<h:outputText value="#{linhaCorrente.id}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
+			headerText="Nome">
+			<h:outputText value="#{linhaCorrente.nome}" />
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.situacao? 'Ativo':'Inativo'}"
+			filterMatchMode="contains" headerText="Situação">
+			<h:outputText value="#{linhaCorrente.situacao? 'Ativo':'Inativo'}" />
+
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.dataCadastro}"
+			filterMatchMode="contains" headerText="Data Cadastro" >
+
+			<h:outputText value="#{linhaCorrente.dataCadastro}">
+				<f:convertDateTime type="both" dateStyle="medium" />
+			</h:outputText>
+
+		</p:column>
+
+		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}"
+			filterMatchMode="contains" headerText="e-Mail Criador">
+			<h:outputText value="#{linhaCorrente.usuarioCriador.email}" />
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+
+</html>

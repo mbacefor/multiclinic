@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" 
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templateAdministracao.xhtml">
+	<ui:define name="tituloPagina">Tela de Edição</ui:define>
+	<ui:define name="descricaoTituloPagina">Cadastra uma nova entidade</ui:define>
+	<ui:define name="content">
+		<div class="post">
+			<h2 class="title">
+				<ui:insert name="subtituloPagina">Editar/Novo</ui:insert>
+			</h2>
+			<p class="meta">
+				Criado por <a href="#"><ui:insert name="criadorEntidade">Marcelo Bezerrra</ui:insert></a>
+				em
+				<ui:insert name="dataCriacaoEntidade">05/10/1974</ui:insert>
+			</p>
+			<div class="entry">
+				<h:form>
+					<ui:insert name="camposFormulario">
+						<p>Este ambiente foi desenvolvido para o cadastro de usuários.</p>
+					</ui:insert>
+
+					<br />
+					<ui:insert name="botoes">
+						<a href="#" class="links">Exemplo de botao</a>
+					</ui:insert>
+
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

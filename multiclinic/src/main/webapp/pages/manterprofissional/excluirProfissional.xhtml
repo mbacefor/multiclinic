@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+	<ui:define name="tituloPagina">Tela de Exclusão de Profissional</ui:define>
+	<ui:define name="subtituloPagina">Tela de Exclusão de Profissionais</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite Excluir um Profissional</ui:define>
+	<ui:define name="criadorEntidade"> #{editarProfissionalMB.profissional.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText
+			value="##{editarProfissionalMB.profissional.dataCadastro}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" rendered="true" required="true"
+							maxlength="10" size="10" readonly="true"
+							value="#{excluirProfissionalMB.profissional.id}" />
+					</p>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="CPF: " for="cpf" />
+						<br />
+						<p:inputMask id="cpf" mask="999.999.999-99" label="cpf" rendered="true"
+							required="true" value="#{excluirProfissionalMB.profissional.cpf}"
+							requiredMessage="O CPF deve ser informado." readonly="true">
+						</p:inputMask>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Nome: " for="nome" />
+						<br />
+						<p:inputText id="nome" required="true" size="60"
+							value="#{excluirProfissionalMB.profissional.nome}"
+							rendered="true" readonly="true"
+							requiredMessage="O nome deve ser informado! " />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Endereço: " for="endereco" />
+						<br />
+						<p:inputText id="endereco" required="true" maxlength="50"
+							size="40" value="#{excluirProfissionalMB.profissional.endereco}"
+							rendered="true" readonly="true"
+							requiredMessage="O endereço deve ser informado! " />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p:outputLabel value="Telefone: " for="telefone" />
+								<br />
+								<p:inputMask id="telefone" size="10"
+									value="#{excluirProfissionalMB.profissional.telefone}"
+									required="true" mask="(99) 9999-9999"
+									rendered="true" readonly="true"
+									requiredMessage="O telefone deve ser informado! ">
+
+								</p:inputMask>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel value="Celular: " for="celular" />
+								<br />
+								<p:inputMask id="celular" size="10"
+									value="#{excluirProfissionalMB.profissional.celular}"
+									required="true" mask="(99) 9999-9999"
+									rendered="true" readonly="true"
+									requiredMessage="O celular deve ser informado! ">
+								</p:inputMask>
+							</h:panelGroup>
+						</h:panelGrid>
+					</p>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Descrição: " for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao" required="true" maxlength="250"
+							cols="50" value="#{excluirProfissionalMB.profissional.descricao}"
+							rendered="true" readonly="true"
+							requiredMessage="A descrição deve ser informada! ">
+						</p:inputTextarea>
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+			
+			<p:fieldset legend="Areas de Especialidade" toggleable="true">
+				<p:pickList id="pickList"
+					value="#{excluirProfissionalMB.areasEspecilidades}"
+					var="areaEspecialidade" itemLabel="#{areaEspecialidade.nome}"
+					itemValue="#{areaEspecialidade}" converter="defaultConverterJSF2"
+					showSourceFilter="true" showTargetFilter="true"
+					disabled="true"
+					filterMatchMode="contains">
+					<f:facet name="sourceCaption">Disponível</f:facet>
+					<f:facet name="targetCaption">Selecionado</f:facet>
+				</p:pickList>
+
+			</p:fieldset>
+
+
+		</p:fieldset>
+		<br />
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false"
+			action="#{excluirProfissionalMB.excluir}" value="Excluir" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false"
+			action="#{excluirProfissionalMB.sairSemSalvar}" value="Cancelar" />
+	</ui:define>
+</ui:composition>
+
+</html>

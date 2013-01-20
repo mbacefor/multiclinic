@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateUsuario.xhtml">
+	<ui:define name="tituloPagina">Tela de Listagem</ui:define>
+	<ui:define name="descricaoTituloPagina">Lista as entidades cadastradas</ui:define>
+	<ui:define name="content">
+		<div class="post">
+			<h2 class="title">
+				<ui:insert name="subtituloPagina">Novo</ui:insert>
+			</h2>
+			<p class="meta">
+				Criado por <a href="#"><ui:insert name="criadorEntidade">Marcelo Bezerrra</ui:insert></a>
+				em
+				<ui:insert name="dataCriacaoEntidade">05/10/1974</ui:insert>
+			</p>
+			<div class="entry">
+				<h:form id="formListagem" >
+					<p:fieldset legend="Resultado">
+						<p:spacer height="10px" />
+						<p:dataTable align="center" width="100%" id="listagem" 
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" rows="10" value="#{bean.lista}" 
+							var="linhaCorrente">
+							<p:column>
+								<f:facet name="header">
+									<h:outputText styleClass="headerText" value="Editar" />
+								</f:facet>
+								<div align="center">
+									<p:commandButton ajax="false" id="btEditar" alt="Editar"
+										icon="ui-icon-folder-open" action="#{bean.prepararEditar}">
+										<f:setPropertyActionListener value="#{linhaCorrente}"
+											target="#{bean.entidadeCorrente}" />
+									</p:commandButton>
+								</div>
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText styleClass="headerText" value="Excluir" />
+								</f:facet>
+								<div align="center">
+									<p:commandButton ajax="false" alt="Excluir" id="btExcluir"
+										action="#{bean.prepararExcluir}" icon="ui-icon-trash">
+										<f:setPropertyActionListener value="#{linhaCorrente}"
+											target="#{bean.entidadeCorrente}" />
+									</p:commandButton>
+								</div>
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="ID" />
+								</f:facet>
+								<h:outputText value="#{linhaCorrente.id}" />
+							</p:column>
+							
+							<ui:insert name="camposListagem"></ui:insert>
+							
+						</p:dataTable>
+
+						<p:spacer height="10px" />
+
+					</p:fieldset>
+
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+<!--  					
+					<div id="camposFiltro">
+						<p:fieldset>
+							<f:facet name="legend">
+								<ui:insert name="tituloFieldSetFiltro">Campos do Filtro</ui:insert>
+							</f:facet>
+							<ui:insert name="camposFiltro">
+					Substituir pelos campos de filtro
+					 </ui:insert>
+							<h:commandButton id="btFiltrar" value="Filtrar"
+								action="#{bean.filtrar}" />
+							<p />
+							<h:commandButton id="btNovo" value="Novo" immediate="true"
+								action="#{bean.prepararNovo}" />
+
+						</p:fieldset>
+					</div>
+					<p />
+-->
+</html>

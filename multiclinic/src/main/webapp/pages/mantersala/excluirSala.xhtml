@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+	<ui:define name="tituloPagina">Tela de Exclusão de Salas</ui:define>
+	<ui:define name="subtituloPagina">Tela de Exclusão de Salas</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite excluir uma sala.</ui:define>
+	<ui:define name="criadorEntidade"> #{editarSalaMB.sala.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText value="#{editarSalaMB.sala.dataCadastro}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" rendered="true" required="true"
+							maxlength="10" size="10" readonly="true"
+							value="#{excluirSalaMB.sala.id}" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Nome" for="nome" />
+						<br />
+						<p:inputText id="nome" rendered="true" required="true"
+							maxlength="30" size="40" readonly="true"
+							value="#{excluirSalaMB.sala.nome}" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Descrição" for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao" required="true" maxlength="250"
+							cols="50" readonly="true" 
+							value="#{excluirSalaMB.sala.descricao}"></p:inputTextarea>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true"
+							disabled="true" value="#{excluirSalaMB.sala.situacao}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Data Construção" for="dataConstrucao" />
+						<br />
+						<p:calendar id="dataConstrucao" readonly="true" disabled="true"
+							value="#{excluirSalaMB.sala.dataConstrucao}"></p:calendar>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Qtde Banheiros" for="banheiros" />
+						<br />
+						<p:inputText id="banheiros" value="#{excluirSalaMB.sala.banheiro}"
+							rendered="true" required="true" maxlength="10" size="10"
+							readonly="true" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<h:outputLabel value="* Tamanho" for="tamanho" />
+						<p:selectOneMenu id="tamanho" rendered="true" required="true"
+							disabled="true" value="#{excluirSalaMB.sala.tamanho}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:fieldset>
+		<br />
+		<p:fieldset legend="Equipamentos" toggleable="true">
+			<p:pickList id="pickList" disabled="true"
+				value="#{excluirSalaMB.equipamentos}"
+				var="" itemLabel="#{equipamentos.nome}"
+				itemValue="#{equipamentos}" converter="defaultConverterJSF2"
+				showSourceFilter="true" showTargetFilter="true"
+				filterMatchMode="contains">
+				<f:facet name="sourceCaption">Disponível</f:facet>
+				<f:facet name="targetCaption">Selecionado</f:facet>
+			</p:pickList>
+		</p:fieldset>
+
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" value="Excluir"
+			action="#{excluirSalaMB.excluir}" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" value="Desistir da Exclusão"
+			action="#{excluirSalaMB.desistirExcluir()}" />
+	</ui:define>
+</ui:composition>
+
+</html>

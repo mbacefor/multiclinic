@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplateUsuario.xhtml">
+	<ui:define name="tituloPagina">Tela de Editar de Usuario</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição de Usuário</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite criar um novo usuário</ui:define>
+	<ui:define name="criadorEntidade"> #{editarUsuarioMB.usuario.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText value="#{editarUsuarioMB.usuario.dataCadastroFormatada}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup rendered="#{(editarUsuarioMB.usuario.id!=null)}">
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" rendered="true" maxlength="10" size="10"
+							value="#{editarUsuarioMB.usuario.id}" readonly="true" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{(editarUsuarioMB.usuario.id!=null)}">
+					<p>
+						<!-- Intencionalmente deixando em branco - Alinhamento da tela -->
+					</p>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Email" for="email" />
+						<br />
+						<p:inputText id="email" value="#{editarUsuarioMB.usuario.email}"
+							rendered="true" required="true" size="45"
+							requiredMessage="campo EMAIL é obrigatório!" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+
+					<p:outputLabel value="Perfil" for="idPerfil" />
+					<br />
+					<p:selectOneMenu id="idPerfil"
+						value="#{editarUsuarioMB.usuario.perfil}"
+						converter="defaultConverterJSF2" style="width:200px">
+						<f:selectItems value="#{editarUsuarioMB.listaPerfis}" var="perfil"
+							itemValue="#{perfil}" />
+					</p:selectOneMenu>
+
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Senha" for="senha" />
+						<br />
+						<p:password id="senha" value="#{editarUsuarioMB.usuario.senha}"
+							rendered="true" required="true" maxlength="12" size="40"
+							feedback="true" promptLabel="Favor informar senha!"
+							match="confirmaSenha" validatorMessage="Senhas diferentes!"
+							requiredMessage="campo SENHA é obrigatório!" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Confirma Senha" for="confirmaSenha" />
+						<br />
+						<p:password id="confirmaSenha" maxlength="12" size="40"
+							promptLabel="Favor Confirmar senha!" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Observação" for="descricao" />
+						<br />
+						<p:inputTextarea id="descricao"
+							value="#{editarUsuarioMB.usuario.descricao}" maxlength="250"
+							cols="50"></p:inputTextarea>
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p>
+						<p:outputLabel value="Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true"
+							value="#{editarUsuarioMB.usuario.ativo}">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+
+					</p>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:fieldset>
+		<br />
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" action="#{editarUsuarioMB.salvar}"
+			value="Salvar" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" action="#{editarUsuarioMB.cancelar}"
+			value="Cancelar" immediate="true" />
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/listarTemplateClinicas.xhtml">
+	<ui:param name="bean" value="#{listarPaciente}" />
+	<ui:define name="tituloPagina">Tela de listagem de paciente</ui:define>
+	<ui:define name="subtituloPagina">Tela de listagem de paciente</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os pacientes cadastrados</ui:define>
+	<ui:define name="camposListagem">
+
+
+		<p:column >
+			<f:facet name="header">
+				<h:outputText value="Foto" />
+			</f:facet>
+			<p:graphicImage value="/photocam/#{linhaCorrente.nomeFoto}.png"
+				 width="80px" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains" headerText="Nome" >
+			<h:outputText value="#{linhaCorrente.nome}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.fone}" filterMatchMode="contains" headerText="Fone">
+			 <h:outputText value="#{linhaCorrente.fone}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.foneAdicional}" filterMatchMode="contains" headerText="Fone Adicional">
+			<h:outputText value="#{linhaCorrente.foneAdicional}" />
+		</p:column>
+		
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

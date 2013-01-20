@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/templateGeral.xhtml">
+
+		<ui:define name="search">
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div class="post">
+				<h2 class="title">Você esta na Web Clinicas</h2>
+				<p class="meta">
+					Postador por <a href="#">Marcelo Bezerrra</a> em 07/04/2012
+					&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a>
+					&nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a>
+				</p>
+				<div class="entry">
+
+					<p>Essa é a mais nova maneira de mostrar uma clinica com alto
+						grau de tecnologia e satisfaçao para com seus clientes. Nos somos
+						a Web Clinicas uma empresa prestadora de serviços de saude,
+						participante do sistema de medicina de grupo e parceria
+						operacional nacional.</p>
+					<p>Você dono de clínica, encontrará neste novo espaço um
+						ambiente seguro e rápido para administração e divulgação de sua
+						clínica.</p>
+					<p>Outra coisa importante, este ambiente é totalmente grátis,
+						veja as considerações ...</p>
+					<p>
+						<a href="#" class="links">Read More</a>
+					</p>
+				</div>
+			</div>
+		</ui:define>
+
+		<ui:define name="sidebar">
+
+			<div id="sidebar">
+				<ul>
+					<li>
+						<h2>Administração</h2> <br />
+						<div style="padding: 10px; float: left; position: relative;">
+							<img
+								src="#{facesContext.externalContext.requestContextPath}/resources/images/admin2.JPG"
+								alt="" height="60px" />
+						</div>
+						<p>Ambiente desenvolvido para o gerenciamento de clínicas da
+							área da saúde na Web.</p> <br />
+
+					</li>
+					<li>
+						<h2>Segurança</h2>
+						<ul>
+							<h:form>
+								<li><h:commandLink value="Nova Funcionalidade"
+										action="#{editarFuncionalidadeMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listar Funcionalidade"
+										action="#{listarFuncionalidadeMB.prepararListar}" /></li>
+
+								<li><h:commandLink value="Novo Perfil"
+										action="#{editarPerfilMB.prepararNovo}" /></li>
+
+								<li><h:commandLink value="Listar Perfil"
+										action="#{listarPerfilMB.prepararListar}" /></li>
+							</h:form>
+						</ul>
+					</li>
+					<li>
+						<h2>Area de Especialidades</h2>
+						<ul>
+							<h:form>
+								<li><h:commandLink value="Nova Area de Especialidades"
+										action="#{editarAreaEspecialidadeMB.prepararNovo}" /></li>
+								<li><h:commandLink value="Listar Area de Especialidades"
+										action="#{listarAreaEspecialidadeMB.prepararListar}" /></li>
+							</h:form>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<!-- end #sidebar -->
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
