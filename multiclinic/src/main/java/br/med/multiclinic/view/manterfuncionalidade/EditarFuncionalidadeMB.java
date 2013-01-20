@@ -5,6 +5,9 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.Authenticator;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
@@ -28,20 +31,24 @@ public class EditarFuncionalidadeMB extends FacesBean {
 	private EditarFuncionalidadeMB editarFuncionalidadeMB;
 	@Inject
 	private ManterFuncionalidadeBC genericoBC;
+	@Inject
+	private SecurityContext context;
 
 	/**
 	 * Metodo que inicia uma nova funcionalidade
 	 * 
 	 * @return
 	 */
+
 	public String prepararNovo() {
 		String retorno = null;
 		try {
+			//context.login();
 			Funcionalidade novaFuncionalidade = new Funcionalidade();
 			editarFuncionalidadeMB.setFuncionalidade(novaFuncionalidade);
 			retorno = EditarFuncionalidadeMB.CAMINHO_TELA;
 		} catch (Exception e) {
-			// error(e.getMessage());
+			error(e.getMessage());
 		}
 		return retorno;
 	}
@@ -52,6 +59,7 @@ public class EditarFuncionalidadeMB extends FacesBean {
 	 * @return
 	 */
 	@Transactional
+	@RequiredRole("administrators")
 	public String salvar() {
 		String retorno = null;
 		try {
