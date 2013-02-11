@@ -54,7 +54,10 @@ Released   : 20090802
 			</ui:insert>
 			<div class="top_menu">
 				<ui:insert name="menuLogin">
-					<a href="#" class="login">login</a>
+					<h:form>
+						<h:link styleClass="login" onclick="telaLogin.visible = true; telaLogin.show(); return false;"
+							value="Login" />
+					</h:form>
 				</ui:insert>
 				<ui:insert name="menuConsulta">
 					<a href="#" class="sign_up">Consultas</a>
@@ -240,5 +243,25 @@ Released   : 20090802
 		</p>
 	</div>
 	<!-- end #footer -->
+
 </h:body>
+<p:dialog widgetVar="telaLogin" header="Login" modal="true"
+	visible="false" hideEffect="explode">
+	<h:form>
+		<p:fieldset>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Login" for="loginCampo"></p:outputLabel>
+				<p:inputText id="loginCampo" label="Login" required="true"
+					requiredMessage="Campo LOGIN obrigado!" value="#{loginMB.login}"></p:inputText>
+				<p:outputLabel value="Senha" for="loginCampo"></p:outputLabel>
+				<p:password id="senhaCampo" required="true" requiredMessage="Campo SENHA obrigatório!"
+				value="#{loginMB.senha}"></p:password>
+				<p:commandButton label="Logar" value="Logar" action="#{loginMB.logar}" ajax="false"></p:commandButton>
+				<p:commandButton label="Fechar" value="Fechar" immediate="true"
+					onclick="telaLogin.hide()"></p:commandButton>
+			</p:panelGrid>
+		</p:fieldset>
+	</h:form>
+
+</p:dialog>
 </html>

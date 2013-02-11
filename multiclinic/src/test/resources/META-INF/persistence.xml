@@ -19,6 +19,7 @@
 		<class>br.med.multiclinic.domain.Equipamento</class>
 		<class>br.med.multiclinic.domain.Paciente</class>
 
+
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />

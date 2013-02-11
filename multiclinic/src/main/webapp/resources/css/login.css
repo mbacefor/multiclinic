@@ -1,0 +1,111 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url(../images/login/bg.jpg);
+	background-repeat: repeat;
+	background-position: 0px -56px;
+	margin: 0px;
+	padding: 0px;/*
+	text-align: center;
+	vertical-align: middle;*/
+}
+#CaixaBrancaLogin {
+	background-color: #FFFFFF;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	height: 246px;
+	width: 419px;
+	position: relative;
+	top: -5px;
+	left: -5px;
+}
+#ConteudoLogin {
+	margin: 0px 10px;
+	padding: 0px;
+	border: 1px solid #B7C3DF;
+	height: 226px;
+	position: relative;
+	top: 10px;
+	background-image: url(../images/login/bg_login.jpg);
+	background-repeat: repeat-x;
+	text-align: center;
+}
+#LoginTopo {
+	text-align: left;
+	white-space: nowrap;
+	left: 0px;
+	top: 0px;
+	vertical-align: top;
+	position: relative;
+	height: 80px;
+	width: 97px;
+}
+#LoginForm {
+	bottom: 60px;
+	position: absolute;
+	width: 160px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	padding: 0px;
+	left: 110px;
+}
+#LoginForm td {
+	font-size: 11px;
+	text-align: left;
+	padding: 2px;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+#LoginForm input {
+	font-size: 11px;
+	height: 19px;
+	color: #003399;
+	border: 1px solid #B7C3DF;
+	margin: 0px;
+	padding: 2px 0px 0px 5px;
+	vertical-align: baseline;
+	background-color: #F2F4F9;
+	
+
+	
+}
+#LoginForm input:focus{
+	border: 1px solid #6E86BF; /* Não funciona no IE */
+}
+#LoginForm h1 {
+	font-size: 11px;
+	text-align: right;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+}
+#DesenvolvidoLogin {
+	width: 419px;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	position: relative;
+	text-align: left;
+	height: 9px;
+	bottom: -25px;
+}
+#SombraLogin {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	height: 246px;
+	width: 419px;
+	position: relative;/*
+	top: 86px;*/
+	background-image: url(../images/login/bg_sombra_login.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}

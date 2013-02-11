@@ -64,5 +64,22 @@
 			<artifactId>cupertino</artifactId>
 			<version>${theme.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>br.gov.incor</groupId>
+			<artifactId>phonetic</artifactId>
+			<scope>system</scope>
+			<version>1.0</version>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/phonetic.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.gov.incor</groupId>
+			<artifactId>persistence</artifactId>
+			<scope>system</scope>
+			<version>1.0</version>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/persistence.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
 </project>
