@@ -3,9 +3,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/editarTemplateClinicas.xhtml">
+<ui:composition template="/templates/editarTemplateUsuario.xhtml">
 	<ui:define name="tituloPagina">Tela de Edição de paciente</ui:define>
 	<ui:define name="subtituloPagina">Tela de Edição/criação de paciente</ui:define>
 	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo paciente</ui:define>
@@ -99,6 +99,17 @@
 							</p:calendar>
 						</p>
 					</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Situação" for="situacao" />
+							<p:selectOneMenu id="situacao" rendered="true" required="true"
+								value="#{editarPacienteMB.paciente.ativo}">
+								<f:selectItem itemLabel="Ativo" itemValue="true" />
+								<f:selectItem itemLabel="Inativo" itemValue="false" />
+							</p:selectOneMenu>
+
+						</p>
+					</h:panelGroup>
 
 				</h:panelGrid>
 			</p:fieldset>
@@ -155,6 +166,26 @@ function initialize() {
 								value="#{editarPacienteMB.paciente.endereco}" />
 						</p>
 					</h:panelGroup>
+					<h:panelGroup>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada X" for="coordX" />
+									<br />
+									<p:inputText id="coordX" size="30"
+										value="#{editarPacienteMB.paciente.coordX}" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada Y" for="coordY" />
+									<br />
+									<p:inputText id="coordY" size="30"
+										value="#{editarPacienteMB.paciente.coordY}" />
+								</p>
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
 
 					<h:panelGroup>
 						<p>
@@ -168,6 +199,20 @@ function initialize() {
 
 				</h:panelGrid>
 
+			</p:fieldset>
+		</div>
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Dados Usuário" toggleable="true">
+				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Email" for="email" />
+							<br />
+							<p:inputText id="email" value="#{editarPacienteMB.emailUsuario}"
+								rendered="true" required="false" size="45" />
+						</p>
+					</h:panelGroup>
+				</h:panelGrid>
 			</p:fieldset>
 		</div>
 		<br />

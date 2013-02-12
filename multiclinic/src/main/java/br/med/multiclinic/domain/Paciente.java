@@ -28,7 +28,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	/**
 	 * Constantes utilizadas na classe
 	 */
-	final public static int TAMANHO_NOME = 80;
+	final public static int TAMANHO_NOME = 120;
 	final public static int TAMANHO_ENDERECO = 255;
 	final public static int TAMANHO_FONE = 15;
 	final public static int TAMANHO_CPF = 11;
@@ -42,7 +42,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	@Column(length = TAMANHO_ENDERECO, nullable = false)
 	private String endereco;
 
-	@Column(nullable = true, length = TAMANHO_FONE)
+	@Column(nullable = false, length = TAMANHO_FONE)
 	private String fone;
 
 	@Column(nullable = true, length = TAMANHO_FONE)
@@ -61,8 +61,14 @@ public class Paciente extends EntidadeGeralTemplate {
 	@Nonnull
 	private Date dataAniversario;
 
+	@Column(nullable = true)
+	private Double coordX;
+
+	@Column(nullable = true)
+	private Double coordY;
+
 	/**
-	 * Representa o usuario do sistema que cadastrou o paciente
+	 * Representa o usuario do sistema que esta associado com o paciente
 	 */
 	@OneToOne(optional = true)
 	private Usuario usuario;
@@ -281,6 +287,22 @@ public class Paciente extends EntidadeGeralTemplate {
 	 */
 	public void setNomeFonetico(String nomeFonetico) {
 		this.nomeFonetico = nomeFonetico;
+	}
+
+	public Double getCoordX() {
+		return coordX;
+	}
+
+	public void setCoordX(Double coordX) {
+		this.coordX = coordX;
+	}
+
+	public Double getCoordY() {
+		return coordY;
+	}
+
+	public void setCoordY(Double coordY) {
+		this.coordY = coordY;
 	}
 
 }

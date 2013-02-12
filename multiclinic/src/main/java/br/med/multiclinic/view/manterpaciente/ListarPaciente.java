@@ -6,9 +6,11 @@ package br.med.multiclinic.view.manterpaciente;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.med.multiclinic.business.PacienteBC;
+import br.med.multiclinic.domain.Funcionalidade;
 import br.med.multiclinic.domain.Paciente;
 import br.med.multiclinic.util.FacesBean;
 
@@ -18,10 +20,14 @@ import br.med.multiclinic.util.FacesBean;
  * @author mbacefor
  * 
  */
-@ManagedBean(name = "listarPaciente")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
 public class ListarPaciente extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Atributos da classe
 	 */
@@ -33,6 +39,9 @@ public class ListarPaciente extends FacesBean {
 	 * Representa a lista de entidades
 	 */
 	private List<Paciente> lista = new ArrayList<Paciente>();
+
+	@Inject
+	private PacienteBC pacienteBC;
 
 	/**
 	 * Representa a entidade selecionada
@@ -78,8 +87,24 @@ public class ListarPaciente extends FacesBean {
 			Paciente novo = new Paciente();
 			EditarPacienteMB editarPaciente = (EditarPacienteMB) getBean(EditarPacienteMB.NOME_MANAGER_BEAN);
 			editarPaciente.setPaciente(novo);
+			editarPaciente.setEmailUsuario(null);
 			info("Entre com os dados do usuário!");
 			retorno = EditarPacienteMB.CAMINHO_TELA;
+
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+
+		return retorno;
+	}
+
+	public String prepararListar() {
+		String retorno = null;
+
+		try {
+			List<Paciente> lista = pacienteBC.obterTodos();
+			setLista(lista);
+			retorno = CAMINHO_TELA;
 
 		} catch (Exception e) {
 			error(e.getMessage());

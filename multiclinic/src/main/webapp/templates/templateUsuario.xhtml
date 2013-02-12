@@ -36,33 +36,57 @@
 		<ui:define name="sidebar">
 
 			<div id="sidebar">
-				<ul>
-					<li>
-						<h2>Usuários</h2> <br />
-						<div style="padding: 10px; float: left; position: relative;">
-							<img
-								src="#{facesContext.externalContext.requestContextPath}/resources/images/usuario.png"
-								alt="" height="60px" />
-						</div>
-						<p>Área dedicada ao cadastro de usuários do sistema (Paciente
-							ou Profissionais).</p> <br />
+				<h:form>
+					<ul>
+						<li>
+							<h2>Usuários</h2> <br />
+							<div style="padding: 10px; float: left; position: relative;">
+								<img
+									src="#{facesContext.externalContext.requestContextPath}/resources/images/usuario.png"
+									alt="" height="60px" />
+							</div>
+							<p>Área dedicada ao cadastro de usuários do sistema (Paciente
+								ou Profissionais).</p> <br />
 
-					</li>
-					<li>
-						<h2>Usuário</h2>
-						<ul>
-							<h:form>
+						</li>
+						<li>
+							<h2>Usuário</h2>
+							<ul>
+
 								<li><h:commandLink value="Cadastrar Usuario"
 										action="#{editarUsuarioMB.prepararNovo}" /></li>
-							</h:form>
-							<h:form>
+
+
 								<li><h:commandLink value="Listar Usuario"
 										action="#{listarUsuarioMB.prepararListar}" /></li>
-							</h:form>
-						</ul>
-					</li>
 
-				</ul>
+							</ul>
+						</li>
+						<li>
+							<h2>Paciente</h2>
+							<ul>
+								<li><h:commandLink value="Novo de Paciente"
+										action="#{listarPaciente.prepararNovo}" /></li>
+								<li><h:commandLink value="Listagem de Paciente"
+										action="#{listarPaciente.prepararListar}" /></li>
+							</ul>
+						</li>
+						<li>
+							<h2>Profissional</h2>
+							<ul>
+								<li><h:commandLink value="Novo Profissional"
+										action="#{editarProfissionalMB.prepararNovo}" /></li>
+								<!-- CAMINHO DE TELA OK. -->
+								<li><h:commandLink value="Listagem de Profissionais"
+										action="#{listarProfissionalMB.prepararListar}" /></li>
+
+
+							</ul>
+						</li>
+
+
+					</ul>
+				</h:form>
 			</div>
 			<!-- end #sidebar -->
 

@@ -8,21 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.FacesException;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.imageio.stream.FileImageOutputStream;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 
 import org.primefaces.event.CaptureEvent;
 
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.med.multiclinic.business.PacienteBC;
 import br.med.multiclinic.domain.Paciente;
+import br.med.multiclinic.domain.Usuario;
 import br.med.multiclinic.util.FacesBean;
 
-@ManagedBean(name = "editarPacienteMB")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
 public class EditarPacienteMB extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Atributos da classe
 	 */
@@ -30,6 +36,10 @@ public class EditarPacienteMB extends FacesBean {
 	public static final String NOME_MANAGER_BEAN = "editarPacienteMB";
 	public static final String CAMINHO_TELA = "/pages/manterpaciente/editarPaciente.xhtml";
 	private Paciente paciente = new Paciente();
+	private String emailUsuario;
+
+	@Inject
+	private PacienteBC pacienteBC;
 
 	// TODO Implementar validador de CPF
 
@@ -37,7 +47,7 @@ public class EditarPacienteMB extends FacesBean {
 	 * 
 	 */
 	public EditarPacienteMB() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	/**
@@ -47,19 +57,19 @@ public class EditarPacienteMB extends FacesBean {
 	 */
 	public String salvar() {
 		String retorno = null;
-//		ManterPacienteControle controlador = ManterPacienteControle
-//				.getInstance();
-//		try {
-//			controlador.salvar(paciente);
-//			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
-//			List<Paciente> listaPaciente = controlador.obterPaciente();
-//			listarPaciente.setLista(listaPaciente);
-//			info("Paciente salvo com sucesso");
-//			retorno = ListarPaciente.CAMINHO_TELA;
-//		} catch (Exception e) {
-//			error(e.getMessage());
-//		}
-//
+
+		try {
+			Usuario usuarioLogado = obterUsuarioLogado();
+			pacienteBC.salvar(paciente, usuarioLogado);
+			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
+			List<Paciente> listaPaciente = pacienteBC.obterTodos();
+			listarPaciente.setLista(listaPaciente);
+			info("Paciente salvo com sucesso");
+			retorno = ListarPaciente.CAMINHO_TELA;
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+
 		return retorno;
 	}
 
@@ -121,6 +131,14 @@ public class EditarPacienteMB extends FacesBean {
 		} catch (Exception e) {
 			throw new FacesException("Error in writing captured image.");
 		}
+	}
+
+	public String getEmailUsuario() {
+		return emailUsuario;
+	}
+
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
 
 }
