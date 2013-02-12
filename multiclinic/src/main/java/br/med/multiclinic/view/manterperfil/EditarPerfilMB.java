@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.primefaces.model.DualListModel;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
 import br.med.multiclinic.business.ManterPerfilBC;
@@ -17,6 +18,7 @@ import br.med.multiclinic.util.FacesBean;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterPerfil")
 public class EditarPerfilMB extends FacesBean {
 
 	/**

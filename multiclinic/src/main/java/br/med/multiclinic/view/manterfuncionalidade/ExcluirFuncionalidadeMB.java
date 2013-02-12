@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.SessionScoped;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
 import br.med.multiclinic.domain.Funcionalidade;
@@ -11,6 +12,7 @@ import br.med.multiclinic.util.FacesBean;
 
 @ViewController
 @SessionScoped
+@RequiredRole("ManterFuncionalidade")
 public class ExcluirFuncionalidadeMB extends FacesBean {
 
 	/**

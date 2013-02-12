@@ -5,9 +5,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
-import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
-import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
@@ -17,6 +15,7 @@ import br.med.multiclinic.util.FacesBean;
 
 @ViewController
 @SessionScoped
+@RequiredRole("ManterFuncionalidade")
 public class EditarFuncionalidadeMB extends FacesBean {
 
 	/**
@@ -31,8 +30,6 @@ public class EditarFuncionalidadeMB extends FacesBean {
 	private EditarFuncionalidadeMB editarFuncionalidadeMB;
 	@Inject
 	private ManterFuncionalidadeBC genericoBC;
-	@Inject
-	private SecurityContext context;
 
 	/**
 	 * Metodo que inicia uma nova funcionalidade
@@ -43,7 +40,7 @@ public class EditarFuncionalidadeMB extends FacesBean {
 	public String prepararNovo() {
 		String retorno = null;
 		try {
-			//context.login();
+			// context.login();
 			Funcionalidade novaFuncionalidade = new Funcionalidade();
 			editarFuncionalidadeMB.setFuncionalidade(novaFuncionalidade);
 			retorno = EditarFuncionalidadeMB.CAMINHO_TELA;
@@ -59,7 +56,6 @@ public class EditarFuncionalidadeMB extends FacesBean {
 	 * @return
 	 */
 	@Transactional
-	@RequiredRole("administrators")
 	public String salvar() {
 		String retorno = null;
 		try {

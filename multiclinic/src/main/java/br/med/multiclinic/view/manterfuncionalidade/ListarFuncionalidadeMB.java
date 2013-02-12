@@ -3,17 +3,17 @@ package br.med.multiclinic.view.manterfuncionalidade;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
 import br.med.multiclinic.domain.Funcionalidade;
 import br.med.multiclinic.util.FacesBean;
 
 @ViewController
-@ManagedBean(name = "listarFuncionalidadeMB")
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterFuncionalidade")
 public class ListarFuncionalidadeMB extends FacesBean {
 
 	/**

@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.model.DualListModel;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
 import br.med.multiclinic.business.ManterPerfilBC;
@@ -20,6 +19,7 @@ import br.med.multiclinic.util.FacesBean;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterPerfil")
 public class ListarPerfilMB extends FacesBean {
 
 	/**

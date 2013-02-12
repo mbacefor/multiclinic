@@ -2,20 +2,25 @@ package br.med.multiclinic.seguranca;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.med.multiclinic.domain.Usuario;
 
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
 public class Credenciais implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String username = "admin";
+	private String username = "";
 
-	private String password = "secret";
+	private String password = "";
+
+	private Usuario usuarioLogado = null;
 
 	public void clear() {
 		username = null;
 		password = null;
+		usuarioLogado = null;
 	}
 
 	public String getUsername() {
@@ -32,5 +37,13 @@ public class Credenciais implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 }

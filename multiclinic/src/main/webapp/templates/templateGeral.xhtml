@@ -55,7 +55,8 @@ Released   : 20090802
 			<div class="top_menu">
 				<ui:insert name="menuLogin">
 					<h:form>
-						<h:link styleClass="login" onclick="telaLogin.visible = true; telaLogin.show(); return false;"
+						
+						<h:commandLink styleClass="login" action="#{loginMB.prepararLogin}"
 							value="Login" />
 					</h:form>
 				</ui:insert>
@@ -246,7 +247,7 @@ Released   : 20090802
 
 </h:body>
 <p:dialog widgetVar="telaLogin" header="Login" modal="true"
-	visible="false" hideEffect="explode">
+	visible="#{loginMB.exibirTelaLogin}" hideEffect="explode">
 	<h:form>
 		<p:fieldset>
 			<p:panelGrid columns="2">

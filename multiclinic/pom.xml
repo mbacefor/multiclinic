@@ -70,7 +70,7 @@
 			<artifactId>phonetic</artifactId>
 			<scope>system</scope>
 			<version>1.0</version>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/phonetic.jar</systemPath>
+			<systemPath>${basedir}/src/libs/phonetic.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -78,7 +78,7 @@
 			<artifactId>persistence</artifactId>
 			<scope>system</scope>
 			<version>1.0</version>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/persistence.jar</systemPath>
+			<systemPath>${basedir}/src/libs/persistence.jar</systemPath>
 		</dependency>
 		
 	</dependencies>

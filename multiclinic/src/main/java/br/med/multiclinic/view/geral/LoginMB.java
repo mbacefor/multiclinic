@@ -29,27 +29,36 @@ public class LoginMB extends FacesBean {
 
 	private String senha;
 
+	private Boolean exibirTelaLogin = false;
+
 	@Inject
 	private Credenciais credentials;
 
 	@Inject
 	private Autenticador autenticador;
 
+	public String prepararLogin() {
+		exibirTelaLogin = true;
+		return null;
+	}
+
 	public String logar() {
-		boolean autenticado = false;
+
 		try {
 
 			credentials.clear();
 			credentials.setUsername(login);
 			credentials.setPassword(senha);
-			autenticado = autenticador.authenticate();
+			autenticador.authenticate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			error(e.getMessage());
 
 		}
+		exibirTelaLogin = false;
 		return null;
+
 	}
 
 	public String getLogin() {
@@ -66,6 +75,14 @@ public class LoginMB extends FacesBean {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Boolean getExibirTelaLogin() {
+		return this.exibirTelaLogin;
+	}
+
+	public void setExibirTelaLogin(Boolean exibirTelaLogin) {
+		this.exibirTelaLogin = exibirTelaLogin;
 	}
 
 }
