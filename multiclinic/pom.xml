@@ -64,7 +64,7 @@
 			<artifactId>cupertino</artifactId>
 			<version>${theme.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>br.gov.incor</groupId>
 			<artifactId>phonetic</artifactId>
@@ -72,7 +72,7 @@
 			<version>1.0</version>
 			<systemPath>${basedir}/src/libs/phonetic.jar</systemPath>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>br.gov.incor</groupId>
 			<artifactId>persistence</artifactId>
@@ -80,6 +80,11 @@
 			<version>1.0</version>
 			<systemPath>${basedir}/src/libs/persistence.jar</systemPath>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.jacorb</groupId>
+			<artifactId>jacorb</artifactId>
+			<version>3.2</version>
+		</dependency>
+
 	</dependencies>
 </project>
