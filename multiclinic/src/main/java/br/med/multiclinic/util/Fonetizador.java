@@ -4,14 +4,15 @@
 package br.med.multiclinic.util;
 
 import CORBAphonetic.AbbreviateError;
-import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.stereotype.Controller;
 
 /**
  * @author mbacefor
  * 
  */
 
-@BusinessController
+
+@Controller
 public class Fonetizador {
 
 	// Declarando os objetos necessários.

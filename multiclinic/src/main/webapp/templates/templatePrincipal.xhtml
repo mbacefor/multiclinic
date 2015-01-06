@@ -11,61 +11,80 @@
 		<ui:define name="search">
 		</ui:define>
 
-
 		<ui:define name="content">
 
-			<div class="post">
-				<h2 class="title">Bem-vindo ao Net Clínicas</h2>
-				<p class="meta">
-					Postador por <a href="#">Marcelo Bezerrra</a> em 07/04/2012
-					&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a>
-					&nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a>
-				</p>
-				<div class="entry">
-
-					<p>Este ambiente foi desenvolvido para a criação de um ambiente
-						colaborativo que possibilite o gerenciamento de clínicas médicas e
-						ajude a seus clientes encontrarem os profissionais desejados de
-						forma rápida e segura.</p>
-					<p>Você dono de clínica, encontrará neste novo espaço um
-						ambiente seguro e rápido para administração e divulgação de sua
-						clínica.</p>
-					<p>Outra coisa importante, este ambiente é totalmente grátis,
-						veja as considerações ...</p>
-					<p>
-						<a href="#" class="links">Read More</a>
-					</p>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4>
+						<ui:insert name="tituloPainelPrincipal"> Bem-vindo ao Net Clínicas</ui:insert>
+					</h4>
+				</div>
+				<div class="panel-info">
+					<sub><ui:insert name="painel-info"> Postador por <a
+								href="#">Marcelo Bezerrra</a> em
+						05/01/2015 &nbsp;&bull;&nbsp; <a href="#" class="comments">Comments
+								(64)</a>
+						</ui:insert> </sub>
+				</div>
+				<div class="panel-body">
+					<ui:insert name="panel-body">
+						<p>Este ambiente foi desenvolvido para a criação de um
+							ambiente colaborativo que possibilite o gerenciamento de clínicas
+							médicas e ajude a seus clientes encontrarem os profissionais
+							desejados de forma rápida e segura.</p>
+						<p>Você dono de clínica, encontrará neste novo espaço um
+							ambiente seguro e rápido para administração e divulgação de sua
+							clínica.</p>
+						<p>Outra coisa importante, este ambiente é totalmente grátis,
+							veja as considerações ...</p>
+						<p>
+							<a href="#" class="btn btn-primary">Read More</a>
+						</p>
+					</ui:insert>
 				</div>
 			</div>
 		</ui:define>
 
 		<ui:define name="sidebar">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>
+						<ui:insert name="sidebar-painel-heading">Med-Link</ui:insert>
+					</h3>
+				</div>
 
-			<div id="sidebar">
-				<ul>
-					<li>
-						<h2>Net Clínicas</h2> <br />
-						<div style="float: left; position: relative;">
-							<img src="resources/images/icon1.png" alt="" />
+				<div class="panel-body">
+
+					<div class="row">
+						<div class="col-md-1">
+							<ui:insert name="sidebar-panel-body-image">
+								<img src="resources/images/icon1.png" alt="" />
+							</ui:insert>
 						</div>
-						<p>Ambiente desenvolvido para o gerenciamento de clínicas da
-							área da saúde na Web.</p> <br />
-
-					</li>
-					<li>
-						<h2>Funcionalidades</h2>
-						<ul>
-							<h:form>
-								<li><h:commandLink value="Consulta Profissionais" /></li>
-								<li><h:commandLink value="Consulta Clinicas" /></li>
-								<li><h:commandLink value="Cadastro de Clinicas" /></li>
-								<li><h:commandLink value="Cadastro de Profissionais" /></li>
-							</h:form>
-						</ul>
-					</li>
-
-				</ul>
+						<div class="col-md-offset-3">
+							<ui:insert name="sidebar-panel-body-texto">Ambiente desenvolvido para o
+							gerenciamento de clínicas da área da saúde na Web.</ui:insert>
+						</div>
+					</div>
+				</div>
 			</div>
+			<h:form>
+				<div class="panel panel-default">
+					<div class="panel-heading">Funcionalidades</div>
+					<ul class="list-group">
+						<ui:insert name="panel-funcionalidades">
+							<li class="list-group-item"><h:commandLink
+									value="Consulta Profissionais" /></li>
+							<li class="list-group-item"><h:commandLink
+									value="Consulta Clinicas" /></li>
+							<li class="list-group-item"><h:commandLink
+									value="Cadastro de Clinicas" /></li>
+							<li class="list-group-item"><h:commandLink
+									value="Cadastro de Profissionais" /></li>
+						</ui:insert>
+					</ul>
+				</div>
+			</h:form>
 			<!-- end #sidebar -->
 
 		</ui:define>

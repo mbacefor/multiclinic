@@ -19,6 +19,7 @@ Released   : 20090802
 <h:head>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><ui:insert name="title">
 		MultiClinic
@@ -27,50 +28,60 @@ Released   : 20090802
 		<link
 			href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css"
 			rel="stylesheet" type="text/css" media="screen" />
+		<!-- Bootstrap core CSS -->
+		<link
+			href="#{facesContext.externalContext.requestContextPath}/resources/bootstrap/css/bootstrap.min.css"
+			rel="stylesheet" />
 	</ui:insert>
 </h:head>
 <h:body>
 	<p:growl autoUpdate="true"></p:growl>
-	<div id="imagem"></div>
-	<div id="wrapper">
-		<div id="header">
-			<div id="logo">
-				<h1>Multi Clinic</h1>
-				<br />
+	<div id="header" class="container ">
+		<div class="row">
+			<div id="logo" class="col-md-8">
+				<h2>Med-Link</h2>
 				<p>
-					Desenvolvido por <a href="http://www.fa7.edu.br/">SI Fa7</a> -
+					Desenvolvido por <a href="mbacefor@gmail.com">MBACEFOR</a> -
 					<h:outputText value="#{geralMB.usuarioLogado.email}" />
 				</p>
 			</div>
-			<ui:insert name="search">
-				<div id="search">
-					<form method="get" action="">
-						<fieldset>
-							<input type="text" name="s" id="search-text" size="15" /> <input
-								type="submit" id="search-submit" value="GO" />
-						</fieldset>
-					</form>
-				</div>
-			</ui:insert>
-			<div class="top_menu">
-				<ui:insert name="menuLogin">
-					<h:form>
-						
-						<h:commandLink styleClass="login" action="#{loginMB.prepararLogin}"
-							value="Login" />
-					</h:form>
-				</ui:insert>
-				<ui:insert name="menuConsulta">
-					<a href="#" class="sign_up">Consultas</a>
-				</ui:insert>
+			<div class="col-md-4">
+				<nav class="navbar navbar-default" role="navigation"> <h:form
+					class="navbar-form navbar-left">
+					<div class="form-group">
+						<ui:insert name="search">
+							<div id="search" class="col-md-4">
+								<form method="get" action="">
+									<fieldset>
+										<input type="text" name="s" id="search-text" size="15" /> <input
+											type="submit" id="search-submit" value="GO" />
+									</fieldset>
+								</form>
+							</div>
+						</ui:insert>
+						<ui:insert name="menuLogin">
+							<h:commandLink styleClass="login"
+								class="btn btn-default navbar-btn"
+								action="#{loginMB.prepararLogin}" value="Login" />
+						</ui:insert>
+						<ui:insert name="menuConsulta">
+							<a href="#" class="sign_up btn btn-default navbar-btn">Consultas</a>
+						</ui:insert>
+					</div>
+				</h:form> </nav>
 			</div>
 		</div>
-		<!-- end #header -->
+	</div>
+
+	<!-- end #header -->
+	<div class="container">
 		<ui:insert name="menu">
-			<div id="menu">
-				<ul>
-					<h:form>
-						<li class="current_page_item"><a
+
+			<div id="menu" class="row">
+				<nav class="navbar navbar-default" role="menu"> <h:form>
+					<ul class="nav nav-pills">
+
+						<li><a
 							href="#{facesContext.externalContext.requestContextPath}">Home</a></li>
 						<li><h:commandLink value="Usuários"
 								action="/pages/geral/indexUsuario.xhtml" /></li>
@@ -78,19 +89,68 @@ Released   : 20090802
 								action="/pages/geral/indexClinicas.xhtml" /></li>
 						<li><a
 							href="#{facesContext.externalContext.requestContextPath}/templates/templateAdministracao.jsf">Administração</a></li>
-						<li><h:commandLink value="Mapa"
+						<!-- <li><h:commandLink value="Mapa"
 								action="/pages/geral/indexMapa.xhtml" /></li>
-						<li><a href="#">Contact</a></li>
-					</h:form>
-				</ul>
+						<li><a href="#">Contact</a></li> -->
+
+					</ul>
+				</h:form> </nav>
+
 			</div>
 			<!-- end #menu -->
 		</ui:insert>
-		<div id="page">
+		<br />
+		<div id="page" class="row">
 			<div id="page-bgtop">
 				<div id="page-bgbtm">
+					<div id="sidebar" class="col-md-4">
+						<ui:insert name="sidebar">
 
-					<div id="content">
+							<ul>
+								<li>
+									<h2>NET Clínicas</h2>
+									<p>Mauris vitae nisl nec metus placerat perdiet est.
+										Phasellus dapibus semper consectetuer hendrerit.</p>
+								</li>
+								<li>
+									<h2>Categories</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+								<li>
+									<h2>Blogroll</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+								<li>
+									<h2>Archives</h2>
+									<ul>
+										<li><a href="#">Aliquam libero</a></li>
+										<li><a href="#">Consectetuer adipiscing elit</a></li>
+										<li><a href="#">Metus aliquam pellentesque</a></li>
+										<li><a href="#">Suspendisse iaculis mauris</a></li>
+										<li><a href="#">Urnanet non molestie semper</a></li>
+										<li><a href="#">Proin gravida orci porttitor</a></li>
+									</ul>
+								</li>
+							</ul>
+
+							<!-- end #sidebar -->
+						</ui:insert>
+					</div>
+					<div id="content" class="col-md-8">
 						<ui:insert name="content">
 							<div class="post">
 								<h2 class="title">
@@ -186,62 +246,19 @@ Released   : 20090802
 						</ui:insert>
 					</div>
 					<!-- end #content -->
-					<ui:insert name="sidebar">
-						<div id="sidebar">
-							<ul>
-								<li>
-									<h2>NET Clínicas</h2>
-									<p>Mauris vitae nisl nec metus placerat perdiet est.
-										Phasellus dapibus semper consectetuer hendrerit.</p>
-								</li>
-								<li>
-									<h2>Categories</h2>
-									<ul>
-										<li><a href="#">Aliquam libero</a></li>
-										<li><a href="#">Consectetuer adipiscing elit</a></li>
-										<li><a href="#">Metus aliquam pellentesque</a></li>
-										<li><a href="#">Suspendisse iaculis mauris</a></li>
-										<li><a href="#">Urnanet non molestie semper</a></li>
-										<li><a href="#">Proin gravida orci porttitor</a></li>
-									</ul>
-								</li>
-								<li>
-									<h2>Blogroll</h2>
-									<ul>
-										<li><a href="#">Aliquam libero</a></li>
-										<li><a href="#">Consectetuer adipiscing elit</a></li>
-										<li><a href="#">Metus aliquam pellentesque</a></li>
-										<li><a href="#">Suspendisse iaculis mauris</a></li>
-										<li><a href="#">Urnanet non molestie semper</a></li>
-										<li><a href="#">Proin gravida orci porttitor</a></li>
-									</ul>
-								</li>
-								<li>
-									<h2>Archives</h2>
-									<ul>
-										<li><a href="#">Aliquam libero</a></li>
-										<li><a href="#">Consectetuer adipiscing elit</a></li>
-										<li><a href="#">Metus aliquam pellentesque</a></li>
-										<li><a href="#">Suspendisse iaculis mauris</a></li>
-										<li><a href="#">Urnanet non molestie semper</a></li>
-										<li><a href="#">Proin gravida orci porttitor</a></li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-						<!-- end #sidebar -->
-					</ui:insert>
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 			</div>
 		</div>
 		<!-- end #page -->
 	</div>
-	<div id="footer">
-		<p>
-			Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
-				href="http://www.fa7.edu.br/">Faculdade 7 de Setembro</a>.
-		</p>
+	<div class="container">
+		<div id="footer">
+			<p>
+				Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
+					href="http://www.fa7.edu.br/">Faculdade 7 de Setembro</a>.
+			</p>
+		</div>
 	</div>
 	<!-- end #footer -->
 
@@ -255,9 +272,10 @@ Released   : 20090802
 				<p:inputText id="loginCampo" label="Login" required="true"
 					requiredMessage="Campo LOGIN obrigado!" value="#{loginMB.login}"></p:inputText>
 				<p:outputLabel value="Senha" for="loginCampo"></p:outputLabel>
-				<p:password id="senhaCampo" required="true" requiredMessage="Campo SENHA obrigatório!"
-				value="#{loginMB.senha}"></p:password>
-				<p:commandButton label="Logar" value="Logar" action="#{loginMB.logar}" ajax="false"></p:commandButton>
+				<p:password id="senhaCampo" required="true"
+					requiredMessage="Campo SENHA obrigatório!" value="#{loginMB.senha}"></p:password>
+				<p:commandButton label="Logar" value="Logar"
+					action="#{loginMB.logar}" ajax="false"></p:commandButton>
 				<p:commandButton label="Fechar" value="Fechar" immediate="true"
 					onclick="telaLogin.hide()"></p:commandButton>
 			</p:panelGrid>

@@ -6,90 +6,53 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <body>
-	<ui:composition template="/templates/templateGeral.xhtml">
+	<ui:composition template="/templates/templatePrincipal.xhtml">
 
-		<ui:define name="search">
+		<ui:define name="tituloPainelPrincipal">Área de Usuários</ui:define>
+
+		<ui:define name="panel-info"> Postador por <a href="#">Marcelo
+				Bezerrra</a> em
+						06/01/2015 &nbsp;&bull;&nbsp; <a href="#" class="comments">Comments
+				(64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full
+				article</a>
+		</ui:define>
+		<ui:define name="panel-body">
+			<p>Este ambiente foi desenvolvido para o cadastro de usuários do
+				sistema. Os usuários do sistema são os pacientes, atendentes ou
+				profissionais da medicina</p>
+			<p>
+				<a href="#" class="btn btn-primary">Read More</a>
+			</p>
 		</ui:define>
 
+		<ui:define name="sidebar-painel-heading">Usuários</ui:define>
 
-		<ui:define name="content">
-
-			<div class="post">
-				<h2 class="title">Área de Usuários</h2>
-				<p class="meta">
-					Postador por <a href="#">Marcelo Bezerrra</a> em 07/04/2012
-					&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a>
-					&nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a>
-				</p>
-				<div class="entry">
-
-					<p>Este ambiente foi desenvolvido para o cadastro de usuários
-						do sistema. Os usuários do sistema são os pacientes ou
-						profissionais da clínica</p>
-					<p>
-						<a href="#" class="links">Read More</a>
-					</p>
-				</div>
-			</div>
+		<ui:define name="sidebar-panel-body-image">
+			<img
+				src="#{facesContext.externalContext.requestContextPath}/resources/images/usuario.png"
+				alt="" height="60px" />
 		</ui:define>
 
-		<ui:define name="sidebar">
+		<ui:define name="sidebar-panel-body-texto">Área dedicada ao cadastro de
+							usuários do sistema (Paciente ou Profissionais).</ui:define>
+		<ui:define name="panel-funcionalidades">
+			<li class="list-group-item"><h:commandLink
+					value="Cadastrar Usuario" action="#{editarUsuarioMB.prepararNovo}" /></li>
+			<li class="list-group-item"><h:commandLink
+					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}" /></li>
 
-			<div id="sidebar">
-				<h:form>
-					<ul>
-						<li>
-							<h2>Usuários</h2> <br />
-							<div style="padding: 10px; float: left; position: relative;">
-								<img
-									src="#{facesContext.externalContext.requestContextPath}/resources/images/usuario.png"
-									alt="" height="60px" />
-							</div>
-							<p>Área dedicada ao cadastro de usuários do sistema (Paciente
-								ou Profissionais).</p> <br />
-
-						</li>
-						<li>
-							<h2>Usuário</h2>
-							<ul>
-
-								<li><h:commandLink value="Cadastrar Usuario"
-										action="#{editarUsuarioMB.prepararNovo}" /></li>
-
-
-								<li><h:commandLink value="Listar Usuario"
-										action="#{listarUsuarioMB.prepararListar}" /></li>
-
-							</ul>
-						</li>
-						<li>
-							<h2>Paciente</h2>
-							<ul>
-								<li><h:commandLink value="Novo de Paciente"
-										action="#{listarPaciente.prepararNovo}" /></li>
-								<li><h:commandLink value="Listagem de Paciente"
-										action="#{listarPaciente.prepararListar}" /></li>
-							</ul>
-						</li>
-						<li>
-							<h2>Profissional</h2>
-							<ul>
-								<li><h:commandLink value="Novo Profissional"
-										action="#{editarProfissionalMB.prepararNovo}" /></li>
-								<!-- CAMINHO DE TELA OK. -->
-								<li><h:commandLink value="Listagem de Profissionais"
-										action="#{listarProfissionalMB.prepararListar}" /></li>
-
-
-							</ul>
-						</li>
-
-
-					</ul>
-				</h:form>
-			</div>
-			<!-- end #sidebar -->
-
+			<li class="list-group-item"><h:commandLink
+					value="Novo de Paciente" action="#{listarPaciente.prepararNovo}" /></li>
+			<li class="list-group-item"><h:commandLink
+					value="Listagem de Paciente"
+					action="#{listarPaciente.prepararListar}" /></li>
+			<li class="list-group-item"><h:commandLink
+					value="Novo Profissional"
+					action="#{editarProfissionalMB.prepararNovo}" /></li>
+			<!-- CAMINHO DE TELA OK. -->
+			<li class="list-group-item"><h:commandLink
+					value="Listagem de Profissionais"
+					action="#{listarProfissionalMB.prepararListar}" /></li>
 		</ui:define>
 	</ui:composition>
 </body>
