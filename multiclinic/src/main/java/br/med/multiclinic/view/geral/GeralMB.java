@@ -50,6 +50,16 @@ public class GeralMB extends AbstractPageBean {
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
 
+	private String templateAtual = MenuTemplates.ADMIN_TEMPLATE;
+
+	public String getTemplateAtual() {
+		return templateAtual;
+	}
+
+	public void setTemplateAtual(String templateAtual) {
+		this.templateAtual = templateAtual;
+	}
+
 	/**
 	 * 
 	 */
@@ -88,7 +98,7 @@ public class GeralMB extends AbstractPageBean {
 					listaFuncionalidades.add(funcionalidade2);
 					listaFuncionalidades.add(funcionalidade3);
 					listaFuncionalidades.add(funcionalidade4);
-					
+
 					perfil.setFuncionalidades(listaFuncionalidades);
 					manterPerfilBC.salvar(perfil, null);
 
@@ -103,9 +113,8 @@ public class GeralMB extends AbstractPageBean {
 						usuario.setPerfil(perfil);
 						manterUsuarioBC.insert(usuario);
 						manterPerfilBC.salvar(perfil, usuario);
-			
+
 					}
-					
 
 				}
 

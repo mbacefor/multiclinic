@@ -6,9 +6,11 @@ package br.med.multiclinic.view.manterareaespecialidade;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.med.multiclinic.business.ManterAreaEspecialidadeBC;
 import br.med.multiclinic.domain.AreaEspecialidade;
 import br.med.multiclinic.util.FacesBean;
 
@@ -17,38 +19,43 @@ import br.med.multiclinic.util.FacesBean;
  * 
  */
 
-@ManagedBean(name = "listarAreaEspecialidadeMB")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
+@RequiredRole("ManterAreaEspecialidade")
 public class ListarAreaEspecialidadeMB extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "listarAreaEspecialidadeMB";
 	public static final String CAMINHO_TELA = "/pages/manterareaespecialidade/listarAreaEspecialidade.xhtml";
 
 	private List<AreaEspecialidade> lista = new ArrayList<AreaEspecialidade>();
-	
+
+	@Inject
+	ManterAreaEspecialidadeBC manterAreaEspecialidadeBC;
+	@Inject
+	EditarAreaEspecialidadeMB editarAreaEspecialidadeMB;
+	@Inject
+	ExcluirAreaEspecialidadeMB excluirAreaEspecialidadeMB;
+
 	private AreaEspecialidade entidadeCorrente = null;
-	
-	public ListarAreaEspecialidadeMB(){
-		super();
-	}
-	
-	
 
 	public String prepararListar() {
 		String retorno = null;
 		try {
-			//setLista(ManterAreaEspecialidadeControle.getInstance().obterTodos());
+			setLista(manterAreaEspecialidadeBC.obterTodos());
 			retorno = ListarAreaEspecialidadeMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
 	}
-	
+
 	public String prepararEditar() {
 		String retorno = null;
 		try {
-			EditarAreaEspecialidadeMB editarAreaEspecialidadeMB = (EditarAreaEspecialidadeMB) getBean(EditarAreaEspecialidadeMB.NOME_MANAGER_BEAN);
 			editarAreaEspecialidadeMB.setAreaEspecialidade(entidadeCorrente);
 			retorno = EditarAreaEspecialidadeMB.CAMINHO_TELA;
 		} catch (Exception e) {
@@ -56,11 +63,10 @@ public class ListarAreaEspecialidadeMB extends FacesBean {
 		}
 		return retorno;
 	}
-	
+
 	public String prepararExcluir() {
 		String retorno = null;
 		try {
-			ExcluirAreaEspecialidadeMB excluirAreaEspecialidadeMB = (ExcluirAreaEspecialidadeMB) getBean(ExcluirAreaEspecialidadeMB.NOME_MANAGER_BEAN);
 			excluirAreaEspecialidadeMB.setAreaEspecialidade(entidadeCorrente);
 			warn("Deseja realmente excluir o registro?");
 			retorno = ExcluirAreaEspecialidadeMB.CAMINHO_TELA;

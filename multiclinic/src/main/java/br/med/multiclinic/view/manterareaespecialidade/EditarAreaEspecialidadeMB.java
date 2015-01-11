@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterAreaEspecialidadeBC;
 import br.med.multiclinic.domain.AreaEspecialidade;
 import br.med.multiclinic.domain.Usuario;
@@ -20,6 +22,7 @@ import br.med.multiclinic.util.FacesBean;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterAreaEspecialidade")
 public class EditarAreaEspecialidadeMB extends FacesBean {
 
 	/**
@@ -32,13 +35,16 @@ public class EditarAreaEspecialidadeMB extends FacesBean {
 	private AreaEspecialidade areaEspecialidade = new AreaEspecialidade();
 	@Inject
 	private ManterAreaEspecialidadeBC manterAreaEspecialidadeBC;
+	@Inject
+	private ListarAreaEspecialidadeMB listarAreaEspecialidadeMB;
+	@Inject
+	private EditarAreaEspecialidadeMB editarAreaEspecialidadeMB;
 
 	public String prepararNovo() {
 		String retorno = null;
 
 		try {
 			AreaEspecialidade novoAreaEspecialidade = new AreaEspecialidade();
-			EditarAreaEspecialidadeMB editarAreaEspecialidadeMB = (EditarAreaEspecialidadeMB) getBean(EditarAreaEspecialidadeMB.NOME_MANAGER_BEAN);
 			editarAreaEspecialidadeMB
 					.setAreaEspecialidade(novoAreaEspecialidade);
 			retorno = EditarAreaEspecialidadeMB.CAMINHO_TELA;
@@ -49,6 +55,7 @@ public class EditarAreaEspecialidadeMB extends FacesBean {
 		return retorno;
 	}
 
+	@Transactional
 	public String salvar() {
 		String retorno = null;
 
@@ -56,7 +63,6 @@ public class EditarAreaEspecialidadeMB extends FacesBean {
 
 			Usuario usuarioLogado = obterUsuarioLogado();
 			manterAreaEspecialidadeBC.salvar(areaEspecialidade, usuarioLogado);
-			ListarAreaEspecialidadeMB listarAreaEspecialidadeMB = (ListarAreaEspecialidadeMB) getBean(ListarAreaEspecialidadeMB.NOME_MANAGER_BEAN);
 			List<AreaEspecialidade> lista = manterAreaEspecialidadeBC
 					.obterTodos();
 			listarAreaEspecialidadeMB.setLista(lista);
@@ -72,9 +78,9 @@ public class EditarAreaEspecialidadeMB extends FacesBean {
 		String retorno = null;
 
 		try {
-			
-			ListarAreaEspecialidadeMB listarAreaEspecialidadeMB = (ListarAreaEspecialidadeMB) getBean(ListarAreaEspecialidadeMB.NOME_MANAGER_BEAN);
-			List<AreaEspecialidade> lista = manterAreaEspecialidadeBC.obterTodos();
+
+			List<AreaEspecialidade> lista = manterAreaEspecialidadeBC
+					.obterTodos();
 			listarAreaEspecialidadeMB.setLista(lista);
 			retorno = ListarAreaEspecialidadeMB.CAMINHO_TELA;
 		} catch (Exception e) {

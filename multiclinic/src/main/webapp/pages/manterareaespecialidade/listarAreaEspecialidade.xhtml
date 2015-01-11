@@ -5,11 +5,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/listarTemplateAdminstracao.xhtml">
+<ui:composition template="/templates/listarTemplate.xhtml">
 	<ui:param name="bean" value="#{listarAreaEspecialidadeMB}" />
-	<ui:define name="tituloPagina">Tela de listagem de Area de Especialidade</ui:define>
-	<ui:define name="subtituloPagina">Tela de listagem de Area de Especialidade</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar as areas de especialidade cadastradas</ui:define>
+	<ui:define name="tituloPagina">Tela de Listagem de Area de Especialidade</ui:define>
+	<ui:define name="sidebar-painel-heading">Listagem de Area de Especialidade</ui:define>
+	<ui:define name="subtituloPagina">Tela de Listagem de Area de Especialidade</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar as areas de especialidade cadastradas</ui:define>
 	<ui:define name="camposListagem">
 
 		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
@@ -26,7 +27,8 @@
 			filterMatchMode="contains" headerText="Data Cadastro">
 
 			<h:outputText value="#{linhaCorrente.dataCadastro}">
-				<f:convertDateTime type="both" dateStyle="medium" />
+				<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo"
+					type="both" dateStyle="short" />
 			</h:outputText>
 
 		</p:column>
