@@ -7,27 +7,33 @@
 
 <ui:composition template="/templates/listarTemplateAdminstracao.xhtml">
 	<ui:param name="bean" value="#{listarPerfilMB}" />
-	<ui:define name="tituloPagina">Tela de listagem de perfis</ui:define>
-	<ui:define name="subtituloPagina">Tela de listagem de perfis</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os perfis cadastrados</ui:define>
-	
+	<ui:define name="tituloPagina">Tela de Listagem de Perfis</ui:define>
+	<ui:define name="sidebar-painel-heading">Listagem de Perfis</ui:define>
+	<ui:define name="subtituloPagina">Tela de Listagem de Perfis</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar os perfis cadastrados</ui:define>
+
 	<ui:define name="camposListagem">
-		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains" headerText="Nome">
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
+			headerText="Nome">
 			<h:outputText value="#{linhaCorrente.nome}" />
 		</p:column>
-		
-		<p:column filterBy="#{linhaCorrente.ativo}" filterMatchMode="exact" filterOptions="#{listarPerfilMB.opcoesSituacao}" headerText="Situação">
+
+		<p:column filterBy="#{linhaCorrente.ativo}" filterMatchMode="exact"
+			filterOptions="#{listarPerfilMB.opcoesSituacao}"
+			headerText="Situação">
 			<h:outputText value="#{linhaCorrente.ativo ? 'Ativo' : 'Inativo'}" />
 		</p:column>
-		
-		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}" filterMatchMode="contains" headerText="Email Criador" >
-			<h:outputText value="#{linhaCorrente.usuarioCriador.email}"/>
+
+		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}"
+			filterMatchMode="contains" headerText="Email Criador">
+			<h:outputText value="#{linhaCorrente.usuarioCriador.email}" />
 		</p:column>
-		
-		<p:column headerText="Data Cadastro" >
+
+		<p:column headerText="Data Cadastro">
 			<h:outputText value="#{linhaCorrente.dataCadastro}">
-                <f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo"/>  
-            </h:outputText>  
+				<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo"
+					type="both" dateStyle="short" />
+			</h:outputText>
 		</p:column>
 	</ui:define>
 </ui:composition>

@@ -89,7 +89,7 @@ public class GenericoBC<T extends EntidadeGeralTemplate, I, JPACrud> extends
 	public void excluir(T enTemplate) {
 		try {
 			delete((I) enTemplate.getId());
-			entityManager.flush();
+			
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause().getLocalizedMessage());

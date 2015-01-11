@@ -7,8 +7,9 @@
 
 <ui:composition template="/templates/editarTemplateAdministracao.xhtml">
 	<ui:define name="tituloPagina">Tela de Edição de Perfil</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição de Perfil</ui:define>
 	<ui:define name="subtituloPagina">Tela de Edição/Criação de Perfil</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo perfil</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite editar ou criar um novo perfil</ui:define>
 	<ui:define name="criadorEntidade"> #{editarPerfilMB.perfil.usuarioCriador.email} </ui:define>
 	<ui:define name="dataCriacaoEntidade">
 		<h:outputText value="#{editarPerfilMB.perfil.dataCadastro}">
@@ -74,6 +75,7 @@
 				<f:facet name="targetCaption">Selecionado</f:facet>
 			</p:pickList>
 		</p:fieldset>
+		<br />
 	</ui:define>
 
 	<ui:define name="botoes">

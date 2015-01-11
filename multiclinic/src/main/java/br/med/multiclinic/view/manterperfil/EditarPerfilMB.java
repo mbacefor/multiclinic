@@ -9,6 +9,7 @@ import org.primefaces.model.DualListModel;
 
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterFuncionalidadeBC;
 import br.med.multiclinic.business.ManterPerfilBC;
 import br.med.multiclinic.domain.Funcionalidade;
@@ -61,6 +62,7 @@ public class EditarPerfilMB extends FacesBean {
 		return retorno;
 	}
 
+	@Transactional
 	public String salvar() {
 		String retorno = null;
 		try {

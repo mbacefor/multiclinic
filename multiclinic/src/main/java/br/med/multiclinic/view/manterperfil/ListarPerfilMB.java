@@ -86,6 +86,17 @@ public class ListarPerfilMB extends FacesBean {
 		try {
 			ExcluirPerfilMB excluirPerfilMB = (ExcluirPerfilMB) getBean(ExcluirPerfilMB.NOME_MANAGER_BEAN);
 			excluirPerfilMB.setPerfil(entidadeCorrente);
+			List<Funcionalidade> sourceFuncionalidades = funcionalidadeBC
+					.obterTodos();
+
+			sourceFuncionalidades.removeAll(entidadeCorrente
+					.getFuncionalidades());
+
+			DualListModel<Funcionalidade> funcionalidades = new DualListModel<Funcionalidade>(
+					sourceFuncionalidades,
+					entidadeCorrente.getFuncionalidades());
+			excluirPerfilMB.setFuncionalidades(funcionalidades);
+
 			warn("Deseja realmente excluir o registro?");
 			retorno = ExcluirPerfilMB.CAMINHO_TELA;
 		} catch (Exception e) {

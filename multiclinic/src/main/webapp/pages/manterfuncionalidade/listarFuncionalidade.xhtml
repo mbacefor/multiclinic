@@ -30,7 +30,7 @@
 			<h:outputText value="#{linhaCorrente.descricao}" />
 		</p:column>
 
-		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
+		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" 
 			filterMatchMode="contains" headerText="Situação">
 			<h:outputText value="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" />
 		</p:column>
@@ -39,7 +39,7 @@
 			filterMatchMode="contains" headerText="Data Cadastro">
 
 			<h:outputText value="#{linhaCorrente.dataCadastro}">
-				<f:convertDateTime type="both" dateStyle="short" />
+				<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo" type="both" dateStyle="short"/>
 			</h:outputText>
 
 		</p:column>
