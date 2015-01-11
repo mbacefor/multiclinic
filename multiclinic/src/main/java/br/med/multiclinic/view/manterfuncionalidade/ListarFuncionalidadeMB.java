@@ -14,11 +14,14 @@ import br.med.multiclinic.util.FacesBean;
 @ViewController
 @javax.enterprise.context.SessionScoped
 @RequiredRole("ManterFuncionalidade")
+/**
+ * MB da listegm de funcionalidade
+ * @author mbacefor
+ *
+ */
 public class ListarFuncionalidadeMB extends FacesBean {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "listarFuncionalidadeMB";
 	public static final String CAMINHO_TELA = "/pages/manterfuncionalidade/listarFuncionalidade.xhtml";
@@ -26,7 +29,10 @@ public class ListarFuncionalidadeMB extends FacesBean {
 	private List<Funcionalidade> lista = new ArrayList<Funcionalidade>();
 	@Inject
 	private ManterFuncionalidadeBC manterFuncionalidadeBC;
-
+	@Inject
+	private EditarFuncionalidadeMB editarFuncionalidade;
+	@Inject
+	private ExcluirFuncionalidadeMB excluirFuncionalidade;
 	/**
 	 * Representa a entidade selecionada
 	 */
@@ -58,9 +64,7 @@ public class ListarFuncionalidadeMB extends FacesBean {
 
 	public String prepararEditar() {
 		String retorno = null;
-
 		try {
-			EditarFuncionalidadeMB editarFuncionalidade = (EditarFuncionalidadeMB) getBean(EditarFuncionalidadeMB.NOME_MANAGER_BEAN);
 			editarFuncionalidade.setFuncionalidade(entidadeCorrente);
 			retorno = EditarFuncionalidadeMB.CAMINHO_TELA;
 		} catch (Exception e) {
@@ -73,7 +77,6 @@ public class ListarFuncionalidadeMB extends FacesBean {
 		String retorno = null;
 
 		try {
-			ExcluirFuncionalidadeMB excluirFuncionalidade = (ExcluirFuncionalidadeMB) getBean(ExcluirFuncionalidadeMB.NOME_MANAGER_BEAN);
 			excluirFuncionalidade.setFuncionalidade(entidadeCorrente);
 			warn("Deseja realmente excluir o registro?");
 			retorno = ExcluirFuncionalidadeMB.CAMINHO_TELA;

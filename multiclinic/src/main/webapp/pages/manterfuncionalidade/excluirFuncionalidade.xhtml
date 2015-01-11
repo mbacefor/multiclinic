@@ -6,19 +6,19 @@
 	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/editarTemplateAdministracao.xhtml">
-	<ui:define name="tituloPagina">Tela de Exclusão de funcionalidade</ui:define>
-	<ui:define name="subtituloPagina">Tela de Exclusão de funcionalidade</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta opção permite excluir uma funcionalidade</ui:define>
-	<ui:define name="criadorEntidade"> #{editarFuncionalidadeMB.funcionalidade.usuarioCriador.email} </ui:define>
+	<ui:define name="tituloPagina">Tela de Exclusão de Funcionalidade</ui:define>
+	<ui:define name="sidebar-painel-heading">Exclusão de Funcionalidade</ui:define>
+	<ui:define name="subtituloPagina">Tela de Exclusão de Funcionalidade</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite excluir uma funcionalidade</ui:define>
+	<ui:define name="criadorEntidade"> #{excluirFuncionalidadeMB.funcionalidade.usuarioCriador.email} </ui:define>
 	<ui:define name="dataCriacaoEntidade">
-		<h:outputText value="#{editarFuncionalidadeMB.funcionalidade.dataCadastro}">
+		<h:outputText
+			value="#{excluirFuncionalidadeMB.funcionalidade.dataCadastro}">
 			<f:convertDateTime type="both" dateStyle="medium" />
 		</h:outputText>
 	</ui:define>
 	<ui:define name="camposFormulario">
-
-
-		<p:fieldset legend="Dados Gerais" toggleable="true">
+		<p:fieldset legend="Dados Funcionalidades" toggleable="true">
 			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 				<h:panelGroup>
 					<p>
@@ -49,16 +49,17 @@
 				</h:panelGroup>
 				<h:panelGroup>
 					<p>
-						<h:outputText value="* Situação" for="situacao"/>  
-        					<p:selectOneMenu id="situacao" rendered="true" required="true" 
-        					value= "#{excluirFuncionalidadeMB.funcionalidade.ativo}" readonly="true">
-            					<f:selectItem itemLabel="Ativo" itemValue="true" />  
-            					<f:selectItem itemLabel="Inativo" itemValue="false" />  
-            				</p:selectOneMenu>  
-					
+						<h:outputText value="* Situação" for="situacao" />
+						<p:selectOneMenu id="situacao" rendered="true" required="true"
+							value="#{excluirFuncionalidadeMB.funcionalidade.ativo}"
+							readonly="true">
+							<f:selectItem itemLabel="Ativo" itemValue="true" />
+							<f:selectItem itemLabel="Inativo" itemValue="false" />
+						</p:selectOneMenu>
+
 					</p>
 				</h:panelGroup>
-								
+
 			</h:panelGrid>
 		</p:fieldset>
 		<br />

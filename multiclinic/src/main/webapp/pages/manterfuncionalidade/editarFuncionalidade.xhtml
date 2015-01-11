@@ -7,8 +7,9 @@
 
 <ui:composition template="/templates/editarTemplateAdministracao.xhtml">
 	<ui:define name="tituloPagina">Tela de Edição de Funcionalidade</ui:define>
-	<ui:define name="subtituloPagina">Tela de Edição/criação de Funcionalidade</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta opção permite editar ou criar uma nova Funcionalidade</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição de Funcionalidade</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/Criação de Funcionalidade</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite editar ou criar uma nova Funcionalidade</ui:define>
 	<ui:define name="criadorEntidade"> #{editarFuncionalidadeMB.funcionalidade.usuarioCriador.email} </ui:define>
 	<ui:define name="dataCriacaoEntidade">
 		<h:outputText
@@ -19,7 +20,8 @@
 
 	<ui:define name="camposFormulario">
 
-		<p:fieldset legend="Dados Gerais" toggleable="true">
+		<p:fieldset legend="Dados da Funcionalidade" toggleable="true"
+			styleClass="fieldSetScroll">
 			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 				<h:panelGroup
 					rendered="#{(editarFuncionalidadeMB.funcionalidade.id!=null)}">

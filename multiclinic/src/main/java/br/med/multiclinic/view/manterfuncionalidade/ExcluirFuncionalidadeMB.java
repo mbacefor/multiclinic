@@ -2,7 +2,7 @@ package br.med.multiclinic.view.manterfuncionalidade;
 
 import java.util.List;
 
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -11,7 +11,7 @@ import br.med.multiclinic.domain.Funcionalidade;
 import br.med.multiclinic.util.FacesBean;
 
 @ViewController
-@SessionScoped
+@javax.enterprise.context.SessionScoped
 @RequiredRole("ManterFuncionalidade")
 public class ExcluirFuncionalidadeMB extends FacesBean {
 
@@ -23,7 +23,9 @@ public class ExcluirFuncionalidadeMB extends FacesBean {
 	public static final String CAMINHO_TELA = "/pages/manterfuncionalidade/excluirFuncionalidade.xhtml";
 
 	private Funcionalidade funcionalidade;
-
+	@Inject
+	ListarFuncionalidadeMB listarFuncionalidadeMB;
+	@Inject
 	private ManterFuncionalidadeBC manterFuncionalidadeBC;
 
 	public Funcionalidade getFuncionalidade() {
@@ -38,7 +40,6 @@ public class ExcluirFuncionalidadeMB extends FacesBean {
 		String retorno = null;
 		try {
 			manterFuncionalidadeBC.excluir(funcionalidade);
-			ListarFuncionalidadeMB listarFuncionalidadeMB = (ListarFuncionalidadeMB) getBean(ListarFuncionalidadeMB.NOME_MANAGER_BEAN);
 			List<Funcionalidade> lista = manterFuncionalidadeBC.obterTodos();
 			listarFuncionalidadeMB.setLista(lista);
 			retorno = ListarFuncionalidadeMB.CAMINHO_TELA;

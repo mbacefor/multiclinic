@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.Crud;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.domain.Usuario;
 import br.med.multiclinic.domain.template.EntidadeGeralTemplate;
 
@@ -32,9 +34,10 @@ public class GenericoBC<T extends EntidadeGeralTemplate, I, JPACrud> extends
 				insert(entidadeGeralTemplate);
 			} else
 				update(entidadeGeralTemplate);
+			entityManager.flush();
 
 		} catch (org.hibernate.exception.ConstraintViolationException e) {
-			throw new RuntimeException("campo duplicado cadastrado");
+			throw new RuntimeException("Campo duplicado cadastrado");
 		} catch (RollbackException e) {
 			Throwable causa = e;
 			String mensagem = null;
@@ -44,7 +47,12 @@ public class GenericoBC<T extends EntidadeGeralTemplate, I, JPACrud> extends
 			} while (causa != null);
 
 			throw new RuntimeException(mensagem);
-		} catch (Exception e) {
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e.getLocalizedMessage());
+		}
+
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -81,6 +89,10 @@ public class GenericoBC<T extends EntidadeGeralTemplate, I, JPACrud> extends
 	public void excluir(T enTemplate) {
 		try {
 			delete((I) enTemplate.getId());
+			entityManager.flush();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause().getLocalizedMessage());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

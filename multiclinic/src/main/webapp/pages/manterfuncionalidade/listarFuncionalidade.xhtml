@@ -7,52 +7,48 @@
 
 <ui:composition template="/templates/listarTemplateAdminstracao.xhtml">
 	<ui:param name="bean" value="#{listarFuncionalidadeMB}" />
-	<ui:define name="tituloPagina">Tela de listagem de funcionalidades</ui:define>
-	<ui:define name="subtituloPagina">Tela de listagem de funcionalidades</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar as funcionalidades cadastradas</ui:define>
-	<ui:define name="criadorEntidade"> #{editarFuncionalidadeMB.funcionalidade.usuarioCriador.email} </ui:define>
-	<ui:define name="dataCriacaoEntidade">
-		<h:outputText value="#{editarFuncionalidadeMB.funcionalidade.dataCadastro}">
-			<f:convertDateTime type="both" dateStyle="medium" />
-		</h:outputText>
-	</ui:define>
+	<ui:define name="sidebar-painel-heading">Listagem de Funcionalidades</ui:define>
+	<ui:define name="tituloPagina">Tela de Listagem de Funcionalidades</ui:define>
+	<ui:define name="subtituloPagina">Tela de Listagem de Funcionalidades</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar as funcionalidades cadastradas</ui:define>
 
-	
 	<ui:define name="camposListagem">
-		
-		<p:column >
+		<p:column>
 			<f:facet name="header">
-				<h:outputLabel value="id" ></h:outputLabel>
-			</f:facet>	
+				<h:outputLabel value="id"></h:outputLabel>
+			</f:facet>
 			<h:outputText value="#{linhaCorrente.id}" />
 		</p:column>
-		
-		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains" headerText="Nome" >
+
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
+			headerText="Nome">
 			<h:outputText value="#{linhaCorrente.nome}" />
 		</p:column>
-		
-		<p:column filterBy="#{linhaCorrente.descricao}" filterMatchMode="contains" headerText="Descricao" >
+
+		<p:column filterBy="#{linhaCorrente.descricao}"
+			filterMatchMode="contains" headerText="Descrição">
 			<h:outputText value="#{linhaCorrente.descricao}" />
 		</p:column>
-		
-		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" filterMatchMode="contains" headerText="Ativo" >
+
+		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
+			filterMatchMode="contains" headerText="Situação">
 			<h:outputText value="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" />
 		</p:column>
-		
+
 		<p:column filterBy="#{linhaCorrente.dataCadastro}"
 			filterMatchMode="contains" headerText="Data Cadastro">
 
 			<h:outputText value="#{linhaCorrente.dataCadastro}">
-				<f:convertDateTime type="both" dateStyle="medium" />
+				<f:convertDateTime type="both" dateStyle="short" />
 			</h:outputText>
 
 		</p:column>
-		
+
 		<p:column filterBy="#{linhaCorrente.usuarioCriador.email}"
 			filterMatchMode="contains" headerText="e-Mail Criador">
 			<h:outputText value="#{linhaCorrente.usuarioCriador.email}" />
 		</p:column>
-		
+
 	</ui:define>
 </ui:composition>
 
