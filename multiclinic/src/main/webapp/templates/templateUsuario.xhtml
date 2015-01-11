@@ -36,8 +36,12 @@
 		<ui:define name="sidebar-panel-body-texto">Área dedicada ao cadastro de
 							usuários do sistema (Paciente ou Profissionais).</ui:define>
 		<ui:define name="panel-funcionalidades">
+			<li class="list-group-item #{geralMB.ocultaTAG}"><h:commandLink
+					value="Editar Dados do Usuario"
+					action="#{editarUsuarioMB.prepararEditarUsuarioCorrente}" /></li>
 			<li class="list-group-item"><h:commandLink
-					value="Cadastrar Usuario" action="#{editarUsuarioMB.prepararNovo}" /></li>
+					value="Cadastrar Novo Usuario"
+					action="#{editarUsuarioMB.prepararNovo}" /></li>
 			<li class="list-group-item"><h:commandLink
 					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}" /></li>
 

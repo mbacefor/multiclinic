@@ -11,11 +11,13 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterPerfilBC;
 import br.med.multiclinic.business.ManterUsuarioBC;
 import br.med.multiclinic.domain.Perfil;
 import br.med.multiclinic.domain.Usuario;
 import br.med.multiclinic.util.FacesBean;
+import br.med.multiclinic.view.geral.GeralMB;
 
 /**
  * Manager Bean associado a tela de edição do usuario
@@ -47,6 +49,11 @@ public class EditarUsuarioMB extends FacesBean {
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
 
+	@Inject
+	private GeralMB geralMB;
+
+	private String retornoPrevisto = null;
+
 	/**
 	 * Metodo que inicia o novo usuario
 	 * 
@@ -63,11 +70,40 @@ public class EditarUsuarioMB extends FacesBean {
 			for (Iterator<Perfil> iterator = listaPerfil.iterator(); iterator
 					.hasNext();) {
 				Perfil perfil = iterator.next();
-				listaPerfis.add(new SelectItem(perfil, perfil.getNome()));
+				// Sempre cria-se com perfil de usuario basico
+				if (perfil.getNome().equalsIgnoreCase("Usuario")) {
+					listaPerfis.add(new SelectItem(perfil, perfil.getNome()));
+					break;
+				}
 			}
+			usuario.setUsuarioCriador(null);
 			editarUsuarioMB.setUsuario(novoUsuario);
 			retorno = EditarUsuarioMB.CAMINHO_TELA;
+			retornoPrevisto = EditarUsuarioMB.CAMINHO_TELA;
 
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+		return retorno;
+	}
+
+	/**
+	 * Metodo que inicia a listagem de convenio
+	 * 
+	 * @return
+	 */
+	public String prepararEditarUsuarioCorrente() {
+		String retorno = null;
+		try {
+			usuario = obterUsuarioLogado();
+			ArrayList<SelectItem> listaPerfis = new ArrayList<SelectItem>();
+
+			listaPerfis.add(new SelectItem(usuario.getPerfil(), usuario
+					.getPerfil().getNome()));
+
+			setListaPerfis(listaPerfis);
+			retorno = EditarUsuarioMB.CAMINHO_TELA;
+			retornoPrevisto = EditarUsuarioMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
@@ -79,17 +115,21 @@ public class EditarUsuarioMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	@Transactional
 	public String salvar() {
 		String retorno = null;
 		try {
 
-			Usuario usuarioLogado = obterUsuarioLogado();
-			manterUsuarioBC.salvar(usuario, usuarioLogado);
+			manterUsuarioBC.salvar(usuario, null);
 			ListarUsuarioMB listarUsuarioMB = (ListarUsuarioMB) getBean(ListarUsuarioMB.NOME_MANAGER_BEAN);
 			List<Usuario> lista = manterUsuarioBC.obterTodos();
 			listarUsuarioMB.setLista(lista);
-			retorno = ListarUsuarioMB.CAMINHO_TELA;
+			if (retornoPrevisto != null)
+				retorno = retornoPrevisto;
+			else
+				retorno = ListarUsuarioMB.CAMINHO_TELA;
 			info("usuario salvo com sucesso!");
+			retornoPrevisto = null;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
@@ -105,6 +145,7 @@ public class EditarUsuarioMB extends FacesBean {
 		String retorno = null;
 		try {
 			retorno = ListarUsuarioMB.CAMINHO_TELA;
+			retornoPrevisto = null;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}

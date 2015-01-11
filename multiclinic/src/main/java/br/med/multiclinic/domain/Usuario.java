@@ -11,19 +11,19 @@ import org.hibernate.validator.constraints.Email;
 import br.med.multiclinic.domain.template.EntidadeGeralTemplate;
 
 @Entity
-public class Usuario extends EntidadeGeralTemplate implements Serializable{
+public class Usuario extends EntidadeGeralTemplate implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * Nome do email
 	 */
-	
+
 	@Column(unique = true, nullable = false, length = 150)
-	@Email(message="Formato inválido de e-mail.")
+	@Email(message = "Formato inválido de e-mail.")
 	private String email;
 
 	/**
@@ -31,10 +31,9 @@ public class Usuario extends EntidadeGeralTemplate implements Serializable{
 	 */
 	@Column(length = 12, nullable = false)
 	private String senha;
-	
+
 	@ManyToOne
 	private Perfil perfil;
-	
 
 	public String getEmail() {
 		return email;

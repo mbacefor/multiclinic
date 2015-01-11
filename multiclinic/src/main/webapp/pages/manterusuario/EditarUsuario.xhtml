@@ -8,7 +8,8 @@
 <ui:composition template="/templates/editarTemplate.xhtml">
 	<ui:define name="tituloPagina">Tela de Editar de Usuario</ui:define>
 	<ui:define name="subtituloPagina">Tela de Edição de Usuário</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite criar um novo usuário</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição de Usuário</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite criar ou editar um usuário</ui:define>
 	<ui:define name="criadorEntidade"> #{editarUsuarioMB.usuario.usuarioCriador.email} </ui:define>
 	<ui:define name="dataCriacaoEntidade">
 		<h:outputText value="#{editarUsuarioMB.usuario.dataCadastroFormatada}">
@@ -18,7 +19,7 @@
 	<ui:define name="camposFormulario">
 
 		<p:fieldset legend="Dados Gerais" toggleable="true">
-			<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 				<h:panelGroup rendered="#{(editarUsuarioMB.usuario.id!=null)}">
 					<p>
 						<h:outputLabel value="* Id" for="id" />
@@ -41,18 +42,6 @@
 							rendered="true" required="true" size="45"
 							requiredMessage="campo EMAIL é obrigatório!" />
 					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-
-					<p:outputLabel value="Perfil" for="idPerfil" />
-					<br />
-					<p:selectOneMenu id="idPerfil"
-						value="#{editarUsuarioMB.usuario.perfil}"
-						converter="defaultConverterJSF2" style="width:200px">
-						<f:selectItems value="#{editarUsuarioMB.listaPerfis}" var="perfil"
-							itemValue="#{perfil}" />
-					</p:selectOneMenu>
-
 				</h:panelGroup>
 
 				<h:panelGroup>
@@ -83,6 +72,19 @@
 							cols="50"></p:inputTextarea>
 					</p>
 				</h:panelGroup>
+				<h:panelGroup>
+
+					<p:outputLabel value="Perfil" for="idPerfil" />
+					<br />
+					<p:selectOneMenu id="idPerfil"
+						value="#{editarUsuarioMB.usuario.perfil}"
+						converter="defaultConverterJSF2" style="width:200px">
+						<f:selectItems value="#{editarUsuarioMB.listaPerfis}" var="perfil"
+							itemValue="#{perfil}" />
+					</p:selectOneMenu>
+
+				</h:panelGroup>
+
 				<h:panelGroup>
 					<p>
 						<p:outputLabel value="Situação" for="situacao" />

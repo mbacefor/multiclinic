@@ -36,8 +36,6 @@ public class GeralMB extends AbstractPageBean {
 
 	public static final String NOME_MANAGER_BEAN = "geralMB";
 
-	private Usuario usuarioLogado = null;
-
 	@Inject
 	private Credenciais credenciais;
 
@@ -49,6 +47,8 @@ public class GeralMB extends AbstractPageBean {
 
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
+
+	private String ocultaTAG = "hidden";
 
 	private String templateAtual = "/templates/templatePrincipal.xhtml";
 
@@ -80,14 +80,24 @@ public class GeralMB extends AbstractPageBean {
 				funcionalidadeBC.salvar(funcionalidade2, null);
 
 				Funcionalidade funcionalidade3 = new Funcionalidade();
-				funcionalidade3.setNome("ManterUsuario");
+				funcionalidade3.setNome("ManterAreaEspecialidade");
 				funcionalidade3.setAtivo(true);
 				funcionalidadeBC.salvar(funcionalidade3, null);
 
 				Funcionalidade funcionalidade4 = new Funcionalidade();
-				funcionalidade4.setNome("ManterAreaEspecialidade");
+				funcionalidade4.setNome("ManterUsuario-listar");
 				funcionalidade4.setAtivo(true);
 				funcionalidadeBC.salvar(funcionalidade4, null);
+
+				Funcionalidade funcionalidade5 = new Funcionalidade();
+				funcionalidade5.setNome("ManterUsuario-editar");
+				funcionalidade5.setAtivo(true);
+				funcionalidadeBC.salvar(funcionalidade5, null);
+
+				Funcionalidade funcionalidade6 = new Funcionalidade();
+				funcionalidade6.setNome("ManterUsuario-excluir");
+				funcionalidade6.setAtivo(true);
+				funcionalidadeBC.salvar(funcionalidade6, null);
 
 				if (manterPerfilBC.findAll().isEmpty()) {
 					Perfil perfil = new Perfil();
@@ -98,9 +108,19 @@ public class GeralMB extends AbstractPageBean {
 					listaFuncionalidades.add(funcionalidade2);
 					listaFuncionalidades.add(funcionalidade3);
 					listaFuncionalidades.add(funcionalidade4);
+					listaFuncionalidades.add(funcionalidade5);
+					listaFuncionalidades.add(funcionalidade6);
 
 					perfil.setFuncionalidades(listaFuncionalidades);
 					manterPerfilBC.salvar(perfil, null);
+
+					Perfil perfil1 = new Perfil();
+					perfil1.setNome("Usuario");
+					perfil1.setAtivo(true);
+					List<Funcionalidade> listaFuncionalidades1 = new ArrayList<Funcionalidade>();
+					listaFuncionalidades1.add(funcionalidade5);
+					perfil1.setFuncionalidades(listaFuncionalidades1);
+					manterPerfilBC.salvar(perfil1, null);
 
 					if (manterUsuarioBC.findAll().isEmpty()) {
 						Usuario usuario = new Usuario();
@@ -113,6 +133,16 @@ public class GeralMB extends AbstractPageBean {
 						usuario.setPerfil(perfil);
 						manterUsuarioBC.insert(usuario);
 						manterPerfilBC.salvar(perfil, usuario);
+						Usuario usuario1 = new Usuario();
+						usuario1.setEmail("mbacefor@gmail.com");
+						usuario1.setSenha("12345");
+						usuario1.setAtivo(true);
+						usuario1.setDataCadastro(new Date());
+						usuario1.setDescricao("");
+						usuario1.setUsuarioCriador(null);
+						usuario1.setPerfil(perfil1);
+						manterUsuarioBC.insert(usuario1);
+						manterPerfilBC.salvar(perfil1, usuario1);
 
 					}
 
@@ -134,8 +164,16 @@ public class GeralMB extends AbstractPageBean {
 		return credenciais.getUsuarioLogado();
 	}
 
-	public void setUsuarioLogado(Usuario usuarioLogado) {
-		this.usuarioLogado = usuarioLogado;
+	public String getOcultaTAG() {
+		if (getUsuarioLogado() != null)
+			ocultaTAG = "show";
+		else
+			ocultaTAG = "hidden";
+		return ocultaTAG;
+	}
+
+	public void setOcultaTAG(String ocultaTAG) {
+		this.ocultaTAG = ocultaTAG;
 	}
 
 }
