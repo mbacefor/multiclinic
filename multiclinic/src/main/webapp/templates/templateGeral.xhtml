@@ -78,17 +78,34 @@ Released   : 20090802
 		<ui:insert name="menu">
 
 			<div id="menu" class="row">
-				<nav class="navbar navbar-default" role="menu"> <h:form>
+				<nav class="navbar navbar-default" role="menu"> <h:form
+					id="formMenu">
 					<ul class="nav nav-pills">
 
-						<li><a
-							href="#{facesContext.externalContext.requestContextPath}">Home</a></li>
+						<li><h:commandLink id="homeMenu" value="Home"
+								action="/pages/geral/indexTemplateAtual.xhtml">
+								<f:setPropertyActionListener
+									value="/templates/templatePrincipal.xhtml"
+									target="#{geralMB.templateAtual}" />
+							</h:commandLink></li>
 						<li><h:commandLink value="Usuários"
-								action="/pages/geral/indexUsuario.xhtml" /></li>
+								action="/pages/geral/indexTemplateAtual.xhtml">
+								<f:setPropertyActionListener
+									value="/templates/templateUsuario.xhtml"
+									target="#{geralMB.templateAtual}" />
+							</h:commandLink></li>
 						<li><h:commandLink value="Clínicas"
-								action="/pages/geral/indexClinicas.xhtml" /></li>
-						<li><a
-							href="#{facesContext.externalContext.requestContextPath}/templates/templateAdministracao.jsf">Administração</a></li>
+								action="/pages/geral/indexTemplateAtual.xhtml">
+								<f:setPropertyActionListener
+									value="/templates/templateClinicas.xhtml"
+									target="#{geralMB.templateAtual}" />
+							</h:commandLink></li>
+						<li><h:commandLink value="Administração"
+								action="/pages/geral/indexTemplateAtual.xhtml">
+								<f:setPropertyActionListener
+									value="/templates/templateAdministracao.xhtml"
+									target="#{geralMB.templateAtual}" />
+							</h:commandLink></li>
 						<!-- <li><h:commandLink value="Mapa"
 								action="/pages/geral/indexMapa.xhtml" /></li>
 						<li><a href="#">Contact</a></li> -->

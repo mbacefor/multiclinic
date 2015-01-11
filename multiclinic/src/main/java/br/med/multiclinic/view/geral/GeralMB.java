@@ -50,7 +50,7 @@ public class GeralMB extends AbstractPageBean {
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
 
-	private String templateAtual = MenuTemplates.ADMIN_TEMPLATE;
+	private String templateAtual = "/templates/templatePrincipal.xhtml";
 
 	public String getTemplateAtual() {
 		return templateAtual;
