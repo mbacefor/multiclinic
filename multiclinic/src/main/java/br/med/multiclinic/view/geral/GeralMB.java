@@ -99,6 +99,21 @@ public class GeralMB extends AbstractPageBean {
 				funcionalidade6.setAtivo(true);
 				funcionalidadeBC.salvar(funcionalidade6, null);
 
+				Funcionalidade funcionalidade7 = new Funcionalidade();
+				funcionalidade7.setNome("Area-Administracao");
+				funcionalidade7.setAtivo(true);
+				funcionalidadeBC.salvar(funcionalidade7, null);
+
+				Funcionalidade funcionalidade8 = new Funcionalidade();
+				funcionalidade8.setNome("Area-Usuario");
+				funcionalidade8.setAtivo(true);
+				funcionalidadeBC.salvar(funcionalidade8, null);
+
+				Funcionalidade funcionalidade9 = new Funcionalidade();
+				funcionalidade9.setNome("Area-Clinicas");
+				funcionalidade9.setAtivo(true);
+				funcionalidadeBC.salvar(funcionalidade9, null);
+
 				if (manterPerfilBC.findAll().isEmpty()) {
 					Perfil perfil = new Perfil();
 					perfil.setNome("Administrador");
@@ -110,6 +125,9 @@ public class GeralMB extends AbstractPageBean {
 					listaFuncionalidades.add(funcionalidade4);
 					listaFuncionalidades.add(funcionalidade5);
 					listaFuncionalidades.add(funcionalidade6);
+					listaFuncionalidades.add(funcionalidade7);
+					listaFuncionalidades.add(funcionalidade8);
+					listaFuncionalidades.add(funcionalidade9);
 
 					perfil.setFuncionalidades(listaFuncionalidades);
 					manterPerfilBC.salvar(perfil, null);
@@ -119,6 +137,8 @@ public class GeralMB extends AbstractPageBean {
 					perfil1.setAtivo(true);
 					List<Funcionalidade> listaFuncionalidades1 = new ArrayList<Funcionalidade>();
 					listaFuncionalidades1.add(funcionalidade5);
+					listaFuncionalidades1.add(funcionalidade8);
+					listaFuncionalidades1.add(funcionalidade9);
 					perfil1.setFuncionalidades(listaFuncionalidades1);
 					manterPerfilBC.salvar(perfil1, null);
 

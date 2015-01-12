@@ -8,8 +8,9 @@
 <ui:composition template="/templates/listarTemplate.xhtml">
 	<ui:param name="bean" value="#{listarUsuarioMB}" />
 	<ui:define name="tituloPagina">Tela de listagem de usuarios</ui:define>
+	<ui:define name="sidebar-painel-heading">Listagem de Usuário</ui:define>
 	<ui:define name="subtituloPagina">Tela de listagem de usuarios</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar os usuarios cadastrados</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar os usuarios cadastrados</ui:define>
 
 	<ui:define name="camposListagem">
 		<p:column filterBy="#{linhaCorrente.email}" filterMatchMode="contains"

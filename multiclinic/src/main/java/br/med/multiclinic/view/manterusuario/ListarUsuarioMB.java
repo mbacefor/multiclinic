@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.med.multiclinic.business.ManterPerfilBC;
 import br.med.multiclinic.business.ManterUsuarioBC;
@@ -25,6 +26,7 @@ import br.med.multiclinic.util.FacesBean;
  */
 @ViewController
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterUsuario-listar")
 public class ListarUsuarioMB extends FacesBean {
 
 	/**

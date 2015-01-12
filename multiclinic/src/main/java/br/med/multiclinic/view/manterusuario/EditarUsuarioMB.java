@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.med.multiclinic.business.ManterPerfilBC;
@@ -28,6 +29,7 @@ import br.med.multiclinic.view.geral.GeralMB;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
+@RequiredRole("ManterUsuario-editar")
 public class EditarUsuarioMB extends FacesBean {
 
 	/**
