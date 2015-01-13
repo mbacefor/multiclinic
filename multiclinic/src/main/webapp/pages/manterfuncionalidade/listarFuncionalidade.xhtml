@@ -13,24 +13,13 @@
 	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar as funcionalidades cadastradas</ui:define>
 
 	<ui:define name="camposListagem">
-		<p:column>
-			<f:facet name="header">
-				<h:outputLabel value="id"></h:outputLabel>
-			</f:facet>
-			<h:outputText value="#{linhaCorrente.id}" />
-		</p:column>
 
 		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
 			headerText="Nome">
 			<h:outputText value="#{linhaCorrente.nome}" />
 		</p:column>
 
-		<p:column filterBy="#{linhaCorrente.descricao}"
-			filterMatchMode="contains" headerText="Descrição">
-			<h:outputText value="#{linhaCorrente.descricao}" />
-		</p:column>
-
-		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" 
+		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
 			filterMatchMode="contains" headerText="Situação">
 			<h:outputText value="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" />
 		</p:column>
@@ -39,7 +28,8 @@
 			filterMatchMode="contains" headerText="Data Cadastro">
 
 			<h:outputText value="#{linhaCorrente.dataCadastro}">
-				<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo" type="both" dateStyle="short"/>
+				<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo"
+					type="both" dateStyle="short" />
 			</h:outputText>
 
 		</p:column>

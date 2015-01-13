@@ -22,7 +22,7 @@ Released   : 20090802
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><ui:insert name="title">
-		MultiClinic
+		Linked-Med
 	</ui:insert></title>
 	<ui:insert name="css">
 		<link
@@ -38,14 +38,13 @@ Released   : 20090802
 	<p:growl autoUpdate="true"></p:growl>
 	<div id="header" class="container ">
 		<div class="row">
-			<div id="logo" class="col-md-8">
-				<h2>Med-Link</h2>
-				<p>
-					Desenvolvido por <a href="mbacefor@gmail.com">MBACEFOR</a> -
-					<h:outputText value="#{geralMB.usuarioLogado.email}" />
-				</p>
+			<div id="logo" class="col-md-3">
+				<h1 style="margin-bottom: 1px; border: 0px;">Linked-Med</h1>
+				<sub> Ligando o Mundo da Saúde - <h:outputText
+						value="#{geralMB.usuarioLogado.email}" />
+				</sub>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-9">
 				<nav class="navbar navbar-default" role="navigation"> <h:form
 					class="navbar-form navbar-left">
 					<div class="form-group">
@@ -78,8 +77,8 @@ Released   : 20090802
 		<ui:insert name="menu">
 
 			<div id="menu" class="row">
-				<nav class="navbar navbar-default" role="menu"> <h:form
-					id="formMenu">
+				<nav class="navbar navbar-default" role="menu"
+					style="min-height: 30px;"> <h:form id="formMenu">
 					<ul class="nav nav-pills">
 
 						<li><h:commandLink id="homeMenu" value="Home"
@@ -116,11 +115,11 @@ Released   : 20090802
 			</div>
 			<!-- end #menu -->
 		</ui:insert>
-		<br />
+
 		<div id="page" class="row">
 			<div id="page-bgtop">
 				<div id="page-bgbtm">
-					<div id="sidebar" class="col-md-4">
+					<div id="sidebar" class="col-md-3">
 						<ui:insert name="sidebar">
 
 							<ul>
@@ -167,7 +166,7 @@ Released   : 20090802
 							<!-- end #sidebar -->
 						</ui:insert>
 					</div>
-					<div id="content" class="col-md-8">
+					<div id="content" class="col-md-9" style="font-size: 12px;">
 						<ui:insert name="content">
 							<div class="post">
 								<h2 class="title">

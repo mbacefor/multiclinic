@@ -32,7 +32,7 @@
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-jsf-parent</artifactId>
-		<version>2.3.1</version>
+		<version>2.3.4</version>
 	</parent>
 	<dependencies>
 		<dependency>
@@ -64,7 +64,11 @@
 			<artifactId>cupertino</artifactId>
 			<version>${theme.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+		</dependency>
 		<dependency>
 			<groupId>br.gov.incor</groupId>
 			<artifactId>phonetic</artifactId>

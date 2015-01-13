@@ -144,8 +144,8 @@ public class GeralMB extends AbstractPageBean {
 
 					if (manterUsuarioBC.findAll().isEmpty()) {
 						Usuario usuario = new Usuario();
-						usuario.setEmail("root@netclinicas.com");
-						usuario.setSenha("12345678");
+						usuario.setEmail("root@linkedmed.com.br");
+						usuario.setSenha("1");
 						usuario.setAtivo(true);
 						usuario.setDataCadastro(new Date());
 						usuario.setDescricao("");

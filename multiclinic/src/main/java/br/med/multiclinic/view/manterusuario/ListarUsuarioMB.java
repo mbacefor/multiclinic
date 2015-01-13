@@ -26,7 +26,6 @@ import br.med.multiclinic.util.FacesBean;
  */
 @ViewController
 @javax.enterprise.context.SessionScoped
-@RequiredRole("ManterUsuario-listar")
 public class ListarUsuarioMB extends FacesBean {
 
 	/**
@@ -62,6 +61,7 @@ public class ListarUsuarioMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	@RequiredRole("ManterUsuario-listar")
 	public String prepararListar() {
 		String retorno = null;
 		try {
@@ -105,6 +105,7 @@ public class ListarUsuarioMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	@RequiredRole("ManterUsuario-listar")
 	public String prepararExcluir() {
 		String retorno = null;
 		try {
