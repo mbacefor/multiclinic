@@ -7,17 +7,17 @@
 	<!-- -->
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 
-		<class>br.med.multiclinic.domain.Bookmark</class>
-		<class>br.med.multiclinic.domain.Usuario</class>
-		<class>br.med.multiclinic.domain.Funcionalidade</class>
-		<class>br.med.multiclinic.domain.Perfil</class>
-		<class>br.med.multiclinic.domain.Convenio</class>
-		<class>br.med.multiclinic.domain.AreaEspecialidade</class>
-		<class>br.med.multiclinic.domain.Clinica</class>
-		<class>br.med.multiclinic.domain.Profissional</class>
-		<class>br.med.multiclinic.domain.Sala</class>
-		<class>br.med.multiclinic.domain.Equipamento</class>
-		<class>br.med.multiclinic.domain.Paciente</class>
+		<class>br.com.linkedmed.domain.Bookmark</class>
+		<class>br.com.linkedmed.domain.Usuario</class>
+		<class>br.com.linkedmed.domain.Funcionalidade</class>
+		<class>br.com.linkedmed.domain.Perfil</class>
+		<class>br.com.linkedmed.domain.Convenio</class>
+		<class>br.com.linkedmed.domain.AreaEspecialidade</class>
+		<class>br.com.linkedmed.domain.Clinica</class>
+		<class>br.com.linkedmed.domain.Profissional</class>
+		<class>br.com.linkedmed.domain.Sala</class>
+		<class>br.com.linkedmed.domain.Equipamento</class>
+		<class>br.com.linkedmed.domain.Paciente</class>
 
 
 		<properties>
@@ -39,7 +39,7 @@
 
 	<!-- If you are using jboss6 with non JTA transaction then use this persistence-unit -->
 	<!-- <persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL"> 
-		<non-jta-data-source>java:/DefaultDS</non-jta-data-source> <class>br.med.multiclinic.domain.Bookmark</class> 
+		<non-jta-data-source>java:/DefaultDS</non-jta-data-source> <class>br.com.linkedmed.domain.Bookmark</class> 
 		<properties> <property name="hibernate.show_sql" value="true" /> <property 
 		name="hibernate.format_sql" value="false" /> <property name="hibernate.hbm2ddl.auto" 
 		value="update" /> <property name="hibernate.transaction.manager_lookup_class" 
@@ -48,7 +48,7 @@
 
 	<!-- If you are using jboss6 with JTA transaction then use this persistence-unit -->
 	<!-- <persistence-unit name="bookmark-ds" transaction-type="JTA"> <jta-data-source>java:/DefaultDS</jta-data-source> 
-		<class>br.med.multiclinic.domain.Bookmark</class> <properties> <property 
+		<class>br.com.linkedmed.domain.Bookmark</class> <properties> <property 
 		name="hibernate.show_sql" value="true" /> <property name="hibernate.format_sql" 
 		value="false" /> <property name="hibernate.hbm2ddl.auto" value="update" /> 
 		<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" 
