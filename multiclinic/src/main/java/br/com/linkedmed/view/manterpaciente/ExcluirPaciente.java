@@ -5,16 +5,22 @@ package br.com.linkedmed.view.manterpaciente;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
+import br.com.linkedmed.business.PacienteBC;
 import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.util.FacesBean;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-@ManagedBean(name = "excluirPaciente")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
 public class ExcluirPaciente extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Atributos da classe
 	 */
@@ -24,32 +30,28 @@ public class ExcluirPaciente extends FacesBean {
 
 	private Paciente paciente = new Paciente();
 
-	/**
-	 * 
-	 */
-	public ExcluirPaciente() {
-		// TODO Auto-generated constructor stub
-	}
+	@Inject
+	PacienteBC pacienteBC;
 
 	/**
 	 * Metodo que salva a entidade
 	 * 
 	 * @return
 	 */
+	@Transactional
 	public String excluir() {
 		String retorno = null;
-//		ManterPacienteControle controlador = ManterPacienteControle
-//				.getInstance();
-//		try {
-//			controlador.excluir(paciente);
-//			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
-//			List<Paciente> listaPaciente = controlador.obterPaciente();
-//			listarPaciente.setLista(listaPaciente);
-//			info("Paciente excluído com sucesso");
-//			retorno = ListarPaciente.CAMINHO_TELA;
-//		} catch (Exception e) {
-//			error(e.getMessage());
-//		}
+
+		try {
+			pacienteBC.excluir(paciente);
+			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
+			List<Paciente> listaPaciente = pacienteBC.findAll();
+			listarPaciente.setLista(listaPaciente);
+			info("Paciente excluído com sucesso");
+			retorno = ListarPaciente.CAMINHO_TELA;
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
 
 		return retorno;
 	}

@@ -31,7 +31,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	final public static int TAMANHO_NOME = 120;
 	final public static int TAMANHO_ENDERECO = 255;
 	final public static int TAMANHO_FONE = 15;
-	final public static int TAMANHO_CPF = 11;
+	final public static int TAMANHO_CPF = 14;
 
 	@Column(length = TAMANHO_NOME, nullable = false)
 	private String nome;
@@ -49,7 +49,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	private String foneAdicional;
 
 	@Column(nullable = true, length = TAMANHO_CPF, unique = true)
-	private Long cpf;
+	private String cpf;
 
 	@Column(nullable = true, length = TAMANHO_NOME)
 	private String nomeFoto;
@@ -159,7 +159,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	/**
 	 * @return the cpf
 	 */
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
@@ -167,7 +167,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	 * @param cpf
 	 *            the cpf to set
 	 */
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

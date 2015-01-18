@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import org.primefaces.event.CaptureEvent;
 
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.com.linkedmed.business.PacienteBC;
 import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.domain.Usuario;
@@ -55,6 +56,7 @@ public class EditarPacienteMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	@Transactional
 	public String salvar() {
 		String retorno = null;
 

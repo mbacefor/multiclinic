@@ -8,7 +8,15 @@
 <ui:composition template="/templates/editarTemplate.xhtml">
 	<ui:define name="tituloPagina">Tela de Exclusão de paciente</ui:define>
 	<ui:define name="subtituloPagina">Tela de Exclusão de paciente</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite excluir um paciente</ui:define>
+	<ui:define name="sidebar-painel-heading">Exclusão de paciente</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite excluir um paciente</ui:define>
+	<ui:define name="criadorEntidade"> #{excluirPaciente.paciente.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText
+			value="#{excluirPaciente.paciente.dataCadastroFormatada}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
 	<ui:define name="camposFormulario">
 
 
@@ -18,7 +26,8 @@
 
 				<h:panelGroup>
 					<p:graphicImage
-						value="/photocam/#{excluirPaciente.paciente.nomeFoto}.png" />
+						value="/photocam/#{excluirPaciente.paciente.nomeFoto}.png"
+						width="150px" height="150px" />
 				</h:panelGroup>
 				<h:panelGroup>
 					<h:panelGrid columns="1">
@@ -26,44 +35,46 @@
 							<p>
 								<h:outputLabel value="* Nome" for="nome" />
 								<br />
-								<p:inputText id="nome" required="true" maxlength="80" size="45"
+								<p:inputText id="nome" required="true" maxlength="80" size="65"
 									value="#{excluirPaciente.paciente.nome}" readonly="true" />
 							</p>
 						</h:panelGroup>
-						<h:panelGrid columns="3" width="90%" cellpadding="3"
-							cellspacing="3">
+						<h:panelGrid columns="3"  cellpadding="6"
+							cellspacing="6">
 							<h:panelGroup>
 								<p>
 									<h:outputLabel value=" Fone" for="fone" />
 									<br />
-									<p:inputText id="fone" maxlength="10" size="10"
+									<p:inputText id="fone" maxlength="10" size="15"
 										value="#{excluirPaciente.paciente.fone}" readonly="true" />
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
 								<p>
-									<h:outputLabel value=" Celular" for="celular" />
+									<h:outputLabel value=" Fone Adicional" for="celular" />
 									<br />
-									<p:inputText id="celular" maxlength="10" size="10"
-										value="#{excluirPaciente.paciente.celular}" readonly="true" />
+									<p:inputText id="celular" maxlength="10" size="15"
+										value="#{excluirPaciente.paciente.foneAdicional}" readonly="true" />
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
 								<p>
 									<h:outputLabel value=" CPF" for="cpf" />
 									<br />
-									<p:inputText id="cpf" maxlength="11" size="10"
+									<p:inputText id="cpf" maxlength="11" size="15"
 										value="#{excluirPaciente.paciente.cpf}" readonly="true" />
 								</p>
 							</h:panelGroup>
 
 						</h:panelGrid>
+						
 						<h:panelGroup>
 							<p>
 								<h:outputLabel value="* E-mail" for="email" />
 								<br />
 								<p:inputText id="email" required="true" maxlength="60" size="45"
-									value="#{excluirPaciente.paciente.email}" readonly="true" />
+									value="#{excluirPaciente.paciente.usuario.email}"
+									readonly="true" />
 							</p>
 						</h:panelGroup>
 
@@ -91,8 +102,8 @@
 						<h:outputLabel value="Observação" for="observacao" />
 						<br />
 						<p:inputTextarea id="observacao" maxlength="255"
-							value="#{excluirPaciente.paciente.observacao}" rows="3"
-							cols="100" readonly="true" />
+							value="#{excluirPaciente.paciente.descricao}" rows="3" cols="90"
+							readonly="true" />
 					</p>
 				</h:panelGroup>
 
@@ -103,10 +114,11 @@
 	</ui:define>
 
 	<ui:define name="botoes">
-		<p:commandButton ajax="false" action="#{excluirPaciente.excluir}" value="Excluir" />
+		<p:commandButton ajax="false" action="#{excluirPaciente.excluir}"
+			value="Excluir" />
 		<p:spacer width="10px"></p:spacer>
-		<p:commandButton ajax="false" action="#{excluirPaciente.sairSemExcluir}"
-			value="Sair sem Excluir" />
+		<p:commandButton ajax="false"
+			action="#{excluirPaciente.sairSemExcluir}" value="Sair sem Excluir" />
 	</ui:define>
 </ui:composition>
 

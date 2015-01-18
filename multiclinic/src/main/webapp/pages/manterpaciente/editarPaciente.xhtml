@@ -6,9 +6,17 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/editarTemplate.xhtml">
-	<ui:define name="tituloPagina">Tela de Edição de paciente</ui:define>
-	<ui:define name="subtituloPagina">Tela de Edição/criação de paciente</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo paciente</ui:define>
+	<ui:define name="tituloPagina">Tela de Edição de Pacientes</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/Criação de Paciente</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição/Criação de Paciente</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite editar ou criar um novo paciente</ui:define>
+	<ui:define name="criadorEntidade"> #{editarPacienteMB.paciente.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText
+			value="#{editarPacienteMB.paciente.dataCadastroFormatada}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
 	<ui:define name="camposFormulario">
 
 		<div class="fieldSetScroll">
@@ -18,12 +26,13 @@
 						update="photos" />
 
 					<p:commandButton type="button" value="Capturar"
-						onclick="pc.capture()" />
+						onclick="PF('pc').capture()" />
 
 					<p:imageSwitch effect="zoom" id="photos">
 
 						<p:graphicImage
-							value="/photocam/#{editarPacienteMB.paciente.nomeFoto}.png" />
+							value="/photocam/#{editarPacienteMB.paciente.nomeFoto}.png"
+							rendered="#{not empty editarPacienteMB.paciente.nomeFoto}" />
 
 					</p:imageSwitch>
 				</h:panelGrid>
@@ -41,8 +50,6 @@
 								value="#{editarPacienteMB.paciente.cpf}"
 								maxlength="#{editarPacienteMB.paciente.tamanhoCpf}"
 								immediate="true">
-								<f:convertNumber maxIntegerDigits="11" minIntegerDigits="11"
-									integerOnly="true" />
 							</p:inputMask>
 						</p>
 					</h:panelGroup>
@@ -62,7 +69,7 @@
 							<p:outputLabel value="Fone" for="fone" />
 							<br />
 							<p:inputMask id="fone"
-								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="10"
+								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="15"
 								value="#{editarPacienteMB.paciente.fone}" required="true"
 								mask="(99) 9999-9999">
 							</p:inputMask>
@@ -73,7 +80,7 @@
 							<p:outputLabel value="Fone Adicional (Celular)" for="celular" />
 							<br />
 							<p:inputMask id="celular"
-								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="10"
+								maxlength="#{editarPacienteMB.paciente.tamanhoFone}" size="15"
 								value="#{editarPacienteMB.paciente.foneAdicional}"
 								mask="(99) 9999-9999" />
 						</p>
@@ -193,7 +200,7 @@ function initialize() {
 							<br />
 							<p:inputTextarea id="observacao"
 								value="#{editarPacienteMB.paciente.descricao}" rows="3"
-								cols="100" />
+								cols="90" />
 						</p>
 					</h:panelGroup>
 
