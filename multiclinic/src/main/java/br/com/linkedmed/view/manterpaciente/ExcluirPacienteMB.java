@@ -15,7 +15,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
-public class ExcluirPaciente extends FacesBean {
+public class ExcluirPacienteMB extends FacesBean {
 
 	/**
 	 * 
@@ -25,13 +25,15 @@ public class ExcluirPaciente extends FacesBean {
 	 * Atributos da classe
 	 */
 
-	public static final String NOME_MANAGER_BEAN = "excluirPaciente";
+	public static final String NOME_MANAGER_BEAN = "excluirPacienteMB";
 	public static final String CAMINHO_TELA = "/pages/manterpaciente/excluirPaciente.xhtml";
 
-	private Paciente paciente = new Paciente();
+	private Paciente pessoa = new Paciente();
 
 	@Inject
 	PacienteBC pacienteBC;
+	@Inject
+	ListarPacienteMB listarPaciente;
 
 	/**
 	 * Metodo que salva a entidade
@@ -43,12 +45,11 @@ public class ExcluirPaciente extends FacesBean {
 		String retorno = null;
 
 		try {
-			pacienteBC.excluir(paciente);
-			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
+			pacienteBC.excluir(pessoa);
 			List<Paciente> listaPaciente = pacienteBC.findAll();
 			listarPaciente.setLista(listaPaciente);
 			info("Paciente excluído com sucesso");
-			retorno = ListarPaciente.CAMINHO_TELA;
+			retorno = ListarPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
@@ -59,26 +60,19 @@ public class ExcluirPaciente extends FacesBean {
 	public String sairSemExcluir() {
 		String retorno = null;
 		try {
-			retorno = ListarPaciente.CAMINHO_TELA;
+			retorno = ListarPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
 	}
 
-	/**
-	 * @return the paciente
-	 */
-	public Paciente getPaciente() {
-		return paciente;
+	public Paciente getPessoa() {
+		return pessoa;
 	}
 
-	/**
-	 * @param paciente
-	 *            the paciente to set
-	 */
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setPessoa(Paciente pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

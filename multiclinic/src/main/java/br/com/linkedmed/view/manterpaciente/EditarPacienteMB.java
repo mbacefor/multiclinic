@@ -36,11 +36,13 @@ public class EditarPacienteMB extends FacesBean {
 
 	public static final String NOME_MANAGER_BEAN = "editarPacienteMB";
 	public static final String CAMINHO_TELA = "/pages/manterpaciente/editarPaciente.xhtml";
-	private Paciente paciente = new Paciente();
+	private Paciente pessoa = new Paciente();
 	private String emailUsuario;
 
 	@Inject
 	private PacienteBC pacienteBC;
+	@Inject
+	private ListarPacienteMB listarPaciente;
 
 	// TODO Implementar validador de CPF
 
@@ -62,12 +64,11 @@ public class EditarPacienteMB extends FacesBean {
 
 		try {
 			Usuario usuarioLogado = obterUsuarioLogado();
-			pacienteBC.salvar(paciente, usuarioLogado);
-			ListarPaciente listarPaciente = (ListarPaciente) getBean(ListarPaciente.NOME_MANAGER_BEAN);
+			pacienteBC.salvar(pessoa, usuarioLogado);
 			List<Paciente> listaPaciente = pacienteBC.obterTodos();
 			listarPaciente.setLista(listaPaciente);
 			info("Paciente salvo com sucesso");
-			retorno = ListarPaciente.CAMINHO_TELA;
+			retorno = ListarPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
@@ -78,26 +79,11 @@ public class EditarPacienteMB extends FacesBean {
 	public String sairSemSalvar() {
 		String retorno = null;
 		try {
-			retorno = ListarPaciente.CAMINHO_TELA;
+			retorno = ListarPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
-	}
-
-	/**
-	 * @return the paciente
-	 */
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	/**
-	 * @param paciente
-	 *            the paciente to set
-	 */
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
 	}
 
 	/**
@@ -119,7 +105,7 @@ public class EditarPacienteMB extends FacesBean {
 		String photo = getRandomImageName();
 		this.photos.add(0, photo);
 		byte[] data = captureEvent.getData();
-		getPaciente().setNomeFoto(photo);
+		getPessoa().setNomeFoto(photo);
 		ServletContext servletContext = (ServletContext) FacesContext
 				.getCurrentInstance().getExternalContext().getContext();
 		String newFileName = servletContext.getRealPath("") + File.separator
@@ -141,6 +127,14 @@ public class EditarPacienteMB extends FacesBean {
 
 	public void setEmailUsuario(String emailUsuario) {
 		this.emailUsuario = emailUsuario;
+	}
+
+	public Paciente getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Paciente pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

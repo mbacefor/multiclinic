@@ -5,42 +5,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/listarTemplate.xhtml">
-	<ui:param name="bean" value="#{listarPaciente}" />
+<ui:composition template="/templates/listarPessoa.xhtml">
+	<ui:param name="bean" value="#{listarPacienteMB}" />
 	<ui:define name="tituloPagina">Tela de Listagem de Pacientes</ui:define>
 	<ui:define name="subtituloPagina">Tela de Listagem de Pacientes</ui:define>
 	<ui:define name="sidebar-painel-heading">Listagem de Pacientes</ui:define>
 	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite listar os pacientes cadastrados</ui:define>
-	<ui:define name="camposListagem">
-
-
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="Foto" />
-			</f:facet>
-			<p:graphicImage value="/photocam/#{linhaCorrente.nomeFoto}.png"
-				width="80px" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.cpf}" filterMatchMode="contains"
-			headerText="Nome">
-			<h:outputText value="#{linhaCorrente.cpf}" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
-			headerText="Nome">
-			<h:outputText value="#{linhaCorrente.nome}" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.fone}" filterMatchMode="contains"
-			headerText="Fone">
-			<h:outputText value="#{linhaCorrente.fone}" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.foneAdicional}"
-			filterMatchMode="contains" headerText="Fone Adicional">
-			<h:outputText value="#{linhaCorrente.foneAdicional}" />
-		</p:column>
-
-
-
-	</ui:define>
 </ui:composition>
 
 </html>

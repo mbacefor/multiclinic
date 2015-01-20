@@ -8,11 +8,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.com.linkedmed.business.PacienteBC;
-import br.com.linkedmed.domain.Funcionalidade;
 import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.util.FacesBean;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
 
 /**
  * Classe que representa a tela EditarUsuario.xhtml
@@ -22,7 +21,7 @@ import br.com.linkedmed.util.FacesBean;
  */
 @ViewController
 @javax.enterprise.context.SessionScoped
-public class ListarPaciente extends FacesBean {
+public class ListarPacienteMB extends FacesBean {
 
 	/**
 	 * 
@@ -32,7 +31,7 @@ public class ListarPaciente extends FacesBean {
 	 * Atributos da classe
 	 */
 
-	public static final String NOME_MANAGER_BEAN = "listarPaciente";
+	public static final String NOME_MANAGER_BEAN = "listarPacienteMB";
 	public static final String CAMINHO_TELA = "/pages/manterpaciente/listarPaciente.xhtml";
 
 	/*
@@ -48,16 +47,12 @@ public class ListarPaciente extends FacesBean {
 	 */
 	private Paciente entidadeCorrente = new Paciente();
 
-	public ListarPaciente() {
-
-	}
-
 	public String prepararEditar() {
 		String retorno = null;
 
 		try {
 			EditarPacienteMB editarPaciente = (EditarPacienteMB) getBean(EditarPacienteMB.NOME_MANAGER_BEAN);
-			editarPaciente.setPaciente(entidadeCorrente);
+			editarPaciente.setPessoa(entidadeCorrente);
 			retorno = EditarPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
@@ -69,10 +64,10 @@ public class ListarPaciente extends FacesBean {
 		String retorno = null;
 
 		try {
-			ExcluirPaciente editarPaciente = (ExcluirPaciente) getBean(ExcluirPaciente.NOME_MANAGER_BEAN);
-			editarPaciente.setPaciente(entidadeCorrente);
+			ExcluirPacienteMB editarPaciente = (ExcluirPacienteMB) getBean(ExcluirPacienteMB.NOME_MANAGER_BEAN);
+			editarPaciente.setPessoa(entidadeCorrente);
 			info("Usuário selecionado Confirme a exclusão!");
-			retorno = ExcluirPaciente.CAMINHO_TELA;
+			retorno = ExcluirPacienteMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
@@ -86,7 +81,7 @@ public class ListarPaciente extends FacesBean {
 		try {
 			Paciente novo = new Paciente();
 			EditarPacienteMB editarPaciente = (EditarPacienteMB) getBean(EditarPacienteMB.NOME_MANAGER_BEAN);
-			editarPaciente.setPaciente(novo);
+			editarPaciente.setPessoa(novo);
 			editarPaciente.setEmailUsuario(null);
 			info("Entre com os dados do usuário!");
 			retorno = EditarPacienteMB.CAMINHO_TELA;
