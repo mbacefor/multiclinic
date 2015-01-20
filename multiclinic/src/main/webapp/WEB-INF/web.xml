@@ -14,7 +14,7 @@
 		<filter-class>br.gov.frameworkdemoiselle.util.ServletFilter</filter-class> 
 		</filter> <filter-mapping> <filter-name>Demoiselle Servlet Filter</filter-name> 
 		<url-pattern>/*</url-pattern> </filter-mapping> -->
-	<display-name>multiclinic</display-name>
+	<display-name>linkedmed</display-name>
 	<!-- <context-param> <param-name>javax.faces.PROJECT_STAGE</param-name> 
 		<param-value>Development</param-value> </context-param> <context-param> <param-name>javax.faces.SKIP_COMMENTS</param-name> 
 		<param-value>true</param-value> </context-param> <context-param> <param-name>javax.faces.STATE_SAVING_METHOD</param-name> 
