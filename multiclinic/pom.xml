@@ -13,6 +13,7 @@
 	<description />
 	<url />
 
+
 	<developers>
 		<developer>
 			<id>mbacefor</id>
@@ -33,6 +34,47 @@
 		<artifactId>demoiselle-jsf-parent</artifactId>
 		<version>2.3.4</version>
 	</parent>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>1</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<groupId>br.gov.incor</groupId>
+							<artifactId>phonetic</artifactId>
+							<version>1.0</version>
+							<file>${basedir}/src/libs/phonetic.jar</file>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
+					<execution>
+						<id>2</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<groupId>br.gov.incor</groupId>
+							<artifactId>persistence</artifactId>
+							<version>1.0</version>
+							<file>${basedir}\src\libs\persistence.jar</file>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>br.gov.frameworkdemoiselle</groupId>
@@ -71,17 +113,14 @@
 		<dependency>
 			<groupId>br.gov.incor</groupId>
 			<artifactId>phonetic</artifactId>
-			<scope>system</scope>
 			<version>1.0</version>
-			<systemPath>${basedir}/src/libs/phonetic.jar</systemPath>
 		</dependency>
 
 		<dependency>
 			<groupId>br.gov.incor</groupId>
 			<artifactId>persistence</artifactId>
-			<scope>system</scope>
 			<version>1.0</version>
-			<systemPath>${basedir}/src/libs/persistence.jar</systemPath>
+
 		</dependency>
 		<dependency>
 			<groupId>org.jacorb</groupId>
