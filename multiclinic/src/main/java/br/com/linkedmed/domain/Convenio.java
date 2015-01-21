@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-public class Convenio implements Serializable{
+public class Convenio implements Serializable {
 
 	/**
 	 * 
