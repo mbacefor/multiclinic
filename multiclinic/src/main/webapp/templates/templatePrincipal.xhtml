@@ -58,7 +58,9 @@
 					<div class="row">
 						<div class="col-md-1">
 							<ui:insert name="sidebar-panel-body-image">
-								<img src="#{facesContext.externalContext.requestContextPath}/resources/images/icon1.png" alt="" />
+								<img
+									src="#{facesContext.externalContext.requestContextPath}/resources/images/icon1.png"
+									alt="" />
 							</ui:insert>
 						</div>
 						<div class="col-md-offset-4">
@@ -68,11 +70,13 @@
 					</div>
 				</div>
 			</div>
+
 			<h:form>
 				<div class="panel panel-default">
 					<div class="panel-heading">Funcionalidades</div>
 					<ul class="list-group">
 						<ui:insert name="panel-funcionalidades">
+							<!-- 
 							<li class="list-group-item"><h:commandLink
 									value="Consulta Profissionais" /></li>
 							<li class="list-group-item"><h:commandLink
@@ -81,10 +85,12 @@
 									value="Cadastro de Clinicas" /></li>
 							<li class="list-group-item"><h:commandLink
 									value="Cadastro de Profissionais" /></li>
+									-->
 						</ui:insert>
 					</ul>
 				</div>
 			</h:form>
+
 			<!-- end #sidebar -->
 
 		</ui:define>

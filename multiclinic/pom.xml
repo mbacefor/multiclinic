@@ -26,7 +26,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
-		<theme.version>1.0.4</theme.version>
+		<theme.version>1.0.10</theme.version>
 	</properties>
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>

@@ -48,7 +48,9 @@ public class GeralMB extends AbstractPageBean {
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
 
-	private String ocultaTAG = "hidden";
+	private String ocultaTAGUsuarioLogado = "hidden";
+
+	private String ocultaTAGUsuarioNaoLogado = "hidden";
 
 	private String templateAtual = "/templates/templatePrincipal.xhtml";
 
@@ -184,16 +186,31 @@ public class GeralMB extends AbstractPageBean {
 		return credenciais.getUsuarioLogado();
 	}
 
-	public String getOcultaTAG() {
+	public String getOcultaTAGUsuarioLogado() {
 		if (getUsuarioLogado() != null)
-			ocultaTAG = "show";
+			ocultaTAGUsuarioLogado = "hidden";
 		else
-			ocultaTAG = "hidden";
-		return ocultaTAG;
+			ocultaTAGUsuarioLogado = "show";
+
+		return ocultaTAGUsuarioLogado;
 	}
 
-	public void setOcultaTAG(String ocultaTAG) {
-		this.ocultaTAG = ocultaTAG;
+	public void setOcultaTAGUsuarioLogado(String ocultaTAGUsuarioLogado) {
+		this.ocultaTAGUsuarioLogado = ocultaTAGUsuarioLogado;
+	}
+
+	public String getOcultaTAGUsuarioNaoLogado() {
+		if (getUsuarioLogado() != null)
+			ocultaTAGUsuarioNaoLogado = "show";
+		else
+			ocultaTAGUsuarioLogado = "hidden";
+
+		return ocultaTAGUsuarioNaoLogado;
+
+	}
+
+	public void setOcultaTAGUsuarioNaoLogado(String ocultaTAGUsuarioNaoLogado) {
+		this.ocultaTAGUsuarioNaoLogado = ocultaTAGUsuarioNaoLogado;
 	}
 
 }

@@ -32,7 +32,11 @@ Released   : 20090802
 		<link
 			href="#{facesContext.externalContext.requestContextPath}/resources/bootstrap/css/bootstrap.min.css"
 			rel="stylesheet" />
+
+
 	</ui:insert>
+	<script
+		src="#{facesContext.externalContext.requestContextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
 	<p:growl autoUpdate="true"></p:growl>
@@ -45,29 +49,41 @@ Released   : 20090802
 				</sub>
 			</div>
 			<div class="col-md-9">
-				<nav class="navbar navbar-default" role="navigation"> <h:form
-					class="navbar-form navbar-left">
-					<div class="form-group">
-						<ui:insert name="search">
-							<div id="search" class="col-md-4">
-								<form method="get" action="">
-									<fieldset>
-										<input type="text" name="s" id="search-text" size="15" /> <input
-											type="submit" id="search-submit" value="GO" />
-									</fieldset>
-								</form>
-							</div>
-						</ui:insert>
-						<ui:insert name="menuLogin">
-							<h:commandLink styleClass="login"
-								class="btn btn-default navbar-btn"
-								action="#{loginMB.prepararLogin}" value="Login" />
-						</ui:insert>
-						<ui:insert name="menuConsulta">
-							<a href="#" class="sign_up btn btn-default navbar-btn">Consultas</a>
-						</ui:insert>
+
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#myNavbar">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Meus Links</a>
 					</div>
-				</h:form> </nav>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<h:form class="navbar-form navbar-left">
+							<div class="form-group">
+								<ui:insert name="search">
+									<div id="search" class="col-md-4">
+										<form method="get" action="">
+											<fieldset>
+												<input type="text" name="s" id="search-text" size="15" /> <input
+													type="submit" id="search-submit" value="GO" />
+											</fieldset>
+										</form>
+									</div>
+								</ui:insert>
+
+								<!-- 
+							<ui:insert name="menuConsulta">
+								<a href="#" class="sign_up btn btn-default navbar-btn">Consultas</a>
+							</ui:insert>
+							 -->
+							</div>
+						</h:form>
+					</div>
+				</div>
+				</nav>
 			</div>
 		</div>
 	</div>
@@ -77,41 +93,65 @@ Released   : 20090802
 		<ui:insert name="menu">
 
 			<div id="menu" class="row">
-				<nav class="navbar navbar-default" role="menu"
-					style="min-height: 30px;"> <h:form id="formMenu">
-					<ul class="nav nav-pills">
-
-						<li><h:commandLink id="homeMenu" value="Home"
+				<h:form id="formMenu">
+					<nav class="navbar navbar-default" role="menu">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target="#myNavbarMenu">
+								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<h:commandLink value="Home" styleClass="navbar-brand"
 								action="/pages/geral/indexTemplateAtual.xhtml">
 								<f:setPropertyActionListener
 									value="/templates/templatePrincipal.xhtml"
 									target="#{geralMB.templateAtual}" />
-							</h:commandLink></li>
-						<li><h:commandLink value="Usuários"
-								action="/pages/geral/indexTemplateAtual.xhtml">
-								<f:setPropertyActionListener
-									value="/templates/templateUsuario.xhtml"
-									target="#{geralMB.templateAtual}" />
-							</h:commandLink></li>
-						<li><h:commandLink value="Clínicas"
-								action="/pages/geral/indexTemplateAtual.xhtml">
-								<f:setPropertyActionListener
-									value="/templates/templateClinicas.xhtml"
-									target="#{geralMB.templateAtual}" />
-							</h:commandLink></li>
-						<li><h:commandLink value="Administração"
-								action="/pages/geral/indexTemplateAtual.xhtml">
-								<f:setPropertyActionListener
-									value="/templates/templateAdministracao.xhtml"
-									target="#{geralMB.templateAtual}" />
-							</h:commandLink></li>
-						<!-- <li><h:commandLink value="Mapa"
+							</h:commandLink>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbarMenu">
+							<ul class="nav navbar-nav">
+								<li><h:commandLink value="Usuários"
+										action="/pages/geral/indexTemplateAtual.xhtml">
+										<f:setPropertyActionListener
+											value="/templates/templateUsuario.xhtml"
+											target="#{geralMB.templateAtual}" />
+									</h:commandLink></li>
+								<li><h:commandLink value="Clínicas"
+										action="/pages/geral/indexTemplateAtual.xhtml">
+										<f:setPropertyActionListener
+											value="/templates/templateClinicas.xhtml"
+											target="#{geralMB.templateAtual}" />
+									</h:commandLink></li>
+								<li><h:commandLink value="Administração"
+										action="/pages/geral/indexTemplateAtual.xhtml">
+										<f:setPropertyActionListener
+											value="/templates/templateAdministracao.xhtml"
+											target="#{geralMB.templateAtual}" />
+									</h:commandLink></li>
+
+								<!-- <li><h:commandLink value="Mapa"
 								action="/pages/geral/indexMapa.xhtml" /></li>
 						<li><a href="#">Contact</a></li> -->
+							</ul>
+							<ui:insert name="menuLogin">
+								<ul class="nav navbar-nav navbar-right ">
+									<li><h:commandLink styleClass="glyphicon glyphicon-log-in #{geralMB.ocultaTAGUsuarioLogado}"
+											action="#{loginMB.prepararLogin}">
+										Login
+									</h:commandLink></li>
+									<li><h:commandLink
+											styleClass="glyphicon glyphicon-log-out #{geralMB.ocultaTAGUsuarioNaoLogado}"
+											action="#{loginMB.prepararLogin}">
+										Logout
+									</h:commandLink></li>
+								</ul>
+							</ui:insert>
 
-					</ul>
-				</h:form> </nav>
-
+						</div>
+					</div>
+					</nav>
+				</h:form>
 			</div>
 			<!-- end #menu -->
 		</ui:insert>
@@ -271,8 +311,7 @@ Released   : 20090802
 	<div class="container">
 		<div id="footer">
 			<p>
-				Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
-					href="">MBACEFOR</a>.
+				Copyright (c) 2015. All rights reserved. Design by <a href="">MBACEFOR</a>.
 			</p>
 		</div>
 	</div>
