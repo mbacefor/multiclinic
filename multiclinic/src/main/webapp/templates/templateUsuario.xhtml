@@ -36,27 +36,22 @@
 		<ui:define name="sidebar-panel-body-texto">Área dedicada ao cadastro de
 							usuários do sistema (Paciente ou Profissionais).</ui:define>
 		<ui:define name="panel-funcionalidades">
-			<li class="list-group-item #{geralMB.ocultaTAG}"><h:commandLink
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Editar Dados do Usuario"
 					action="#{editarUsuarioMB.prepararEditarUsuarioCorrente}" /></li>
 			<li class="list-group-item"><h:commandLink
 					value="Cadastrar Novo Usuario"
 					action="#{editarUsuarioMB.prepararNovo}" /></li>
 			<li class="list-group-item"><h:commandLink
-					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}" /></li>
+					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}"
+					disabled="#{!loginMB.validaAcesso('ManterUsuario-listar')}" /></li>
 
-			<li class="list-group-item"><h:commandLink
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Novo de Paciente" action="#{listarPacienteMB.prepararNovo}" /></li>
-			<li class="list-group-item"><h:commandLink
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Listagem de Paciente"
 					action="#{listarPacienteMB.prepararListar}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Novo Profissional"
-					action="#{editarProfissionalMB.prepararNovo}" /></li>
-			<!-- CAMINHO DE TELA OK. -->
-			<li class="list-group-item"><h:commandLink
-					value="Listagem de Profissionais"
-					action="#{listarProfissionalMB.prepararListar}" /></li>
+		
 		</ui:define>
 	</ui:composition>
 </body>

@@ -117,13 +117,14 @@ Released   : 20090802
 											value="/templates/templateUsuario.xhtml"
 											target="#{geralMB.templateAtual}" />
 									</h:commandLink></li>
-								<li><h:commandLink value="Clínicas"
+								<!-- <li><h:commandLink value="Clínicas"
 										action="/pages/geral/indexTemplateAtual.xhtml">
 										<f:setPropertyActionListener
 											value="/templates/templateClinicas.xhtml"
 											target="#{geralMB.templateAtual}" />
-									</h:commandLink></li>
+									</h:commandLink></li> -->
 								<li><h:commandLink value="Administração"
+										rendered="#{loginMB.validaAcesso('Area-Administracao')}"
 										action="/pages/geral/indexTemplateAtual.xhtml">
 										<f:setPropertyActionListener
 											value="/templates/templateAdministracao.xhtml"
@@ -136,13 +137,14 @@ Released   : 20090802
 							</ul>
 							<ui:insert name="menuLogin">
 								<ul class="nav navbar-nav navbar-right ">
-									<li><h:commandLink styleClass="glyphicon glyphicon-log-in #{geralMB.ocultaTAGUsuarioLogado}"
+									<li><h:commandLink
+											styleClass="glyphicon glyphicon-log-in #{geralMB.ocultaTAGUsuarioLogado}"
 											action="#{loginMB.prepararLogin}">
 										Login
 									</h:commandLink></li>
 									<li><h:commandLink
 											styleClass="glyphicon glyphicon-log-out #{geralMB.ocultaTAGUsuarioNaoLogado}"
-											action="#{loginMB.prepararLogin}">
+											action="#{loginMB.logout}">
 										Logout
 									</h:commandLink></li>
 								</ul>
@@ -302,7 +304,6 @@ Released   : 20090802
 						</ui:insert>
 					</div>
 					<!-- end #content -->
-					<div style="clear: both;">&nbsp;</div>
 				</div>
 			</div>
 		</div>
@@ -312,6 +313,7 @@ Released   : 20090802
 		<div id="footer">
 			<p>
 				Copyright (c) 2015. All rights reserved. Design by <a href="">MBACEFOR</a>.
+				Versão beta 0.1.0.
 			</p>
 		</div>
 	</div>

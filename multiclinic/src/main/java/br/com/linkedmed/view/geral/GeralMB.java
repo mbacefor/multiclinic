@@ -200,10 +200,10 @@ public class GeralMB extends AbstractPageBean {
 	}
 
 	public String getOcultaTAGUsuarioNaoLogado() {
-		if (getUsuarioLogado() != null)
-			ocultaTAGUsuarioNaoLogado = "show";
+		if (getUsuarioLogado() == null)
+			ocultaTAGUsuarioNaoLogado = "hidden";
 		else
-			ocultaTAGUsuarioLogado = "hidden";
+			ocultaTAGUsuarioNaoLogado = "show";
 
 		return ocultaTAGUsuarioNaoLogado;
 

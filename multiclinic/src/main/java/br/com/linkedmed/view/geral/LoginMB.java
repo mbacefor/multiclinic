@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.com.linkedmed.seguranca.Autenticador;
+import br.com.linkedmed.seguranca.Autorizador;
 import br.com.linkedmed.seguranca.Credenciais;
 import br.com.linkedmed.util.FacesBean;
 
@@ -36,6 +37,9 @@ public class LoginMB extends FacesBean {
 
 	@Inject
 	private Autenticador autenticador;
+
+	@Inject
+	private Autorizador autorizador;
 
 	public String prepararLogin() {
 		exibirTelaLogin = true;
@@ -83,6 +87,31 @@ public class LoginMB extends FacesBean {
 
 	public void setExibirTelaLogin(Boolean exibirTelaLogin) {
 		this.exibirTelaLogin = exibirTelaLogin;
+	}
+
+	public String logout() {
+		String returno = null;
+		try {
+			credentials.clear();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			error(e.getMessage());
+		}
+		return returno;
+	}
+
+	public Boolean validaAcesso(String role) {
+		try {
+			if (autorizador != null)
+				return autorizador.hasRole(role);
+			else
+				return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }
