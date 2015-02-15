@@ -117,12 +117,13 @@ Released   : 20090802
 											value="/templates/templateUsuario.xhtml"
 											target="#{geralMB.templateAtual}" />
 									</h:commandLink></li>
-								<!-- <li><h:commandLink value="Clínicas"
+								<li><h:commandLink value="Clínicas"
+										rendered="#{loginMB.validaAcesso('Area-Clinicas')}"
 										action="/pages/geral/indexTemplateAtual.xhtml">
 										<f:setPropertyActionListener
 											value="/templates/templateClinicas.xhtml"
 											target="#{geralMB.templateAtual}" />
-									</h:commandLink></li> -->
+									</h:commandLink></li>
 								<li><h:commandLink value="Administração"
 										rendered="#{loginMB.validaAcesso('Area-Administracao')}"
 										action="/pages/geral/indexTemplateAtual.xhtml">

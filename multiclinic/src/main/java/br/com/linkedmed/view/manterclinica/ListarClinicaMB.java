@@ -6,11 +6,9 @@ package br.com.linkedmed.view.manterclinica;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import br.com.linkedmed.domain.Clinica;
 import br.com.linkedmed.util.FacesBean;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
 
 /**
  * Manager Bean associado a tela de edição das clínicas
@@ -19,10 +17,15 @@ import br.com.linkedmed.util.FacesBean;
  * 
  */
 
-@ManagedBean(name = "listarClinicaMB")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
+
 public class ListarClinicaMB extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "listarClinicaMB";
 	public static final String CAMINHO_TELA = "/pages/manterclinica/listarClinica.xhtml";
 	/**

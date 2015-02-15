@@ -11,16 +11,12 @@
 		<ui:define name="title">Clínicas</ui:define>
 
 		<ui:define name="search">
-			<div id="search" class="form-group">
-				<p:selectOneMenu styleClass="form-control"
-					value="#{indexClinicasMB.clinicaAtual}"
-					converter="defaultConverterJSF2" style="width: 80%;">
-					<f:selectItems value="#{indexClinicasMB.listaClinicasSelectItem}"
-						var="clinica" itemValue="#{clinica}" />
-				</p:selectOneMenu>
-			</div>
-			<input type="submit" id="search-submit" value="GO"
-				class="btn btn-default" />
+			<p:selectOneMenu id="clinicaAtual"
+				value="#{indexClinicasMB.clinicaAtual}"
+				converter="defaultConverterJSF2">
+				<f:selectItems value="#{indexClinicasMB.listaClinicasSelectItem}"
+					var="clinica" itemValue="#{clinica}" />
+			</p:selectOneMenu>
 
 		</ui:define>
 

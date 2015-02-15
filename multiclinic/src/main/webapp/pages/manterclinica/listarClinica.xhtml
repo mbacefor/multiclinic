@@ -10,25 +10,23 @@
 	<ui:define name="tituloPagina">Tela de listagem de clínicas</ui:define>
 	<ui:define name="subtituloPagina">Tela de listagem de clínicas</ui:define>
 	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite listar as clínicas cadastradas</ui:define>
-	
+	<ui:define name="sidebar-painel-heading">Listagem de Clinicas</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite listar as clinicas cadastradas por um usuario</ui:define>
+
 	<ui:define name="camposListagem">
-		<p:column >
-			<f:facet name="header">
-				<h:outputLabel value="id" ></h:outputLabel>
-			</f:facet>	
-			<h:outputText value="#{linhaCorrente.id}" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains" headerText="Nome" >
+
+		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
+			headerText="Nome">
 			<h:outputText value="#{linhaCorrente.nome}" />
 		</p:column>
-		<p:column filterBy="#{linhaCorrente.descricao}" filterMatchMode="contains" headerText="Descricao">
-			 <h:outputText value="#{linhaCorrente.descricao}" />
+		<p:column filterBy="#{linhaCorrente.descricao}"
+			filterMatchMode="contains" headerText="Descricao">
+			<h:outputText value="#{linhaCorrente.descricao}" />
 		</p:column>
-		<p:column filterBy="#{linhaCorrente.situacao}" filterMatchMode="contains" headerText="Situacao">
-			<h:outputText value="#{linhaCorrente.situacao}" />
+		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
+			filterMatchMode="contains" headerText="Situação">
+			<h:outputText value="#{linhaCorrente.ativo? 'Ativo':'Inativo'}" />
 		</p:column>
-		
-
 
 	</ui:define>
 </ui:composition>

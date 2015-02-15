@@ -7,6 +7,8 @@
 
 <ui:composition template="/templates/editarTemplate.xhtml">
 	<ui:define name="tituloPagina">Tela de Edição de Clínica</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição de Clinica</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite editar ou criar uma nova clinica</ui:define>
 	<ui:define name="subtituloPagina">Tela de Edição/criação de Clínica</ui:define>
 	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar uma nova clínica</ui:define>
 	<ui:define name="criadorEntidade"> #{editarClinicaMB.clinica.usuarioCriador.email} </ui:define>
@@ -29,18 +31,9 @@
 				</h:panelGroup>
 				<h:panelGroup>
 					<p>
-						<h:outputLabel value="* Nome" for="nome" />
-						<br />
-						<p:inputText id="nome" rendered="true" required="true"
-							maxlength="30" size="40" value="#{editarClinicaMB.clinica.nome}"
-							requiredMessage="Campo NOME não informado." />
-					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-					<p>
 						<p:outputLabel value="* CNPJ" for="cnpj" />
 						<br />
-						<p:inputMask id="cnpj" mask="99.999.999.9999-99" label="cnpj"
+						<p:inputMask id="cnpj" mask="99.999.999/9999-99" label="cnpj"
 							value="#{editarClinicaMB.clinica.cnpj}"
 							maxlength="#{editarClinicaMB.clinica.tamanhoCnpj}"
 							immediate="true">
@@ -51,19 +44,20 @@
 				</h:panelGroup>
 				<h:panelGroup>
 					<p>
-						<h:outputLabel value="* Descrição" for="descricao" />
+						<h:outputLabel value="* Nome" for="nome" />
 						<br />
-						<p:inputTextarea id="descricao" required="true" maxlength="250"
-							value="#{editarClinicaMB.clinica.descricao}" cols="50"
-							requiredMessage="Campo DESCRIÇÂO deve ser informado."></p:inputTextarea>
+						<p:inputText id="nome" rendered="true" required="true"
+							maxlength="30" size="40" value="#{editarClinicaMB.clinica.nome}"
+							requiredMessage="Campo NOME não informado." />
 					</p>
 				</h:panelGroup>
+
 				<h:panelGroup>
 					<p>
 						<h:outputText value="* Situação" for="situacao" />
 						<p:selectOneMenu id="situacao" rendered="true" required="true"
 							requiredMessage="Campo SITUAÇÂO deve ser informado."
-							value="#{editarClinicaMB.clinica.situacao}">
+							value="#{editarClinicaMB.clinica.ativo}">
 							<f:selectItem itemLabel="Ativo" itemValue="true" />
 							<f:selectItem itemLabel="Inativo" itemValue="false" />
 						</p:selectOneMenu>
@@ -73,32 +67,52 @@
 			</h:panelGrid>
 		</p:fieldset>
 
-		<p:fieldset legend="Endereço" toggleable="true">
-			<h:panelGrid columns="4" width="90%" cellpadding="3" cellspacing="3">
-				<h:panelGroup>
-					<p>
-						<h:outputLabel value="* Logradouro" for="logradouro" />
-						<br />
-						<p:inputText id="logradouro" rendered="true" required="true"
-							maxlength="30" size="40"
-							value="#{editarClinicaMB.clinica.logradouro}"
-							requiredMessage="Campo LOGRADOURO não informado." />
-					</p>
-				</h:panelGroup>
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Dados Adicionais" toggleable="true">
+				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Endereço" for="endereco" />
+							<br />
+							<p:inputText id="endereco" size="100"
+								maxlength="#{editarClinicaMB.clinica.tamanhoEndereco}"
+								value="#{editarClinicaMB.clinica.endereco}" />
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada X" for="coordX" />
+									<br />
+									<p:inputText id="coordX" size="30"
+										value="#{editarClinicaMB.clinica.coordX}" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada Y" for="coordY" />
+									<br />
+									<p:inputText id="coordY" size="30"
+										value="#{editarClinicaMB.clinica.coordY}" />
+								</p>
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
 
-				<h:panelGroup>
-					<p>
-						<h:outputLabel value="* Número" for="numero" />
-						<br />
-						<p:inputText id="numero" rendered="true" required="true"
-							maxlength="10" size="20"
-							value="#{editarClinicaMB.clinica.numero}"
-							requiredMessage="Campo NÚMERO não informado." />
-					</p>
-				</h:panelGroup>
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Observação" for="observacao" />
+							<br />
+							<p:inputTextarea id="observacao"
+								value="#{editarClinicaMB.clinica.descricao}" rows="3" cols="90" />
+						</p>
+					</h:panelGroup>
 
-			</h:panelGrid>
-		</p:fieldset>
+				</h:panelGrid>
+
+			</p:fieldset>
+		</div>
 
 
 		<br />

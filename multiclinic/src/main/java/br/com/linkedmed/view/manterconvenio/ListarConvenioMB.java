@@ -9,7 +9,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.com.linkedmed.domain.AreaEspecialidade;
 import br.com.linkedmed.domain.Convenio;
 import br.com.linkedmed.util.FacesBean;
 

@@ -5,15 +5,14 @@ package br.com.linkedmed.view.manterclinica;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
-import org.primefaces.model.DualListModel;
-
-import br.com.linkedmed.domain.AreaEspecialidade;
+import br.com.linkedmed.business.ManterClinicaBC;
 import br.com.linkedmed.domain.Clinica;
 import br.com.linkedmed.domain.Usuario;
 import br.com.linkedmed.util.FacesBean;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 /**
  * Manager Bean associado a tela de edição do clínica
@@ -22,30 +21,19 @@ import br.com.linkedmed.util.FacesBean;
  * 
  */
 
-@ManagedBean(name = "editarClinicaMB")
-@SessionScoped
+@ViewController
+@javax.enterprise.context.SessionScoped
 public class EditarClinicaMB extends FacesBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "editarClinicaMB";
 	public static final String CAMINHO_TELA = "/pages/manterclinica/editarClinica.xhtml";
 
-	private DualListModel<AreaEspecialidade> areasEspecialidades;
-
-	public void popularDualListModel(List<AreaEspecialidade> source,
-			List<AreaEspecialidade> target) {
-		source.removeAll(target);
-		areasEspecialidades = new DualListModel<AreaEspecialidade>(source,
-				target);
-	}
-
-	public DualListModel<AreaEspecialidade> getAreasEspecilidades() {
-		return areasEspecialidades;
-	}
-
-	public void setAreasEspecialidades(
-			DualListModel<AreaEspecialidade> areasEspecilidades) {
-		this.areasEspecialidades = areasEspecilidades;
-	}
+	@Inject
+	private ManterClinicaBC manterClinicaBC;
 
 	private Clinica clinica = new Clinica();
 
@@ -70,21 +58,9 @@ public class EditarClinicaMB extends FacesBean {
 		String retorno = null;
 		try {
 			Clinica novaClinica = new Clinica();
-
-			// List<AreaEspecialidade> sourceAreaEspecialidade =
-			// ManterAreaEspecialidadeControle
-			// .getInstance().obterTodos();
-			//
-			// //clinica.setAreasEspecialidade(new
-			// ArrayList<AreaEspecialidade>());
-			//
-			// //areasEspecialidades = new DualListModel<AreaEspecialidade>(
-			// // sourceAreaEspecialidade,
-			// // clinica.getAreasEspecialidade());
-			// EditarClinicaMB editarClinicaMB = (EditarClinicaMB)
-			// getBean(EditarClinicaMB.NOME_MANAGER_BEAN);
-			// editarClinicaMB.setClinica(novaClinica);
-			// retorno = EditarClinicaMB.CAMINHO_TELA;
+			EditarClinicaMB editarClinicaMB = (EditarClinicaMB) getBean(EditarClinicaMB.NOME_MANAGER_BEAN);
+			editarClinicaMB.setClinica(novaClinica);
+			retorno = EditarClinicaMB.CAMINHO_TELA;
 
 		} catch (Exception e) {
 			error(e.getMessage());
@@ -97,19 +73,17 @@ public class EditarClinicaMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	@Transactional
 	public String salvar() {
 		String retorno = null;
 		try {
 
-			// ManterClinicaControle controle =
-			// ManterClinicaControle.getInstance();
-			// Usuario usuarioLogado = obterUsuarioLogado();
-			// controle.salvar(clinica, usuarioLogado);
-			// ListarClinicaMB listarClinicaMB = (ListarClinicaMB)
-			// getBean(ListarClinicaMB.NOME_MANAGER_BEAN);
-			// List<Clinica> lista = controle.obterTodos();
-			// listarClinicaMB.setLista(lista);
-			// retorno = ListarClinicaMB.CAMINHO_TELA;
+			Usuario usuarioLogado = obterUsuarioLogado();
+			manterClinicaBC.salvar(clinica, usuarioLogado);
+			ListarClinicaMB listarClinicaMB = (ListarClinicaMB) getBean(ListarClinicaMB.NOME_MANAGER_BEAN);
+			List<Clinica> lista = manterClinicaBC.obterTodos();
+			listarClinicaMB.setLista(lista);
+			retorno = ListarClinicaMB.CAMINHO_TELA;
 			info("Clinica salva com sucesso!");
 		} catch (Exception e) {
 			error(e.getMessage());

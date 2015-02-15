@@ -9,6 +9,9 @@
 	<ui:define name="tituloPagina">Tela de Exclusão de clínicas</ui:define>
 	<ui:define name="subtituloPagina">Tela de Exclusão de clínicas</ui:define>
 	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite excluir uma clínica</ui:define>
+	<ui:define name="sidebar-painel-heading">Exclução de Clinica</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite excluir uma nova clinica</ui:define>
+
 	<ui:define name="camposFormulario">
 
 
@@ -23,36 +26,32 @@
 							<h:outputLabel value="* Nome" for="nome" />
 							<br />
 							<p:inputText id="nome" required="true" maxlength="80" size="45"
-								value="#{excluirClinicaMB.clinica.nome}"
+								value="#{excluirClinicaMB.clinica.nome}" readonly="true" />
+						</p>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<p>
+							<h:outputLabel value="* Descricao" for="descricao" />
+							<br />
+							<p:inputText id="descricao" required="true" maxlength="80"
+								size="45" value="#{excluirClinicaMB.clinica.descricao}"
 								readonly="true" />
 						</p>
 					</h:panelGroup>
-					<h:panelGrid columns="2">
-						<h:panelGroup>
-							<p>
-								<h:outputLabel value="* Descricao" for="descricao" />
-								<br />
-								<p:inputText id="descricao" required="true" maxlength="80"
-									size="45"
-									value="#{excluirClinicaMB.clinica.descricao}"
-									readonly="true" />
-							</p>
-						</h:panelGroup>
-					
-						<h:panelGrid columns="3">
-							<h:panelGroup>
-								<p>
-									<h:outputLabel value="* Situacao" for="situacao" />
-									<br />
-									<p:inputText id="situacao" required="true" maxlength="80"
-										size="45"
-										value="#{excluirClincaMB.clinica.situacao}"
-										readonly="true" />
-								</p>
-							</h:panelGroup>
 
-						</h:panelGrid>
-					</h:panelGrid>
+					<h:panelGroup>
+						<p>
+							<h:outputText value="* Situação" for="situacao" />
+							<p:selectOneMenu id="situacao" rendered="true" required="true"
+								requiredMessage="Campo SITUAÇÂO deve ser informado."
+								value="#{editarClinicaMB.clinica.ativo}" disabled="true">
+								<f:selectItem itemLabel="Ativo" itemValue="true" />
+								<f:selectItem itemLabel="Inativo" itemValue="false" />
+							</p:selectOneMenu>
+						</p>
+					</h:panelGroup>
+
 				</h:panelGrid>
 			</h:panelGrid>
 		</p:fieldset>
@@ -65,8 +64,8 @@
 		<p:commandButton ajax="false" action="#{excluirClinicaMB.excluir}"
 			value="Excluir" />
 		<p:spacer width="10px"></p:spacer>
-		<p:commandButton ajax="false" action="#{excluirClinicaMB.sairSemExcluir}"
-			value="Sair sem Excluir" />
+		<p:commandButton ajax="false"
+			action="#{excluirClinicaMB.sairSemExcluir}" value="Sair sem Excluir" />
 	</ui:define>
 </ui:composition>
 
