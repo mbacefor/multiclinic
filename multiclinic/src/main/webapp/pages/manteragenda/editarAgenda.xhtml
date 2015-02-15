@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/editarTemplate.xhtml">
+	<ui:define name="tituloPagina">Tela de Edição de Agenda</ui:define>
+	<ui:define name="sidebar-painel-heading">Edição de Agenda</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta opção permite editar ou criar uma nova Agenda</ui:define>
+	<ui:define name="subtituloPagina">Tela de Edição/criação de Agenda</ui:define>
+	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar uma nova Agenda</ui:define>
+	<ui:define name="criadorEntidade"> #{editarClinicaMB.clinica.usuarioCriador.email} </ui:define>
+	<ui:define name="dataCriacaoEntidade">
+		<h:outputText value="#{editarClinicaMB.clinica.dataCadastro}">
+			<f:convertDateTime type="both" dateStyle="medium" />
+		</h:outputText>
+	</ui:define>
+	<ui:define name="camposFormulario">
+
+		<p:fieldset legend="Dados Gerais" toggleable="true">
+			<h:panelGrid columns="2" width="90%" cellpadding="3" cellspacing="3">
+				<h:panelGroup rendered="#{(editarClinicaMB.clinica.id!=null)}">
+					<p>
+						<h:outputLabel value="* Id" for="id" />
+						<br />
+						<p:inputText id="id" rendered="true" maxlength="10" size="10"
+							value="#{editarClinicaMB.clinica.id}" readonly="true" />
+					</p>
+				</h:panelGroup>
+				<h:panelGroup>
+					<p:schedule value="#{scheduleBean.eventModel}" editable="true"
+						widgetVar="myschedule">
+						<p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}"
+							update="eventDetails" oncomplete="eventDialog.show()" />
+						<p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}"></p:ajax>
+					</p:schedule>
+					<p:dialog widgetVar="eventDialog" header="Event Details">
+						<h:panelGrid id="eventDetails" columns="2">
+							<h:outputLabel for="title" value="Title:" />
+							
+						</h:panelGrid>
+					</p:dialog>
+				</h:panelGroup>
+
+			</h:panelGrid>
+		</p:fieldset>
+
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Dados Adicionais" toggleable="true">
+				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Endereço" for="endereco" />
+							<br />
+							<p:inputText id="endereco" size="100"
+								maxlength="#{editarClinicaMB.clinica.tamanhoEndereco}"
+								value="#{editarClinicaMB.clinica.endereco}" />
+						</p>
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada X" for="coordX" />
+									<br />
+									<p:inputText id="coordX" size="30"
+										value="#{editarClinicaMB.clinica.coordX}" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<p:outputLabel value="Coordenada Y" for="coordY" />
+									<br />
+									<p:inputText id="coordY" size="30"
+										value="#{editarClinicaMB.clinica.coordY}" />
+								</p>
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<p>
+							<p:outputLabel value="Observação" for="observacao" />
+							<br />
+							<p:inputTextarea id="observacao"
+								value="#{editarClinicaMB.clinica.descricao}" rows="3" cols="90" />
+						</p>
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+			</p:fieldset>
+		</div>
+
+
+		<br />
+	</ui:define>
+
+	<ui:define name="botoes">
+		<p:commandButton ajax="false" value="Salvar"
+			action="#{editarClinicaMB.salvar}" />
+		<p:spacer width="10px"></p:spacer>
+		<p:commandButton ajax="false" value="Cancelar"
+			action="#{editarClinicaMB.cancelar}" />
+	</ui:define>
+</ui:composition>
+
+</html>
