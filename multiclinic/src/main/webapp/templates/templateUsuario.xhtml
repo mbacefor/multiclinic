@@ -51,7 +51,14 @@
 			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Listagem de Paciente"
 					action="#{listarPacienteMB.prepararListar}" /></li>
-		
+
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
+					value="Novo de Profissional"
+					action="#{editarProfissionalMB.prepararNovo}" /></li>
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
+					value="Listagem de Profissional"
+					action="#{listarProfissionalMB.prepararListar}" /></li>
+
 		</ui:define>
 	</ui:composition>
 </body>

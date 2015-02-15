@@ -2,16 +2,22 @@ package br.com.linkedmed.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Profissional extends Paciente {
 
-	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE,
-			CascadeType.REFRESH, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	private List<AreaEspecialidade> areasEspecialidade;
 
 	public List<AreaEspecialidade> getAreasEspecialidade() {

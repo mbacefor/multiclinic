@@ -1,31 +1,34 @@
-
 package br.com.linkedmed.view.manterprofissional;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 import org.primefaces.model.DualListModel;
 
+import br.com.linkedmed.business.ManterProfissionalBC;
 import br.com.linkedmed.domain.AreaEspecialidade;
 import br.com.linkedmed.domain.Profissional;
 import br.com.linkedmed.util.FacesBean;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-/**
- * MANAGER BEAN ASSOCIADO A TELA DE EDIÇÃO DO MANTER PROFISSIONAL.
- * @author samuelgl
- */
-
-@ManagedBean(name="excluirProfissionalMB")
-@SessionScoped
-public class ExcluirProfissionalMB extends FacesBean{
-	public static final String  NOME_MANAGER_BEAN = "excluirProfissionalMB";
+@ViewController
+@javax.enterprise.context.SessionScoped
+public class ExcluirProfissionalMB extends FacesBean {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static final String NOME_MANAGER_BEAN = "excluirProfissionalMB";
 	public static final String CAMINHO_TELA = "/pages/manterprofissional/excluirProfissional.xhtml";
-	
-	private Profissional profissional = new Profissional();
-	
+
+	private Profissional pessoa = new Profissional();
+
 	private DualListModel<AreaEspecialidade> areasEspecilidades;
+
+	@Inject
+	private ManterProfissionalBC manterProfissionalBC;
 
 	public void popularDualListModel(List<AreaEspecialidade> source,
 			List<AreaEspecialidade> target) {
@@ -34,42 +37,35 @@ public class ExcluirProfissionalMB extends FacesBean{
 				target));
 	}
 
-	public Profissional getProfissional() {
-		return profissional;
-	}
-
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
-	}
-	
+	@Transactional
 	public String excluir() {
 		String retorno = null;
-		
+
 		try {
-//			ManterProfissionalControle.getInstance().excluir(profissional);
-//			ListarProfissionalMB listarProfissionalMB = (ListarProfissionalMB) getBean(ListarProfissionalMB.NOME_MANAGER_BEAN);
-//			List<Profissional> lista = ManterProfissionalControle.getInstance().obterTodos();
-//			listarProfissionalMB.setLista(lista);
-//			retorno = ListarProfissionalMB.CAMINHO_TELA;
+			manterProfissionalBC.excluir(pessoa);
+			ListarProfissionalMB listarProfissionalMB = (ListarProfissionalMB) getBean(ListarProfissionalMB.NOME_MANAGER_BEAN);
+			List<Profissional> lista = manterProfissionalBC.obterTodos();
+			listarProfissionalMB.setLista(lista);
+			retorno = ListarProfissionalMB.CAMINHO_TELA;
 			info("Profissional excluído.");
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
 	}
-	
-	public String sairSemSalvar(){
+
+	public String sairSemSalvar() {
 		String retorno = null;
-		try{
+		try {
 			retorno = ListarProfissionalMB.CAMINHO_TELA;
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
-		
+
 	}
-	
+
 	public DualListModel<AreaEspecialidade> getAreasEspecilidades() {
 		return areasEspecilidades;
 	}
@@ -79,5 +75,12 @@ public class ExcluirProfissionalMB extends FacesBean{
 		this.areasEspecilidades = areasEspecilidades;
 	}
 
-	
+	public Profissional getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Profissional pessoa) {
+		this.pessoa = pessoa;
+	}
+
 }

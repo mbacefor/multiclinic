@@ -3,99 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/editarTemplate.xhtml">
+<ui:composition template="/templates/editarPessoa.xhtml">
 	<ui:define name="tituloPagina">Tela de Edição de Profissional</ui:define>
 	<ui:define name="subtituloPagina">Tela de Edição/Criação de Profissional</ui:define>
-	<ui:define name="descricaoTituloPagina">Esta funcionalidade permite editar ou criar um novo Profissional</ui:define>
-	<ui:define name="criadorEntidade"> #{editarProfissionalMB.profissional.usuarioCriador.email}</ui:define>
-	<ui:define name="dataCriacaoEntidade">
-		<h:outputText
-			value="#{editarProfissionalMB.profissional.dataCadastro}">
-			<f:convertDateTime type="both" dateStyle="medium" />
-		</h:outputText>
-	</ui:define>
-	<ui:define name="camposFormulario">
-
-		<p:fieldset legend="Dados Gerais" toggleable="true">
-			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
-				<h:panelGroup
-					rendered="#{(editarProfissionalMB.profissional.id!=null)}">
-					<p>
-						<h:outputLabel value="* Id" for="id" />
-						<br />
-						<p:inputText id="id" rendered="true" maxlength="10" size="10"
-							value="#{editarProfissionalMB.profissional.id}" readonly="true" />
-					</p>
-				</h:panelGroup>
-
-				<h:panelGroup>
-					<p>
-						<p:outputLabel value="CPF: " for="cpf" />
-						<br />
-						<p:inputMask id="cpf" mask="999.999.999-99" label="cpf"
-							required="true" value="#{editarProfissionalMB.profissional.cpf}"
-							requiredMessage="O CPF deve ser informado.">
-						</p:inputMask>
-					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-					<p>
-						<p:outputLabel value="Nome: " for="nome" />
-						<br />
-						<p:inputText id="nome" required="true" size="60"
-							value="#{editarProfissionalMB.profissional.nome}"
-							requiredMessage="O nome deve ser informado! " />
-					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-					<p>
-						<p:outputLabel value="Endereço: " for="endereco" />
-						<br />
-						<p:inputText id="endereco" required="true" maxlength="50"
-							size="40" value="#{editarProfissionalMB.profissional.endereco}"
-							requiredMessage="O endereço deve ser informado! " />
-					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-					<p>
-						<h:panelGrid columns="2">
-							<h:panelGroup>
-								<p:outputLabel value="Telefone: " for="telefone" />
-								<br />
-								<p:inputMask id="telefone" size="10"
-									value="#{editarProfissionalMB.profissional.telefone}"
-									required="true" mask="(99) 9999-9999"
-									requiredMessage="O telefone deve ser informado! ">
-
-								</p:inputMask>
-							</h:panelGroup>
-							<h:panelGroup>
-								<p:outputLabel value="Celular: " for="celular" />
-								<br />
-								<p:inputMask id="celular" size="10"
-									value="#{editarProfissionalMB.profissional.celular}"
-									required="true" mask="(99) 9999-9999"
-									requiredMessage="O celular deve ser informado! ">
-								</p:inputMask>
-							</h:panelGroup>
-						</h:panelGrid>
-					</p>
-				</h:panelGroup>
-				<h:panelGroup>
-					<p>
-						<p:outputLabel value="Descrição: " for="descricao" />
-						<br />
-						<p:inputTextarea id="descricao" required="true" maxlength="250"
-							cols="50" value="#{editarProfissionalMB.profissional.descricao}"
-							requiredMessage="A descrição deve ser informada! ">
-						</p:inputTextarea>
-					</p>
-				</h:panelGroup>
-			</h:panelGrid>
-		</p:fieldset>
-
+	<ui:define name="sidebar-painel-heading">Edição/Criação de Profissional</ui:define>
+	<ui:define name="sidebar-panel-body-texto">Esta funcionalidade permite editar ou criar um novo Profissional</ui:define>
+	<ui:param name="beanPessoaMB" value="#{editarProfissionalMB}" />
+	<ui:define name="camposAdicionais">
 		<p:fieldset legend="Areas de Especialidade" toggleable="true">
 			<p:pickList id="pickList"
 				value="#{editarProfissionalMB.areasEspecilidades}"
@@ -109,15 +25,10 @@
 		</p:fieldset>
 
 		<br />
+
 	</ui:define>
 
-	<ui:define name="botoes">
-		<p:commandButton ajax="false" value="Salvar"
-			action="#{editarProfissionalMB.salvar}" />
-		<p:spacer width="10px"></p:spacer>
-		<p:commandButton ajax="false" value="Cancelarrrrr"
-			action="#{editarProfissionalMB.cancelar}" />
-	</ui:define>
 </ui:composition>
 
 </html>
+

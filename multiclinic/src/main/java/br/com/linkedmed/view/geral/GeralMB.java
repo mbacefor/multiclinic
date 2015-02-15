@@ -13,9 +13,11 @@ import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.com.linkedmed.business.ManterAreaEspecialidadeBC;
 import br.com.linkedmed.business.ManterFuncionalidadeBC;
 import br.com.linkedmed.business.ManterPerfilBC;
 import br.com.linkedmed.business.ManterUsuarioBC;
+import br.com.linkedmed.domain.AreaEspecialidade;
 import br.com.linkedmed.domain.Funcionalidade;
 import br.com.linkedmed.domain.Perfil;
 import br.com.linkedmed.domain.Usuario;
@@ -47,6 +49,9 @@ public class GeralMB extends AbstractPageBean {
 
 	@Inject
 	private ManterPerfilBC manterPerfilBC;
+
+	@Inject
+	private ManterAreaEspecialidadeBC manterAreaEspecialidadeBC;
 
 	private String ocultaTAGUsuarioLogado = "hidden";
 
@@ -167,6 +172,24 @@ public class GeralMB extends AbstractPageBean {
 						manterPerfilBC.salvar(perfil1, usuario1);
 
 					}
+
+				}
+
+				if (manterAreaEspecialidadeBC.findAll().isEmpty()) {
+					AreaEspecialidade areaEspecialidade = new AreaEspecialidade();
+					areaEspecialidade.setNome("Atendente");
+					areaEspecialidade.setAtivo(true);
+					manterAreaEspecialidadeBC.salvar(areaEspecialidade, null);
+
+					AreaEspecialidade areaEspecialidade1 = new AreaEspecialidade();
+					areaEspecialidade1.setNome("Medico");
+					areaEspecialidade1.setAtivo(true);
+					manterAreaEspecialidadeBC.salvar(areaEspecialidade1, null);
+
+					AreaEspecialidade areaEspecialidade2 = new AreaEspecialidade();
+					areaEspecialidade2.setNome("Dentista");
+					areaEspecialidade2.setAtivo(true);
+					manterAreaEspecialidadeBC.salvar(areaEspecialidade2, null);
 
 				}
 

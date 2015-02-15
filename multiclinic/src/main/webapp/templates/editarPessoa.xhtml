@@ -6,10 +6,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/editarTemplate.xhtml">
-		<ui:define name="criadorEntidade"> #{beanPessoaMB.pessoa.usuarioCriador.email} </ui:define>
+	<ui:define name="criadorEntidade"> #{beanPessoaMB.pessoa.usuarioCriador.email} </ui:define>
 	<ui:define name="dataCriacaoEntidade">
-		<h:outputText
-			value="#{beanPessoaMB.pessoa.dataCadastroFormatada}">
+		<h:outputText value="#{beanPessoaMB.pessoa.dataCadastroFormatada}">
 			<f:convertDateTime type="both" dateStyle="medium" />
 		</h:outputText>
 	</ui:define>
@@ -44,8 +43,7 @@
 							<br />
 							<p:inputMask id="cpf" mask="999.999.999-99" label="cpf"
 								value="#{beanPessoaMB.pessoa.cpf}"
-								maxlength="#{beanPessoaMB.pessoa.tamanhoCpf}"
-								immediate="true">
+								maxlength="#{beanPessoaMB.pessoa.tamanhoCpf}" immediate="true">
 							</p:inputMask>
 						</p>
 					</h:panelGroup>
@@ -85,8 +83,8 @@
 						<p>
 							<p:outputLabel value="Sexo" for="sexo" />
 							<br />
-							<p:selectOneMenu id="sexo"
-								value="#{beanPessoaMB.pessoa.sexo}" required="true">
+							<p:selectOneMenu id="sexo" value="#{beanPessoaMB.pessoa.sexo}"
+								required="true">
 								<f:selectItem itemLabel="Masculino" itemValue="M" />
 								<f:selectItem itemLabel="Feminino" itemValue="F" />
 							</p:selectOneMenu>
@@ -97,8 +95,8 @@
 							<p:outputLabel value="Data Aniversario" for="aniversario" />
 							<br />
 							<p:calendar id="aniversario"
-								value="#{beanPessoaMB.pessoa.dataAniversario}"
-								required="true" pattern="dd/MM/yyyy">
+								value="#{beanPessoaMB.pessoa.dataAniversario}" required="true"
+								pattern="dd/MM/yyyy">
 							</p:calendar>
 						</p>
 					</h:panelGroup>
@@ -195,8 +193,7 @@ function initialize() {
 							<p:outputLabel value="Observação" for="observacao" />
 							<br />
 							<p:inputTextarea id="observacao"
-								value="#{beanPessoaMB.pessoa.descricao}" rows="3"
-								cols="90" />
+								value="#{beanPessoaMB.pessoa.descricao}" rows="3" cols="90" />
 						</p>
 					</h:panelGroup>
 
@@ -204,6 +201,7 @@ function initialize() {
 
 			</p:fieldset>
 		</div>
+		<ui:insert name="camposAdicionais"></ui:insert>
 		<div class="fieldSetScroll">
 			<p:fieldset legend="Dados Usuário" toggleable="true">
 				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
@@ -225,8 +223,8 @@ function initialize() {
 		<p:commandButton ajax="false" action="#{beanPessoaMB.salvar}"
 			value="Salvar" />
 		<p:spacer width="10px"></p:spacer>
-		<p:commandButton ajax="false"
-			action="#{beanPessoaMB.sairSemSalvar}" value="Sair sem Salvar" />
+		<p:commandButton ajax="false" action="#{beanPessoaMB.sairSemSalvar}"
+			value="Sair sem Salvar" />
 	</ui:define>
 </ui:composition>
 
