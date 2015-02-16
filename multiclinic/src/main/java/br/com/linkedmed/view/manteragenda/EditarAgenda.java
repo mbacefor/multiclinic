@@ -12,7 +12,7 @@ import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
-public class ScheduleBean extends AbstractPageBean {
+public class EditarAgenda extends AbstractPageBean {
 
 	/**
 	 * 
@@ -23,11 +23,12 @@ public class ScheduleBean extends AbstractPageBean {
 
 	public void onDateSelect(SelectEvent e) {
 		Date date = (Date) e.getObject();
-		event = new DefaultScheduleEvent("Teste evento"+date, date, date);
-		eventModel.addEvent(event);
+		event = new DefaultScheduleEvent("Teste evento" + date, date, date);
+
 	}
 
 	public void onEventSelect(SelectEvent e) {
+		System.out.println(e.toString());
 		event = (DefaultScheduleEvent) e.getObject();
 	}
 
@@ -38,9 +39,9 @@ public class ScheduleBean extends AbstractPageBean {
 			eventModel.updateEvent(event);
 		event = new DefaultScheduleEvent();
 	}
-
-	public ScheduleBean() {
-		setEventModel(new DefaultScheduleModel());
+	
+	public void delEvent() {
+		eventModel.deleteEvent(event);
 	}
 
 	public ScheduleModel getEventModel() {
