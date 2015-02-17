@@ -7,7 +7,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
 
@@ -40,6 +44,10 @@ public class Clinica extends EntidadeGeralTemplate {
 
 	@Column(nullable = true)
 	private Double coordY;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Evento> eventos;
 
 	@OneToMany(mappedBy = "clinica")
 	private List<Sala> salas;
@@ -130,6 +138,14 @@ public class Clinica extends EntidadeGeralTemplate {
 
 	public int getTamanhoEndereco() {
 		return TAMANHO_ENDERECO;
+	}
+
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
 }

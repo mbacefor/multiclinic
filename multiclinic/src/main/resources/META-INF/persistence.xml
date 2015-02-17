@@ -19,6 +19,7 @@
 		<class>br.com.linkedmed.domain.Sala</class>
 		<class>br.com.linkedmed.domain.Equipamento</class>
 		<class>br.com.linkedmed.domain.Paciente</class>
+		<class>br.com.linkedmed.domain.Evento</class>
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />

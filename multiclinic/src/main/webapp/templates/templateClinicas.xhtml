@@ -55,19 +55,9 @@
 			<li class="list-group-item"><h:commandLink
 					value="Listagem de Clínicas"
 					action="#{listarClinicaMB.prepararListar}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Cadastro de Sala" action="#{editarSalaMB.prepararNovo}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Listagem de sala" action="#{listarSalaMB.prepararListar}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Cadastro de Equipamento"
-					action="#{editarEquipamentoMB.prepararNovo}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Listagem de Equipamento"
-					action="#{listarEquipamentoMB.prepararListar}" /></li>
-			<li class="list-group-item"><h:commandLink
-					value="Editar Agenda"
-					action="/pages/manteragenda/editarAgenda.xhtml" /></li>
+
+			<li class="list-group-item"><h:commandLink value="Editar Agenda"
+					action="#{editarAgenda.prepararEditar}" /></li>
 
 
 		</ui:define>

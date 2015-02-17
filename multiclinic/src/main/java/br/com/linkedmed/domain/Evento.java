@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.annotation.Nonnull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
 
@@ -18,10 +18,10 @@ public class Evento extends EntidadeGeralTemplate implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@OneToOne
+	@ManyToOne
 	private Profissional profissional;
 
-	@OneToOne
+	@ManyToOne
 	private Clinica clinica;
 
 	@Nonnull
