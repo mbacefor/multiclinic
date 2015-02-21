@@ -28,7 +28,7 @@
 						<p:selectOneMenu id="profissional"
 							value="#{editarAgenda.profissional}"
 							converter="defaultConverterJSF2" var="p">
-							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItem itemLabel="Selecione" itemValue="" />
 							<f:selectItems value="#{editarAgenda.listaProfissionais}"
 								var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}" />
 							<p:column>
@@ -51,7 +51,7 @@
 			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 				<h:panelGroup>
 					<p:schedule value="#{editarAgenda.eventModel}" editable="true"
-						widgetVar="myschedule">
+						locale="pt" widgetVar="myschedule">
 						<p:ajax event="dateSelect" listener="#{editarAgenda.onDateSelect}"
 							update="eventDetails" oncomplete="PF('eventDialog').show()" />
 						<p:ajax event="eventSelect"
@@ -62,6 +62,30 @@
 					<p:dialog widgetVar="eventDialog" header="Event Details">
 						<p:fieldset legend="Dados Consulta" toggleable="true">
 							<h:panelGrid id="eventDetails" columns="2">
+								<h:outputLabel for="paciente" value="Paciente:" />
+
+								<p:selectOneMenu id="paciente"
+									value="#{editarAgenda.event.evento.paciente}" required="true"
+									converter="defaultConverterJSF2" var="p">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{editarAgenda.listaPacientes}"
+										var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
+									<p:column>
+										<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="45"
+											height="45" />
+									</p:column>
+									<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
+									<p:column>
+
+										<h:outputText value="#{p.dataAniversario}">
+											<f:convertDateTime locale="pt_BR"
+												timeZone="America/Sao_Paulo" />
+										</h:outputText>
+
+									</p:column>
+
+								</p:selectOneMenu>
+
 								<h:outputLabel for="title" value="Title:" />
 								<h:inputText id="title" value="#{editarAgenda.event.title}"
 									required="true" />

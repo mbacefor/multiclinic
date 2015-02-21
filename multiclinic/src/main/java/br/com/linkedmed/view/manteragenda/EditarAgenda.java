@@ -6,16 +6,16 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
-import br.com.linkedmed.business.ManterAreaEspecialidadeBC;
 import br.com.linkedmed.business.ManterClinicaBC;
 import br.com.linkedmed.business.ManterEventoBC;
 import br.com.linkedmed.business.ManterProfissionalBC;
+import br.com.linkedmed.business.PacienteBC;
 import br.com.linkedmed.domain.Clinica;
 import br.com.linkedmed.domain.Evento;
+import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.domain.Profissional;
 import br.com.linkedmed.util.FacesBean;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -33,30 +33,32 @@ public class EditarAgenda extends FacesBean {
 
 	private Profissional profissional;
 	private List<Profissional> listaProfissionais;
+	private List<Paciente> listaPacientes;
 	private Clinica clinica;
 	private List<Clinica> listaClinicas;
 	private List<Evento> eventos;
 
 	@Inject
 	private ManterEventoBC manterEventoBC;
-
 	@Inject
 	private ManterClinicaBC manterClinicaBC;
 	@Inject
 	private ManterProfissionalBC manterProfissionalBC;
+	@Inject
+	private PacienteBC pacienteBC;
 
 	private ScheduleModel eventModel = new DefaultScheduleModel();
-	private DefaultScheduleEvent event = new DefaultScheduleEvent();
+	private EventoAtendimento event = new EventoAtendimento();
 
 	public void onDateSelect(SelectEvent e) {
 		Date date = (Date) e.getObject();
-		event = new DefaultScheduleEvent("Teste evento" + date, date, date);
+		event = new EventoAtendimento("Teste evento" + date, date, date);
 
 	}
 
 	public void onEventSelect(SelectEvent e) {
 		System.out.println(e.toString());
-		event = (DefaultScheduleEvent) e.getObject();
+		event = (EventoAtendimento) e.getObject();
 	}
 
 	public void addEvent() {
@@ -64,7 +66,7 @@ public class EditarAgenda extends FacesBean {
 			eventModel.addEvent(event);
 		else
 			eventModel.updateEvent(event);
-		event = new DefaultScheduleEvent();
+		event = new EventoAtendimento();
 	}
 
 	public String filtar() {
@@ -83,6 +85,7 @@ public class EditarAgenda extends FacesBean {
 		try {
 			listaClinicas = manterClinicaBC.obterTodos();
 			listaProfissionais = manterProfissionalBC.obterTodos();
+			listaPacientes = pacienteBC.obterTodos();
 			retorno = EditarAgenda.CAMINHO_TELA;
 
 		} catch (Exception e) {
@@ -103,11 +106,11 @@ public class EditarAgenda extends FacesBean {
 		this.eventModel = eventModel;
 	}
 
-	public DefaultScheduleEvent getEvent() {
+	public EventoAtendimento getEvent() {
 		return event;
 	}
 
-	public void setEvent(DefaultScheduleEvent event) {
+	public void setEvent(EventoAtendimento event) {
 		this.event = event;
 	}
 
@@ -141,5 +144,13 @@ public class EditarAgenda extends FacesBean {
 
 	public void setListaClinicas(List<Clinica> listaClinicas) {
 		this.listaClinicas = listaClinicas;
+	}
+
+	public List<Paciente> getListaPacientes() {
+		return listaPacientes;
+	}
+
+	public void setListaPacientes(List<Paciente> listaPacientes) {
+		this.listaPacientes = listaPacientes;
 	}
 }

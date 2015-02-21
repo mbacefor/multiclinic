@@ -23,7 +23,7 @@ public class Profissional extends Paciente {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
-	private List<Evento> eventos;
+	private List<Evento> eventosProfissional;
 
 	public List<AreaEspecialidade> getAreasEspecialidade() {
 		return areasEspecialidade;
@@ -33,12 +33,12 @@ public class Profissional extends Paciente {
 		this.areasEspecialidade = areasEspecialidade;
 	}
 
-	public List<Evento> getEventos() {
-		return eventos;
+	public List<Evento> getEventosProfissional() {
+		return eventosProfissional;
 	}
 
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
+	public void setEventosProfissional(List<Evento> eventosProfissional) {
+		this.eventosProfissional = eventosProfissional;
 	}
 
 }

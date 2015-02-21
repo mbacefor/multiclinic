@@ -1,15 +1,21 @@
 package br.com.linkedmed.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
 
@@ -66,6 +72,10 @@ public class Paciente extends EntidadeGeralTemplate {
 
 	@Column(nullable = true)
 	private Double coordY;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Evento> eventosPaciente;
 
 	/**
 	 * Representa o usuario do sistema que esta associado com o paciente
@@ -303,6 +313,14 @@ public class Paciente extends EntidadeGeralTemplate {
 
 	public void setCoordY(Double coordY) {
 		this.coordY = coordY;
+	}
+
+	public List<Evento> getEventosPaciente() {
+		return eventosPaciente;
+	}
+
+	public void setEventosPaciente(List<Evento> eventosPaciente) {
+		this.eventosPaciente = eventosPaciente;
 	}
 
 }
