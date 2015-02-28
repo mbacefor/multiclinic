@@ -17,8 +17,11 @@ import br.com.linkedmed.domain.Clinica;
 import br.com.linkedmed.domain.Evento;
 import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.domain.Profissional;
+import br.com.linkedmed.domain.Usuario;
 import br.com.linkedmed.util.FacesBean;
+import br.com.linkedmed.view.manterclinica.ListarClinicaMB;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
@@ -52,7 +55,7 @@ public class EditarAgenda extends FacesBean {
 
 	public void onDateSelect(SelectEvent e) {
 		Date date = (Date) e.getObject();
-		event = new EventoAtendimento("Teste evento" + date, date, date);
+		event = new EventoAtendimento("", date, date);
 
 	}
 
@@ -61,17 +64,42 @@ public class EditarAgenda extends FacesBean {
 		event = (EventoAtendimento) e.getObject();
 	}
 
+	/**
+	 * Adiciona um novo evento
+	 */
+	@Transactional
 	public void addEvent() {
-		if (event.getId() == null)
-			eventModel.addEvent(event);
-		else
-			eventModel.updateEvent(event);
+
+		if (event.getId() == null) {
+			try {
+				salvarEvento(event.getEvento());
+				eventModel.addEvent(event);
+			} catch (Exception e) {
+				error(e.getMessage());
+			}
+
+		} else
+			try {
+				salvarEvento(event.getEvento());
+				eventModel.updateEvent(event);
+			} catch (Exception e) {
+				error(e.getMessage());
+			}
+
 		event = new EventoAtendimento();
+
 	}
 
 	public String filtar() {
 		String retorno = null;
 		eventos = manterEventoBC.obterTodos();
+		eventModel.clear();
+
+		for (Evento evento : eventos) {
+			EventoAtendimento atendimento = new EventoAtendimento(evento);
+			eventModel.addEvent(atendimento);
+		}
+
 		return retorno;
 	}
 
@@ -94,8 +122,61 @@ public class EditarAgenda extends FacesBean {
 		return retorno;
 	}
 
+	/**
+	 * Metodo que salva uma clínica
+	 * 
+	 * @return
+	 */
+
+	private void salvarEvento(Evento evento) {
+		Usuario usuarioLogado = obterUsuarioLogado();
+		manterEventoBC.salvar(evento, usuarioLogado);
+	}
+
+	/**
+	 * Metodo que salva uma clínica
+	 * 
+	 * @return
+	 */
+
+	private void excluirEvento(Evento evento) {
+		manterEventoBC.excluir(evento);
+	}
+
+	/**
+	 * Metodo que salva uma clínica
+	 * 
+	 * @return
+	 */
+	@Transactional
+	public String salvar() {
+		String retorno = null;
+		try {
+
+			Usuario usuarioLogado = obterUsuarioLogado();
+			manterClinicaBC.salvar(clinica, usuarioLogado);
+			ListarClinicaMB listarClinicaMB = (ListarClinicaMB) getBean(ListarClinicaMB.NOME_MANAGER_BEAN);
+			List<Clinica> lista = manterClinicaBC.obterTodos();
+			listarClinicaMB.setLista(lista);
+			retorno = ListarClinicaMB.CAMINHO_TELA;
+			info("Clinica salva com sucesso!");
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+		return retorno;
+	}
+
+	/**
+	 * Exclui um evento
+	 */
+
 	public void delEvent() {
 		eventModel.deleteEvent(event);
+		try {
+			excluirEvento(event.getEvento());
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
 	}
 
 	public ScheduleModel getEventModel() {

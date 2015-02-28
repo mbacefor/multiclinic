@@ -56,6 +56,7 @@ public class EventoAtendimento extends DefaultScheduleEvent {
 		evento.setDataInicio(start);
 		evento.setDataFim(end);
 		evento.setNome(title);
+		evento.setAtivo(true);
 	}
 
 	public EventoAtendimento(Evento evento) {
@@ -71,6 +72,8 @@ public class EventoAtendimento extends DefaultScheduleEvent {
 				setStyleClass(evento.getEstilo());
 			if (evento.getAtivo() != null)
 				setEditable(evento.getAtivo());
+			if (evento.getDescricao() != null)
+				setDescription(evento.getDescricao());
 		}
 
 	}
@@ -83,4 +86,45 @@ public class EventoAtendimento extends DefaultScheduleEvent {
 		this.evento = evento;
 	}
 
+	@Override
+	public void setDescription(String description) {
+		if (evento != null)
+			evento.setDescricao(description);
+		super.setDescription(description);
+	}
+
+	@Override
+	public void setEditable(boolean editable) {
+		if (evento != null)
+			evento.setAtivo(editable);
+		super.setEditable(editable);
+	}
+
+	@Override
+	public void setEndDate(Date endDate) {
+		if (evento != null)
+			evento.setDataFim(endDate);
+		super.setEndDate(endDate);
+	}
+
+	@Override
+	public void setStartDate(Date startDate) {
+		if (evento != null)
+			evento.setDataInicio(startDate);
+		super.setStartDate(startDate);
+	}
+
+	@Override
+	public void setStyleClass(String styleClass) {
+		if (evento != null)
+			evento.setEstilo(styleClass);
+		super.setStyleClass(styleClass);
+	}
+
+	@Override
+	public void setTitle(String title) {
+		if (evento != null)
+			evento.setNome(title);
+		super.setTitle(title);
+	}
 }

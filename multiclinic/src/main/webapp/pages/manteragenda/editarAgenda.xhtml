@@ -61,40 +61,85 @@
 					</p:schedule>
 					<p:dialog widgetVar="eventDialog" header="Event Details">
 						<p:fieldset legend="Dados Consulta" toggleable="true">
-							<h:panelGrid id="eventDetails" columns="2">
-								<h:outputLabel for="paciente" value="Paciente:" />
+							<h:panelGrid id="eventDetails" columns="1">
+								<h:panelGroup>
+									<p>
+										<h:outputLabel for="paciente" value="Paciente:" />
+										<p:selectOneMenu id="paciente"
+											value="#{editarAgenda.event.evento.paciente}" required="true"
+											converter="defaultConverterJSF2" var="p">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItems value="#{editarAgenda.listaPacientes}"
+												var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
+											<p:column>
+												<p:graphicImage value="/photocam/#{p.nomeFoto}.png"
+													width="45" height="45" />
+											</p:column>
+											<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
+											<p:column>
+												<h:outputText value="#{p.dataAniversario}">
+													<f:convertDateTime locale="pt_BR"
+														timeZone="America/Sao_Paulo" />
+												</h:outputText>
+											</p:column>
+										</p:selectOneMenu>
+									</p>
+								</h:panelGroup>
+								<h:panelGroup>
+									<p>
+										<h:outputLabel for="profissionalEvento" value="Profissional:" />
+										<p:selectOneMenu id="profissionalEvento"
+											value="#{editarAgenda.event.evento.profissional}"
+											required="true" converter="defaultConverterJSF2" var="p">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItems value="#{editarAgenda.listaProfissionais}"
+												var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}" />
+											<p:column>
+												<p:graphicImage value="/photocam/#{p.nomeFoto}.png"
+													width="45" height="45" />
+											</p:column>
+											<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
+											<p:column>
+												<h:outputText value="#{p.dataAniversario}">
+													<f:convertDateTime locale="pt_BR"
+														timeZone="America/Sao_Paulo" />
+												</h:outputText>
+											</p:column>
+										</p:selectOneMenu>
+									</p>
+								</h:panelGroup>
+								<h:panelGroup>
+									<p>
+										<h:outputLabel for="clinica" value="Clinica:" />
+										<p:selectOneMenu id="clinica"
+											value="#{editarAgenda.event.evento.clinica}" required="true"
+											converter="defaultConverterJSF2" var="p">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItems value="#{editarAgenda.listaClinicas}"
+												var="clinic" itemLabel="#{clinic.nome}"
+												itemValue="#{clinic}" />
+											<p:column>#{p.id} - #{p.nome} </p:column>
+											<p:column>
+												<h:outputText value="#{p.cnpj}">
+												</h:outputText>
+											</p:column>
+										</p:selectOneMenu>
+									</p>
+								</h:panelGroup>
+								<h:panelGroup>
+									<p>
+										<p:outputLabel value="Observação" for="observacao" />
+										<p:inputTextarea id="observacao"
+											value="#{editarAgenda.event.description}" rows="3" cols="50" />
+									</p>
+								</h:panelGroup>
 
-								<p:selectOneMenu id="paciente"
-									value="#{editarAgenda.event.evento.paciente}" required="true"
-									converter="defaultConverterJSF2" var="p">
-									<f:selectItem itemLabel="Selecione" itemValue="" />
-									<f:selectItems value="#{editarAgenda.listaPacientes}"
-										var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
-									<p:column>
-										<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="45"
-											height="45" />
-									</p:column>
-									<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
-									<p:column>
-
-										<h:outputText value="#{p.dataAniversario}">
-											<f:convertDateTime locale="pt_BR"
-												timeZone="America/Sao_Paulo" />
-										</h:outputText>
-
-									</p:column>
-
-								</p:selectOneMenu>
-
-								<h:outputLabel for="title" value="Title:" />
-								<h:inputText id="title" value="#{editarAgenda.event.title}"
-									required="true" />
-								<h:outputLabel for="from" value="From:" />
+								<h:outputLabel for="from" value="Início" />
 								<p:inputMask id="from" value="#{editarAgenda.event.startDate}"
 									mask="99/99/9999 99:99">
 									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
 								</p:inputMask>
-								<h:outputLabel for="to" value="To:" />
+								<h:outputLabel for="to" value="Fim:" />
 								<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
 									mask="99/99/9999 99:99">
 									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
@@ -126,7 +171,7 @@
 
 	<ui:define name="botoes">
 		<p:commandButton ajax="false" value="Salvar"
-			action="#{editarClinicaMB.salvar}" />
+			action="#{editarAgenda.salvar}" />
 		<p:spacer width="10px"></p:spacer>
 		<p:commandButton ajax="false" value="Cancelar"
 			action="#{editarClinicaMB.cancelar}" />

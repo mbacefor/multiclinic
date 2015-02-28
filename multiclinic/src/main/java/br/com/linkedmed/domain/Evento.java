@@ -23,7 +23,7 @@ public class Evento extends EntidadeGeralTemplate implements Serializable {
 
 	@ManyToOne
 	private Clinica clinica;
-	
+
 	@ManyToOne
 	private Paciente paciente;
 
@@ -36,8 +36,11 @@ public class Evento extends EntidadeGeralTemplate implements Serializable {
 	@Column(nullable = false, length = 256)
 	protected String nome;
 
-	@Column(nullable = false, length = 256)
+	@Column(nullable = true, length = 256)
 	protected String estilo;
+
+	@Column(nullable = true)
+	protected Double valor;
 
 	public Profissional getProfissional() {
 		return profissional;
