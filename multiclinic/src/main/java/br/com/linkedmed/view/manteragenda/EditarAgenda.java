@@ -69,7 +69,8 @@ public class EditarAgenda extends FacesBean {
 	 */
 	@Transactional
 	public void addEvent() {
-
+		event.setTitle(" Paciente: "
+				+ event.getEvento().getPaciente().getNome());
 		if (event.getId() == null) {
 			try {
 				salvarEvento(event.getEvento());

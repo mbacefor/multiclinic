@@ -59,7 +59,7 @@
 							oncomplete="PF('eventDialog').show()">
 						</p:ajax>
 					</p:schedule>
-					<p:dialog widgetVar="eventDialog" header="Event Details">
+					<p:dialog widgetVar="eventDialog" header="Agendamento">
 						<p:fieldset legend="Dados Consulta" toggleable="true">
 							<h:panelGrid id="eventDetails" columns="1">
 								<h:panelGroup>
@@ -127,37 +127,72 @@
 									</p>
 								</h:panelGroup>
 								<h:panelGroup>
-									<p>
-										<p:outputLabel value="Observação" for="observacao" />
-										<p:inputTextarea id="observacao"
-											value="#{editarAgenda.event.description}" rows="3" cols="50" />
-									</p>
+									<p:outputLabel value="Título:" for="title" dir="ltr" />
+									<br />
+									<p:inputText id="title" value="#{editarAgenda.event.title}" size="55" readonly="true"/>
+
 								</h:panelGroup>
 
-								<h:outputLabel for="from" value="Início" />
-								<p:inputMask id="from" value="#{editarAgenda.event.startDate}"
-									mask="99/99/9999 99:99">
-									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-								</p:inputMask>
-								<h:outputLabel for="to" value="Fim:" />
-								<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
-									mask="99/99/9999 99:99">
-									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-								</p:inputMask>
-								<h:outputLabel for="estilo" value="Estilo:" />
-								<p:inputMask id="estilo"
-									value="#{editarAgenda.event.styleClass}">
-								</p:inputMask>
-								<h:outputLabel for="allDay" value="Dia Inteiro" />
-								<h:selectBooleanCheckbox id="allDay"
-									value="#{editarAgenda.event.allDay}" />
-								<p:commandButton type="reset" value="Reset" />
-								<p:commandButton value="Save"
-									actionListener="#{editarAgenda.addEvent}"
-									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-								<p:commandButton value="Delete"
-									actionListener="#{editarAgenda.delEvent}"
-									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+								<h:panelGroup>
+									<p:outputLabel value="Observação:" for="observacao" dir="ltr" />
+									<br />
+									<p:inputTextarea id="observacao"
+										value="#{editarAgenda.event.description}" rows="3" cols="50" />
+
+								</h:panelGroup>
+								<p:panelGrid columns="2" layout="grid">
+									<h:panelGroup>
+										<p>
+											<p:outputLabel for="from" value="Início: " />
+											<br />
+											<p:inputMask id="from" required="true"
+												value="#{editarAgenda.event.startDate}"
+												mask="99/99/9999 99:99">
+												<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+											</p:inputMask>
+										</p>
+									</h:panelGroup>
+									<h:panelGroup>
+										<p>
+											<p:outputLabel for="to" value="Fim:" />
+											<br />
+											<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
+												required="true" mask="99/99/9999 99:99">
+												<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+											</p:inputMask>
+										</p>
+									</h:panelGroup>
+								</p:panelGrid>
+								<p:panelGrid columns="2" layout="grid">
+									<h:panelGroup>
+										<p>
+											<h:outputLabel for="estilo" value="Estilo:" />
+											<br />
+											<p:inputMask id="estilo"
+												value="#{editarAgenda.event.styleClass}">
+											</p:inputMask>
+										</p>
+									</h:panelGroup>
+									<h:panelGroup>
+										<p>
+											<h:outputLabel for="allDay" value="Dia Inteiro" />
+											<br />
+											<h:selectBooleanCheckbox id="allDay"
+												value="#{editarAgenda.event.allDay}" />
+										</p>
+									</h:panelGroup>
+								</p:panelGrid>
+								<h:panelGroup>
+									<p>
+										<p:commandButton type="reset" value="Reset" />
+										<p:commandButton value="Save"
+											actionListener="#{editarAgenda.addEvent}"
+											oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+										<p:commandButton value="Delete"
+											actionListener="#{editarAgenda.delEvent}"
+											oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+									</p>
+								</h:panelGroup>
 							</h:panelGrid>
 						</p:fieldset>
 					</p:dialog>
