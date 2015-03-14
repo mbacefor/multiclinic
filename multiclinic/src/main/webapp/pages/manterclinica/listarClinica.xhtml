@@ -15,13 +15,13 @@
 
 	<ui:define name="camposListagem">
 
+		<p:column filterBy="#{linhaCorrente.cnpj}"
+			filterMatchMode="contains" headerText="CNPJ">
+			<h:outputText value="#{linhaCorrente.cnpj}" />
+		</p:column>
 		<p:column filterBy="#{linhaCorrente.nome}" filterMatchMode="contains"
 			headerText="Nome">
 			<h:outputText value="#{linhaCorrente.nome}" />
-		</p:column>
-		<p:column filterBy="#{linhaCorrente.descricao}"
-			filterMatchMode="contains" headerText="Descricao">
-			<h:outputText value="#{linhaCorrente.descricao}" />
 		</p:column>
 		<p:column filterBy="#{linhaCorrente.ativo? 'Ativo':'Inativo'}"
 			filterMatchMode="contains" headerText="Situação">

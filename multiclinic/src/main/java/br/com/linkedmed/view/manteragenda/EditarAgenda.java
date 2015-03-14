@@ -41,6 +41,8 @@ public class EditarAgenda extends FacesBean {
 	private List<Clinica> listaClinicas;
 	private List<Evento> eventos;
 
+	private Boolean exibirDialog = false;
+
 	@Inject
 	private ManterEventoBC manterEventoBC;
 	@Inject
@@ -66,9 +68,11 @@ public class EditarAgenda extends FacesBean {
 
 	/**
 	 * Adiciona um novo evento
+	 * 
+	 * @throws Exception
 	 */
 	@Transactional
-	public void addEvent() {
+	public void addEvent() throws Exception {
 		event.setTitle(" Paciente: "
 				+ event.getEvento().getPaciente().getNome());
 		if (event.getId() == null) {
@@ -77,6 +81,7 @@ public class EditarAgenda extends FacesBean {
 				eventModel.addEvent(event);
 			} catch (Exception e) {
 				error(e.getMessage());
+				throw e;
 			}
 
 		} else
@@ -89,6 +94,36 @@ public class EditarAgenda extends FacesBean {
 
 		event = new EventoAtendimento();
 
+	}
+
+	/**
+	 * Adiciona um novo evento
+	 * 
+	 * @throws Exception
+	 */
+	@Transactional
+	public String addEventAction() throws Exception {
+		event.setTitle(" Paciente: "
+				+ event.getEvento().getPaciente().getNome());
+		if (event.getId() == null) {
+			try {
+				salvarEvento(event.getEvento());
+				eventModel.addEvent(event);
+			} catch (Exception e) {
+				error(e.getMessage());
+				throw e;
+			}
+
+		} else
+			try {
+				salvarEvento(event.getEvento());
+				eventModel.updateEvent(event);
+			} catch (Exception e) {
+				error(e.getMessage());
+			}
+
+		event = new EventoAtendimento();
+		return null;
 	}
 
 	public String filtar() {
@@ -234,5 +269,13 @@ public class EditarAgenda extends FacesBean {
 
 	public void setListaPacientes(List<Paciente> listaPacientes) {
 		this.listaPacientes = listaPacientes;
+	}
+
+	public Boolean getExibirDialog() {
+		return exibirDialog;
+	}
+
+	public void setExibirDialog(Boolean exibirDialog) {
+		this.exibirDialog = exibirDialog;
 	}
 }

@@ -53,155 +53,166 @@
 					<p:schedule value="#{editarAgenda.eventModel}" editable="true"
 						locale="pt" widgetVar="myschedule">
 						<p:ajax event="dateSelect" listener="#{editarAgenda.onDateSelect}"
-							update="eventDetails" oncomplete="PF('eventDialog').show()" />
+							oncomplete="PF('eventDialog').show()"
+							update=":fDialog:eventDetails" />
 						<p:ajax event="eventSelect"
-							listener="#{editarAgenda.onEventSelect}" update="eventDetails"
-							oncomplete="PF('eventDialog').show()">
+							listener="#{editarAgenda.onEventSelect}"
+							update=":fDialog:eventDetails"
+							oncomplete="PF('eventDialog').show();">
 						</p:ajax>
 					</p:schedule>
-					<p:dialog widgetVar="eventDialog" header="Agendamento">
-						<p:fieldset legend="Dados Consulta" toggleable="true">
-							<h:panelGrid id="eventDetails" columns="1">
-								<h:panelGroup>
-									<p>
-										<h:outputLabel for="paciente" value="Paciente:" />
-										<p:selectOneMenu id="paciente"
-											value="#{editarAgenda.event.evento.paciente}" required="true"
-											converter="defaultConverterJSF2" var="p">
-											<f:selectItem itemLabel="Selecione" itemValue="" />
-											<f:selectItems value="#{editarAgenda.listaPacientes}"
-												var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
-											<p:column>
-												<p:graphicImage value="/photocam/#{p.nomeFoto}.png"
-													width="45" height="45" />
-											</p:column>
-											<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
-											<p:column>
-												<h:outputText value="#{p.dataAniversario}">
-													<f:convertDateTime locale="pt_BR"
-														timeZone="America/Sao_Paulo" />
-												</h:outputText>
-											</p:column>
-										</p:selectOneMenu>
-									</p>
-								</h:panelGroup>
-								<h:panelGroup>
-									<p>
-										<h:outputLabel for="profissionalEvento" value="Profissional:" />
-										<p:selectOneMenu id="profissionalEvento"
-											value="#{editarAgenda.event.evento.profissional}"
-											required="true" converter="defaultConverterJSF2" var="p">
-											<f:selectItem itemLabel="Selecione" itemValue="" />
-											<f:selectItems value="#{editarAgenda.listaProfissionais}"
-												var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}" />
-											<p:column>
-												<p:graphicImage value="/photocam/#{p.nomeFoto}.png"
-													width="45" height="45" />
-											</p:column>
-											<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
-											<p:column>
-												<h:outputText value="#{p.dataAniversario}">
-													<f:convertDateTime locale="pt_BR"
-														timeZone="America/Sao_Paulo" />
-												</h:outputText>
-											</p:column>
-										</p:selectOneMenu>
-									</p>
-								</h:panelGroup>
-								<h:panelGroup>
-									<p>
-										<h:outputLabel for="clinica" value="Clinica:" />
-										<p:selectOneMenu id="clinica"
-											value="#{editarAgenda.event.evento.clinica}" required="true"
-											converter="defaultConverterJSF2" var="p">
-											<f:selectItem itemLabel="Selecione" itemValue="" />
-											<f:selectItems value="#{editarAgenda.listaClinicas}"
-												var="clinic" itemLabel="#{clinic.nome}"
-												itemValue="#{clinic}" />
-											<p:column>#{p.id} - #{p.nome} </p:column>
-											<p:column>
-												<h:outputText value="#{p.cnpj}">
-												</h:outputText>
-											</p:column>
-										</p:selectOneMenu>
-									</p>
-								</h:panelGroup>
-								<h:panelGroup>
-									<p:outputLabel value="Título:" for="title" dir="ltr" />
-									<br />
-									<p:inputText id="title" value="#{editarAgenda.event.title}" size="55" readonly="true"/>
-
-								</h:panelGroup>
-
-								<h:panelGroup>
-									<p:outputLabel value="Observação:" for="observacao" dir="ltr" />
-									<br />
-									<p:inputTextarea id="observacao"
-										value="#{editarAgenda.event.description}" rows="3" cols="50" />
-
-								</h:panelGroup>
-								<p:panelGrid columns="2" layout="grid">
-									<h:panelGroup>
-										<p>
-											<p:outputLabel for="from" value="Início: " />
-											<br />
-											<p:inputMask id="from" required="true"
-												value="#{editarAgenda.event.startDate}"
-												mask="99/99/9999 99:99">
-												<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-											</p:inputMask>
-										</p>
-									</h:panelGroup>
-									<h:panelGroup>
-										<p>
-											<p:outputLabel for="to" value="Fim:" />
-											<br />
-											<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
-												required="true" mask="99/99/9999 99:99">
-												<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-											</p:inputMask>
-										</p>
-									</h:panelGroup>
-								</p:panelGrid>
-								<p:panelGrid columns="2" layout="grid">
-									<h:panelGroup>
-										<p>
-											<h:outputLabel for="estilo" value="Estilo:" />
-											<br />
-											<p:inputMask id="estilo"
-												value="#{editarAgenda.event.styleClass}">
-											</p:inputMask>
-										</p>
-									</h:panelGroup>
-									<h:panelGroup>
-										<p>
-											<h:outputLabel for="allDay" value="Dia Inteiro" />
-											<br />
-											<h:selectBooleanCheckbox id="allDay"
-												value="#{editarAgenda.event.allDay}" />
-										</p>
-									</h:panelGroup>
-								</p:panelGrid>
-								<h:panelGroup>
-									<p>
-										<p:commandButton type="reset" value="Reset" />
-										<p:commandButton value="Save"
-											actionListener="#{editarAgenda.addEvent}"
-											oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-										<p:commandButton value="Delete"
-											actionListener="#{editarAgenda.delEvent}"
-											oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-									</p>
-								</h:panelGroup>
-							</h:panelGrid>
-						</p:fieldset>
-					</p:dialog>
 				</h:panelGroup>
 
 			</h:panelGrid>
 		</p:fieldset>
 
 		<br />
+	</ui:define>
+	<ui:define name="areaForaForm">
+
+		<p:dialog widgetVar="eventDialog" header="Agendamento"
+			id="idEventDialog">
+			<h:form id="fDialog">
+				<p:messages></p:messages>
+				<p:fieldset legend="Dados Consulta" toggleable="true">
+					<h:panelGrid id="eventDetails" columns="1">
+						<h:panelGroup>
+							<p>
+								<h:outputLabel for="paciente" value="Paciente:" />
+								<p:selectOneMenu id="paciente"
+									value="#{editarAgenda.event.evento.paciente}" required="true"
+									converter="defaultConverterJSF2" var="p">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{editarAgenda.listaPacientes}"
+										var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
+									<p:column>
+										<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="45"
+											height="45" />
+									</p:column>
+									<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
+									<p:column>
+										<h:outputText value="#{p.dataAniversario}">
+											<f:convertDateTime locale="pt_BR"
+												timeZone="America/Sao_Paulo" />
+										</h:outputText>
+									</p:column>
+								</p:selectOneMenu>
+							</p>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p>
+								<h:outputLabel for="profissionalEvento" value="Profissional:" />
+								<p:selectOneMenu id="profissionalEvento"
+									value="#{editarAgenda.event.evento.profissional}"
+									required="true" converter="defaultConverterJSF2" var="p">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{editarAgenda.listaProfissionais}"
+										var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}" />
+									<p:column>
+										<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="45"
+											height="45" />
+									</p:column>
+									<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
+									<p:column>
+										<h:outputText value="#{p.dataAniversario}">
+											<f:convertDateTime locale="pt_BR"
+												timeZone="America/Sao_Paulo" />
+										</h:outputText>
+									</p:column>
+								</p:selectOneMenu>
+							</p>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p>
+								<h:outputLabel for="clinica" value="Clinica:" />
+								<p:selectOneMenu id="clinica"
+									value="#{editarAgenda.event.evento.clinica}" required="true"
+									converter="defaultConverterJSF2" var="p">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{editarAgenda.listaClinicas}"
+										var="clinic" itemLabel="#{clinic.nome}" itemValue="#{clinic}" />
+									<p:column>#{p.id} - #{p.nome} </p:column>
+									<p:column>
+										<h:outputText value="#{p.cnpj}">
+										</h:outputText>
+									</p:column>
+								</p:selectOneMenu>
+							</p>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Título:" for="title" dir="ltr" />
+							<br />
+							<p:inputText id="title" value="#{editarAgenda.event.title}"
+								size="55" readonly="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup>
+							<p:outputLabel value="Observação:" for="observacao" dir="ltr" />
+							<br />
+							<p:inputTextarea id="observacao"
+								value="#{editarAgenda.event.description}" rows="3" cols="50" />
+
+						</h:panelGroup>
+						<p:panelGrid columns="2" layout="grid">
+							<h:panelGroup>
+								<p>
+									<p:outputLabel for="from" value="Início: " />
+									<br />
+									<p:inputMask id="from" required="true"
+										value="#{editarAgenda.event.startDate}"
+										mask="99/99/9999 99:99">
+										<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+									</p:inputMask>
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<p:outputLabel for="to" value="Fim:" />
+									<br />
+									<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
+										required="true" mask="99/99/9999 99:99">
+										<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+									</p:inputMask>
+								</p>
+							</h:panelGroup>
+						</p:panelGrid>
+						<p:panelGrid columns="2" layout="grid">
+							<h:panelGroup>
+								<p>
+									<h:outputLabel for="estilo" value="Estilo:" />
+									<br />
+									<p:inputMask id="estilo"
+										value="#{editarAgenda.event.styleClass}">
+									</p:inputMask>
+								</p>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p>
+									<h:outputLabel for="allDay" value="Dia Inteiro" />
+									<br />
+									<h:selectBooleanCheckbox id="allDay"
+										value="#{editarAgenda.event.allDay}" />
+								</p>
+							</h:panelGroup>
+						</p:panelGrid>
+						<h:panelGroup>
+							<p>
+								<p:commandButton type="reset" value="Reset" />
+								<p:commandButton value="Save"
+								action="#{editarAgenda.addEventAction}"
+									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" update="fDialog"/>
+								<p:commandButton value="Delete"
+									actionListener="#{editarAgenda.delEvent}"
+									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+							</p>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:form>
+		</p:dialog>
+
+
 	</ui:define>
 
 	<ui:define name="botoes">
