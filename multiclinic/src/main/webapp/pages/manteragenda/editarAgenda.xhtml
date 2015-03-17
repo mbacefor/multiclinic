@@ -42,8 +42,8 @@
 					</p>
 				</h:panelGroup>
 
-				<p:commandButton ajax="false" value="Filtar"
-					action="#{editarAgenda.filtar}" />
+				<p:commandButton ajax="false" value="Filtrar"
+					action="#{editarAgenda.filtrar}" />
 			</h:panelGrid>
 
 		</p:fieldset>
@@ -198,10 +198,11 @@
 						</p:panelGrid>
 						<h:panelGroup>
 							<p>
-								<p:commandButton type="reset" value="Reset" />
+								<p:commandButton type="reset" value="Sair"
+									onclick="PF('eventDialog').hide();" />
 								<p:commandButton value="Save"
-								action="#{editarAgenda.addEventAction}"
-									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" update="fDialog"/>
+									action="#{editarAgenda.addEventAction}" oncomplete="PF('myschedule').update();"
+									update="fDialog" />
 								<p:commandButton value="Delete"
 									actionListener="#{editarAgenda.delEvent}"
 									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />

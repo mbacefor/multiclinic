@@ -74,6 +74,7 @@ public class EventoAtendimento extends DefaultScheduleEvent {
 				setEditable(evento.getAtivo());
 			if (evento.getDescricao() != null)
 				setDescription(evento.getDescricao());
+			setEvento(evento);
 		}
 
 	}

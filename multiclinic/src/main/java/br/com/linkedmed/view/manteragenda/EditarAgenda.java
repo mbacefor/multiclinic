@@ -122,11 +122,11 @@ public class EditarAgenda extends FacesBean {
 				error(e.getMessage());
 			}
 
-		event = new EventoAtendimento();
+		//event = new EventoAtendimento();
 		return null;
 	}
 
-	public String filtar() {
+	public String filtrar() {
 		String retorno = null;
 		eventos = manterEventoBC.obterTodos();
 		eventModel.clear();
