@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+org.jboss.tools.openshift.ApplicationId=54be82b25973ca03510001e7
+org.jboss.tools.openshift.ApplicationName=linkedmed
+org.jboss.tools.openshift.Connection=https\://mbacefor%40gmail.com@
+org.jboss.tools.openshift.DeployFolder=deployments
+org.jboss.tools.openshift.Domain=mbacefor
+org.jboss.tools.openshift.RemoteName=mbaceforOS
