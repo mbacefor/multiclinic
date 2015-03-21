@@ -98,4 +98,12 @@ public class Evento extends EntidadeGeralTemplate implements Serializable {
 		this.paciente = paciente;
 	}
 
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
 }

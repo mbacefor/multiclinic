@@ -1,5 +1,6 @@
 package br.com.linkedmed.view.manteragenda;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import br.com.linkedmed.domain.Paciente;
 import br.com.linkedmed.domain.Profissional;
 import br.com.linkedmed.domain.Usuario;
 import br.com.linkedmed.util.FacesBean;
+import br.com.linkedmed.view.geral.IndexClinicasMB;
 import br.com.linkedmed.view.manterclinica.ListarClinicaMB;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -51,6 +53,8 @@ public class EditarAgenda extends FacesBean {
 	private ManterProfissionalBC manterProfissionalBC;
 	@Inject
 	private PacienteBC pacienteBC;
+	@Inject
+	private IndexClinicasMB indexClinicasMB;
 
 	private ScheduleModel eventModel = new DefaultScheduleModel();
 	private EventoAtendimento event = new EventoAtendimento();
@@ -58,6 +62,10 @@ public class EditarAgenda extends FacesBean {
 	public void onDateSelect(SelectEvent e) {
 		Date date = (Date) e.getObject();
 		event = new EventoAtendimento("", date, date);
+		if (listaClinicas != null && listaClinicas.size() == 1)
+			event.getEvento().setClinica(listaClinicas.get(0));
+		if (listaProfissionais != null && listaProfissionais.size() == 1)
+			event.getEvento().setProfissional(listaProfissionais.get(0));
 
 	}
 
@@ -122,19 +130,31 @@ public class EditarAgenda extends FacesBean {
 				error(e.getMessage());
 			}
 
-		//event = new EventoAtendimento();
+		// event = new EventoAtendimento();
 		return null;
 	}
 
 	public String filtrar() {
 		String retorno = null;
-		eventos = manterEventoBC.obterTodos();
+
+		if (profissional != null) {
+			eventos = profissional.getEventosProfissional();
+			if (listaProfissionais == null) {
+				listaProfissionais = new ArrayList<Profissional>();
+			}
+			listaProfissionais.clear();
+			listaProfissionais.add(profissional);
+		} else
+			eventos = new ArrayList<Evento>();
+
 		eventModel.clear();
 
 		for (Evento evento : eventos) {
 			EventoAtendimento atendimento = new EventoAtendimento(evento);
 			eventModel.addEvent(atendimento);
 		}
+
+		listaPacientes = pacienteBC.obterTodosAtivos(Paciente.class);
 
 		return retorno;
 	}
@@ -147,9 +167,14 @@ public class EditarAgenda extends FacesBean {
 	public String prepararEditar() {
 		String retorno = null;
 		try {
-			listaClinicas = manterClinicaBC.obterTodos();
-			listaProfissionais = manterProfissionalBC.obterTodos();
-			listaPacientes = pacienteBC.obterTodos();
+			if (indexClinicasMB.getClinicaAtual() != null) {
+				listaClinicas = new ArrayList<Clinica>();
+				listaClinicas.add(indexClinicasMB.getClinicaAtual());
+			} else
+				listaClinicas = manterClinicaBC.obterTodos();
+			listaProfissionais = manterProfissionalBC
+					.obterTodosAtivos(Profissional.class);
+			listaPacientes = new ArrayList<Paciente>();
 			retorno = EditarAgenda.CAMINHO_TELA;
 
 		} catch (Exception e) {

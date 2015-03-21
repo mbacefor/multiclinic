@@ -75,7 +75,7 @@
 			<h:form id="fDialog">
 				<p:messages></p:messages>
 				<p:fieldset legend="Dados Consulta" toggleable="true">
-					<h:panelGrid id="eventDetails" columns="1">
+					<p:panelGrid id="eventDetails" columns="2">
 						<h:panelGroup>
 							<p>
 								<h:outputLabel for="paciente" value="Paciente:" />
@@ -139,21 +139,6 @@
 								</p:selectOneMenu>
 							</p>
 						</h:panelGroup>
-						<h:panelGroup>
-							<p:outputLabel value="Título:" for="title" dir="ltr" />
-							<br />
-							<p:inputText id="title" value="#{editarAgenda.event.title}"
-								size="55" readonly="true" />
-
-						</h:panelGroup>
-
-						<h:panelGroup>
-							<p:outputLabel value="Observação:" for="observacao" dir="ltr" />
-							<br />
-							<p:inputTextarea id="observacao"
-								value="#{editarAgenda.event.description}" rows="3" cols="50" />
-
-						</h:panelGroup>
 						<p:panelGrid columns="2" layout="grid">
 							<h:panelGroup>
 								<p>
@@ -177,14 +162,44 @@
 								</p>
 							</h:panelGroup>
 						</p:panelGrid>
+						<h:panelGroup>
+							<p:outputLabel value="Título:" for="title" dir="ltr" />
+							<br />
+							<p:inputText id="title" value="#{editarAgenda.event.title}"
+								size="55" readonly="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup>
+							<p:outputLabel value="Observação:" for="observacao" dir="ltr" />
+							<br />
+							<p:inputTextarea id="observacao"
+								value="#{editarAgenda.event.description}" rows="3" cols="50" />
+
+						</h:panelGroup>
+						<h:panelGroup>
+							<p>
+								<h:outputLabel for="custo" value="Valor:" />
+								<br />
+								<p:inputMask id="custo"
+									value="#{editarAgenda.event.evento.valor}"></p:inputMask>
+							</p>
+						</h:panelGroup>
+
+
 						<p:panelGrid columns="2" layout="grid">
 							<h:panelGroup>
 								<p>
 									<h:outputLabel for="estilo" value="Estilo:" />
 									<br />
-									<p:inputMask id="estilo"
+									<p:selectOneMenu id="estilo"
 										value="#{editarAgenda.event.styleClass}">
-									</p:inputMask>
+										<f:selectItem itemLabel="Marcado" itemValue="alert-warning" />
+										<f:selectItem itemLabel="Confirmado" itemValue="alert-success" />
+										<f:selectItem itemLabel="Atendido" itemValue="alert-info" />
+
+									</p:selectOneMenu>
+
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
@@ -196,20 +211,25 @@
 								</p>
 							</h:panelGroup>
 						</p:panelGrid>
-						<h:panelGroup>
-							<p>
-								<p:commandButton type="reset" value="Sair"
-									onclick="PF('eventDialog').hide();" />
-								<p:commandButton value="Save"
-									action="#{editarAgenda.addEventAction}" oncomplete="PF('myschedule').update();"
-									update="fDialog" />
-								<p:commandButton value="Delete"
-									actionListener="#{editarAgenda.delEvent}"
-									oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-							</p>
-						</h:panelGroup>
-					</h:panelGrid>
+
+					</p:panelGrid>
+
+
 				</p:fieldset>
+				<p:panelGrid columns="3" layout="tabular">
+
+					<p:commandButton type="reset" value="Fechar"
+						onclick="PF('eventDialog').hide();" />
+
+					<p:commandButton value="Salvar"
+						action="#{editarAgenda.addEventAction}"
+						oncomplete="PF('myschedule').update();" update="fDialog" />
+
+					<p:commandButton value="Excluir"
+						actionListener="#{editarAgenda.delEvent}"
+						oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+
+				</p:panelGrid>
 			</h:form>
 		</p:dialog>
 
@@ -217,11 +237,6 @@
 	</ui:define>
 
 	<ui:define name="botoes">
-		<p:commandButton ajax="false" value="Salvar"
-			action="#{editarAgenda.salvar}" />
-		<p:spacer width="10px"></p:spacer>
-		<p:commandButton ajax="false" value="Cancelar"
-			action="#{editarClinicaMB.cancelar}" />
 	</ui:define>
 </ui:composition>
 
