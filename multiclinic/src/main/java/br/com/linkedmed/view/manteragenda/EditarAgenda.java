@@ -37,6 +37,7 @@ public class EditarAgenda extends FacesBean {
 	public static final String CAMINHO_TELA = "/pages/manteragenda/editarAgenda.xhtml";
 
 	private Profissional profissional;
+	private List<Profissional> listaProfissionaisFiltro;
 	private List<Profissional> listaProfissionais;
 	private List<Paciente> listaPacientes;
 	private Clinica clinica;
@@ -172,7 +173,7 @@ public class EditarAgenda extends FacesBean {
 				listaClinicas.add(indexClinicasMB.getClinicaAtual());
 			} else
 				listaClinicas = manterClinicaBC.obterTodos();
-			listaProfissionais = manterProfissionalBC
+			listaProfissionaisFiltro = manterProfissionalBC
 					.obterTodosAtivos(Profissional.class);
 			listaPacientes = new ArrayList<Paciente>();
 			retorno = EditarAgenda.CAMINHO_TELA;
@@ -302,5 +303,14 @@ public class EditarAgenda extends FacesBean {
 
 	public void setExibirDialog(Boolean exibirDialog) {
 		this.exibirDialog = exibirDialog;
+	}
+
+	public List<Profissional> getListaProfissionaisFiltro() {
+		return listaProfissionaisFiltro;
+	}
+
+	public void setListaProfissionaisFiltro(
+			List<Profissional> listaProfissionaisFiltro) {
+		this.listaProfissionaisFiltro = listaProfissionaisFiltro;
 	}
 }

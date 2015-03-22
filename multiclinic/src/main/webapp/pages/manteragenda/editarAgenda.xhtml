@@ -29,7 +29,7 @@
 							value="#{editarAgenda.profissional}"
 							converter="defaultConverterJSF2" var="p">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{editarAgenda.listaProfissionais}"
+							<f:selectItems value="#{editarAgenda.listaProfissionaisFiltro}"
 								var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}" />
 							<p:column>
 								<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="40"
@@ -50,7 +50,9 @@
 		<p:fieldset legend="Agenda" toggleable="true">
 			<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 				<h:panelGroup>
-					<p:schedule value="#{editarAgenda.eventModel}" editable="true"
+					<p:schedule value="#{editarAgenda.eventModel}"
+						rendered="#{editarAgenda.profissional != null? true : false}"
+						editable="#{editarAgenda.profissional != null? true : false}"
 						locale="pt" widgetVar="myschedule">
 						<p:ajax event="dateSelect" listener="#{editarAgenda.onDateSelect}"
 							oncomplete="PF('eventDialog').show()"
@@ -144,21 +146,16 @@
 								<p>
 									<p:outputLabel for="from" value="Início: " />
 									<br />
-									<p:inputMask id="from" required="true"
-										value="#{editarAgenda.event.startDate}"
-										mask="99/99/9999 99:99">
-										<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-									</p:inputMask>
+									<p:calendar id="from" value="#{editarAgenda.event.startDate}"
+										pattern="dd/MM/yyyy HH:mm" mask="true" />
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
 								<p>
 									<p:outputLabel for="to" value="Fim:" />
 									<br />
-									<p:inputMask id="to" value="#{editarAgenda.event.endDate}"
-										required="true" mask="99/99/9999 99:99">
-										<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
-									</p:inputMask>
+									<p:calendar id="to" value="#{editarAgenda.event.endDate}"
+										pattern="dd/MM/yyyy HH:mm" mask="true" />
 								</p>
 							</h:panelGroup>
 						</p:panelGrid>
