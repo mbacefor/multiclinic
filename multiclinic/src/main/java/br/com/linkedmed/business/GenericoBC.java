@@ -26,7 +26,7 @@ public class GenericoBC<T extends EntidadeGeralTemplate, I, JPACrud> extends
 
 	public void salvar(T entidadeGeralTemplate, Usuario usuarioLogado) {
 		try {
-
+			
 			if (entidadeGeralTemplate != null
 					&& entidadeGeralTemplate.getId() == null) {
 				entidadeGeralTemplate.setUsuarioCriador(usuarioLogado);

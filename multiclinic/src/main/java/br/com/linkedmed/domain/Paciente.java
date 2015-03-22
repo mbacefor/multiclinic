@@ -7,6 +7,8 @@ import javax.annotation.Nonnull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,6 +25,12 @@ import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
  * Classe que representa um paciente
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Paciente.findAll",
+                query="SELECT c FROM Paciente c"),
+    @NamedQuery(name="Paciente.findByName",
+                query="SELECT c FROM Paciente c WHERE c.nomeFonetico like :busca"),
+}) 
 @Table(uniqueConstraints = @UniqueConstraint(name = "unicidadePaciente", columnNames = {
 		"nomeFonetico", "fone", "sexo", "dataAniversario" }))
 public class Paciente extends EntidadeGeralTemplate {

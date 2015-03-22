@@ -3,6 +3,8 @@
  */
 package br.com.linkedmed.business;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
@@ -29,6 +31,11 @@ public class PacienteBC extends GenericoBC<Paciente, Long, PacienteDAO> {
 				.getNome())));
 
 		super.salvar(paciente, usuarioLogado);
+	}
+
+	public List<Paciente> buscaFoneticaNome(String busca) {
+		busca = fonetizador.fornetizarComDicionario(busca);
+		return ((PacienteDAO) getDelegate()).buscaFoneticaNome(busca);
 	}
 
 }

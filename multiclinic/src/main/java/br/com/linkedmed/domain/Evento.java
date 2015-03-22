@@ -18,7 +18,7 @@ public class Evento extends EntidadeGeralTemplate implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Profissional profissional;
 
 	@ManyToOne

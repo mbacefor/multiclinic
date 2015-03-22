@@ -132,6 +132,7 @@ public class EditarAgenda extends FacesBean {
 			}
 
 		// event = new EventoAtendimento();
+		info("Evento Salvo com sucesso!");
 		return null;
 	}
 
@@ -139,6 +140,7 @@ public class EditarAgenda extends FacesBean {
 		String retorno = null;
 
 		if (profissional != null) {
+			profissional = manterProfissionalBC.load(profissional.getId());
 			eventos = profissional.getEventosProfissional();
 			if (listaProfissionais == null) {
 				listaProfissionais = new ArrayList<Profissional>();
@@ -239,6 +241,11 @@ public class EditarAgenda extends FacesBean {
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
+	}
+
+	public List<Paciente> completePaciente(String query) {
+		List<Paciente> allPacientes = pacienteBC.buscaFoneticaNome(query);
+		return allPacientes;
 	}
 
 	public ScheduleModel getEventModel() {

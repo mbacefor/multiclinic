@@ -78,32 +78,33 @@
 				<p:messages></p:messages>
 				<p:fieldset legend="Dados Consulta" toggleable="true">
 					<p:panelGrid id="eventDetails" columns="2">
+						<p:panelGrid columns="1">
+
+							<p:outputLabel for="paciente" value="Paciente:" />
+							<p:autoComplete id="paciente" size="50"
+								value="#{editarAgenda.event.evento.paciente}"
+								completeMethod="#{editarAgenda.completePaciente}"
+								itemLabel="#{pac.nome}"
+								required="true" converter="defaultConverterJSF2" var="pac"
+								itemValue="#{pac}" forceSelection="true" minQueryLength="3">
+								<p:column>
+									<p:graphicImage value="/photocam/#{pac.nomeFoto}.png"
+										width="45" height="45" />
+								</p:column>
+								<p:column>#{pac.id} - #{pac.nome} - #{pac.fone} </p:column>
+								<p:column>
+									<h:outputText value="#{pac.dataAniversario}">
+										<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo" />
+									</h:outputText>
+								</p:column>
+
+							</p:autoComplete>
+
+
+						</p:panelGrid>
 						<h:panelGroup>
 							<p>
-								<h:outputLabel for="paciente" value="Paciente:" />
-								<p:selectOneMenu id="paciente"
-									value="#{editarAgenda.event.evento.paciente}" required="true"
-									converter="defaultConverterJSF2" var="p">
-									<f:selectItem itemLabel="Selecione" itemValue="" />
-									<f:selectItems value="#{editarAgenda.listaPacientes}"
-										var="paci" itemLabel="#{paci.nome}" itemValue="#{paci}" />
-									<p:column>
-										<p:graphicImage value="/photocam/#{p.nomeFoto}.png" width="45"
-											height="45" />
-									</p:column>
-									<p:column>#{p.id} - #{p.nome} - #{p.fone} </p:column>
-									<p:column>
-										<h:outputText value="#{p.dataAniversario}">
-											<f:convertDateTime locale="pt_BR"
-												timeZone="America/Sao_Paulo" />
-										</h:outputText>
-									</p:column>
-								</p:selectOneMenu>
-							</p>
-						</h:panelGroup>
-						<h:panelGroup>
-							<p>
-								<h:outputLabel for="profissionalEvento" value="Profissional:" />
+								<p:outputLabel for="profissionalEvento" value="Profissional:" />
 								<p:selectOneMenu id="profissionalEvento"
 									value="#{editarAgenda.event.evento.profissional}"
 									required="true" converter="defaultConverterJSF2" var="p">
@@ -126,7 +127,7 @@
 						</h:panelGroup>
 						<h:panelGroup>
 							<p>
-								<h:outputLabel for="clinica" value="Clinica:" />
+								<p:outputLabel for="clinica" value="Clinica:" />
 								<p:selectOneMenu id="clinica"
 									value="#{editarAgenda.event.evento.clinica}" required="true"
 									converter="defaultConverterJSF2" var="p">
