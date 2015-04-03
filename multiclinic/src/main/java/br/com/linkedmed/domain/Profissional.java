@@ -21,7 +21,7 @@ public class Profissional extends Paciente {
 	@Fetch(FetchMode.SUBSELECT)
 	private List<AreaEspecialidade> areasEspecialidade;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "profissional")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Evento> eventosProfissional;
 

@@ -45,7 +45,7 @@ public class Clinica extends EntidadeGeralTemplate {
 	@Column(nullable = true)
 	private Double coordY;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="clinica")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Evento> eventos;
 

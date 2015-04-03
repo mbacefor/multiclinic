@@ -26,11 +26,8 @@ import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Paciente.findAll",
-                query="SELECT c FROM Paciente c"),
-    @NamedQuery(name="Paciente.findByName",
-                query="SELECT c FROM Paciente c WHERE c.nomeFonetico like :busca"),
-}) 
+		@NamedQuery(name = "Paciente.findAll", query = "SELECT c FROM Paciente c"),
+		@NamedQuery(name = "Paciente.findByName", query = "SELECT c FROM Paciente c WHERE c.nomeFonetico like :busca"), })
 @Table(uniqueConstraints = @UniqueConstraint(name = "unicidadePaciente", columnNames = {
 		"nomeFonetico", "fone", "sexo", "dataAniversario" }))
 public class Paciente extends EntidadeGeralTemplate {
@@ -81,7 +78,7 @@ public class Paciente extends EntidadeGeralTemplate {
 	@Column(nullable = true)
 	private Double coordY;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "paciente")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Evento> eventosPaciente;
 
