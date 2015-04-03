@@ -53,7 +53,7 @@
 					<p:schedule value="#{editarAgenda.eventModel}"
 						rendered="#{editarAgenda.profissional != null? true : false}"
 						editable="#{editarAgenda.profissional != null? true : false}"
-						locale="pt" widgetVar="myschedule">
+						locale="pt" widgetVar="myschedule" timeZone="America/Sao_Paulo">
 						<p:ajax event="dateSelect" listener="#{editarAgenda.onDateSelect}"
 							oncomplete="PF('eventDialog').show()"
 							update=":fDialog:eventDetails" />
@@ -148,7 +148,7 @@
 									<p:outputLabel for="from" value="Início: " />
 									<br />
 									<p:calendar id="from" value="#{editarAgenda.event.startDate}"
-										pattern="dd/MM/yyyy HH:mm" mask="true" />
+										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR" timeZone="America/Sao_Paulo" />
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
@@ -156,7 +156,7 @@
 									<p:outputLabel for="to" value="Fim:" />
 									<br />
 									<p:calendar id="to" value="#{editarAgenda.event.endDate}"
-										pattern="dd/MM/yyyy HH:mm" mask="true" />
+										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR" timeZone="America/Sao_Paulo"/>
 								</p>
 							</h:panelGroup>
 						</p:panelGrid>
