@@ -23,6 +23,7 @@ import br.com.linkedmed.domain.Usuario;
 import br.com.linkedmed.util.FacesBean;
 import br.com.linkedmed.view.geral.IndexClinicasMB;
 import br.com.linkedmed.view.manterclinica.ListarClinicaMB;
+import br.com.linkedmed.view.manterpaciente.EditarPacienteMB;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
@@ -36,6 +37,7 @@ public class EditarAgenda extends FacesBean {
 	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "editarAgenda";
 	public static final String CAMINHO_TELA = "/pages/manteragenda/editarAgenda.xhtml";
+	public static final String CAMINHO_TELA_PACIENTE = "/pages/manteragenda/novoPaciente.xhtml";
 
 	private Profissional profissional;
 	private List<Profissional> listaProfissionaisFiltro;
@@ -57,6 +59,8 @@ public class EditarAgenda extends FacesBean {
 	private PacienteBC pacienteBC;
 	@Inject
 	private IndexClinicasMB indexClinicasMB;
+	@Inject
+	private EditarPacienteMB editarPacienteMB;
 
 	private ScheduleModel eventModel = new DefaultScheduleModel();
 	private EventoAtendimento event = new EventoAtendimento();
@@ -233,6 +237,28 @@ public class EditarAgenda extends FacesBean {
 		}
 		return retorno;
 	}
+	
+	
+	/**
+	 * Metodo que salva uma clínica
+	 * 
+	 * @return
+	 */
+	public String novoPaciente() {
+		String retorno = null;
+		try {
+
+			editarPacienteMB.setPessoa(new Paciente());
+			
+			
+			retorno = CAMINHO_TELA_PACIENTE;
+			info("Novo Paciente!");
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+		return retorno;
+	}
+
 
 	/**
 	 * Exclui um evento
