@@ -56,10 +56,10 @@
 						locale="pt" widgetVar="myschedule" timeZone="America/Sao_Paulo">
 						<p:ajax event="dateSelect" listener="#{editarAgenda.onDateSelect}"
 							oncomplete="PF('eventDialog').show()"
-							update=":fDialog:eventDetails" />
+							update=":fDialog" />
 						<p:ajax event="eventSelect"
 							listener="#{editarAgenda.onEventSelect}"
-							update=":fDialog:eventDetails"
+							update=":fDialog"
 							oncomplete="PF('eventDialog').show();">
 						</p:ajax>
 					</p:schedule>
@@ -84,9 +84,9 @@
 							<p:autoComplete id="paciente" size="50"
 								value="#{editarAgenda.event.evento.paciente}"
 								completeMethod="#{editarAgenda.completePaciente}"
-								itemLabel="#{pac.nome}"
-								required="true" converter="defaultConverterJSF2" var="pac"
-								itemValue="#{pac}" forceSelection="true" minQueryLength="3">
+								itemLabel="#{pac.nome}" required="true"
+								converter="defaultConverterJSF2" var="pac" itemValue="#{pac}"
+								forceSelection="true" minQueryLength="3">
 								<p:column>
 									<p:graphicImage value="/photocam/#{pac.nomeFoto}.png"
 										width="45" height="45" />
@@ -148,7 +148,8 @@
 									<p:outputLabel for="from" value="Início: " />
 									<br />
 									<p:calendar id="from" value="#{editarAgenda.event.startDate}"
-										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR" timeZone="America/Sao_Paulo" />
+										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR"
+										timeZone="America/Sao_Paulo" />
 								</p>
 							</h:panelGroup>
 							<h:panelGroup>
@@ -156,7 +157,8 @@
 									<p:outputLabel for="to" value="Fim:" />
 									<br />
 									<p:calendar id="to" value="#{editarAgenda.event.endDate}"
-										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR" timeZone="America/Sao_Paulo"/>
+										pattern="dd/MM/yyyy HH:mm" mask="true" locale="pt_BR"
+										timeZone="America/Sao_Paulo" />
 								</p>
 							</h:panelGroup>
 						</p:panelGrid>
@@ -214,20 +216,23 @@
 
 
 				</p:fieldset>
-				<p:panelGrid columns="3" layout="tabular">
-
-					<p:commandButton type="reset" value="Fechar"
-						onclick="PF('eventDialog').hide();" />
-
-					<p:commandButton value="Salvar"
-						action="#{editarAgenda.addEventAction}"
-						oncomplete="PF('myschedule').update();" update="fDialog" />
-
-					<p:commandButton value="Excluir"
-						actionListener="#{editarAgenda.delEvent}"
-						oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-
-				</p:panelGrid>
+				<p></p>
+				<div>
+					<div class="col-md-5">
+						<p:commandButton value="Salvar"
+							action="#{editarAgenda.addEventAction}"
+							oncomplete="PF('myschedule').update();" update="fDialog" />
+						<p:spacer width="10px"></p:spacer>
+						<p:commandButton value="Excluir"
+							rendered="#{(editarAgenda.event.id!=null)}"
+							actionListener="#{editarAgenda.delEvent}"
+							oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+					</div>
+					<div align="right">
+						<p:commandButton type="reset" value="Fechar"
+							onclick="PF('eventDialog').hide();" />
+					</div>
+				</div>
 			</h:form>
 		</p:dialog>
 

@@ -26,6 +26,9 @@ legend {font-size: 12px;}
 	background: url("../images/middle_banner_min.png") no-repeat right;
 	height: 88px;
 }
+.ui-fieldset-legend{
+	font-size: 14px;
+}
 
 /* Logo */
 #logo {

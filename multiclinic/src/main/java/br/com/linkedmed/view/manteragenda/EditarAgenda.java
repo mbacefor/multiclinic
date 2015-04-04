@@ -1,6 +1,7 @@
 package br.com.linkedmed.view.manteragenda;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class EditarAgenda extends FacesBean {
 
 	public void onDateSelect(SelectEvent e) {
 		Date date = (Date) e.getObject();
-		event = new EventoAtendimento("", date, date);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.MINUTE, +30);
+		event = new EventoAtendimento("", date, calendar.getTime());
 		if (listaClinicas != null && listaClinicas.size() == 1)
 			event.getEvento().setClinica(listaClinicas.get(0));
 		if (listaProfissionais != null && listaProfissionais.size() == 1)
