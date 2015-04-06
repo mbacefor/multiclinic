@@ -39,10 +39,10 @@
 			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Editar Dados do Usuario"
 					action="#{editarUsuarioMB.prepararEditarUsuarioCorrente}" /></li>
-			<li class="list-group-item"><h:commandLink
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Cadastrar Novo Usuario"
 					action="#{editarUsuarioMB.prepararNovo}" /></li>
-			<li class="list-group-item"><h:commandLink
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
 					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}"
 					disabled="#{!loginMB.validaAcesso('ManterUsuario-listar')}" /></li>
 

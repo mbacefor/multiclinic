@@ -6,6 +6,9 @@ package br.com.linkedmed.view.manterclinica;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import br.com.linkedmed.business.ManterClinicaBC;
 import br.com.linkedmed.domain.Clinica;
 import br.com.linkedmed.util.FacesBean;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -19,7 +22,6 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 
 @ViewController
 @javax.enterprise.context.SessionScoped
-
 public class ListarClinicaMB extends FacesBean {
 
 	/**
@@ -28,13 +30,16 @@ public class ListarClinicaMB extends FacesBean {
 	private static final long serialVersionUID = 1L;
 	public static final String NOME_MANAGER_BEAN = "listarClinicaMB";
 	public static final String CAMINHO_TELA = "/pages/manterclinica/listarClinica.xhtml";
+
+	@Inject
+	ManterClinicaBC manterClinicaBC;
 	/**
 	 * Representa a lista de clínicas
 	 */
 	private List<Clinica> lista = new ArrayList<Clinica>();
 
-	private Clinica entidadeCorrente = null; 
-	
+	private Clinica entidadeCorrente = null;
+
 	public List<Clinica> getLista() {
 		return lista;
 	}
@@ -51,30 +56,31 @@ public class ListarClinicaMB extends FacesBean {
 	public String prepararListar() {
 		String retorno = null;
 		try {
+			setLista(manterClinicaBC.obterTodos());
 			retorno = CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
 	}
-	
-	public String prepararEditar(){
+
+	public String prepararEditar() {
 		String retorno = null;
 		try {
-			
+
 			EditarClinicaMB editarClinicaMB = (EditarClinicaMB) getBean(EditarClinicaMB.NOME_MANAGER_BEAN);
-			editarClinicaMB.setClinica(entidadeCorrente);		
-			retorno = EditarClinicaMB.CAMINHO_TELA;		
+			editarClinicaMB.setClinica(entidadeCorrente);
+			retorno = EditarClinicaMB.CAMINHO_TELA;
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 		return retorno;
 	}
-	
-	public String prepararExcluir(){
+
+	public String prepararExcluir() {
 		String retorno = null;
 		try {
-			
+
 			ExcluirClinicaMB excluirClinicaMB = (ExcluirClinicaMB) getBean(ExcluirClinicaMB.NOME_MANAGER_BEAN);
 			excluirClinicaMB.setClinica(entidadeCorrente);
 			warn("Desear realmente excluir a Clínica?");
@@ -88,7 +94,6 @@ public class ListarClinicaMB extends FacesBean {
 	public Clinica getEntidadeCorrente() {
 		return entidadeCorrente;
 	}
-
 
 	public void setEntidadeCorrente(Clinica entidadeCorrente) {
 		this.entidadeCorrente = entidadeCorrente;
