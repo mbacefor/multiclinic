@@ -79,6 +79,7 @@
 						<p:panelGrid columns="1">
 
 							<p:outputLabel for="paciente" value="Paciente:" />
+
 							<p:autoComplete id="paciente" size="50"
 								value="#{editarAgenda.event.evento.paciente}"
 								completeMethod="#{editarAgenda.completePaciente}"
@@ -97,6 +98,9 @@
 								</p:column>
 
 							</p:autoComplete>
+							<h:commandLink value="Novo Paciente"
+								action="#{editarAgenda.novoPaciente}" target="_blank"
+								immediate="true" />
 
 
 						</p:panelGrid>
@@ -230,8 +234,6 @@
 						<p:commandButton type="reset" value="Fechar"
 							onclick="PF('eventDialog').hide();" />
 						<p:spacer width="10px"></p:spacer>
-						<p:commandButton value="Novo Paciente"
-							action="#{editarAgenda.novoPaciente}" immediate="true"></p:commandButton>
 
 					</div>
 				</div>
