@@ -1,53 +1,69 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
- <!-- If you are using tomcat6/tomcat7/gae then uncomment this listener 
- <listener> <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class> 
-		</listener> 
- If you are using servlet 2.5 then uncomment this listener 
- <listener> <listener-class>br.gov.frameworkdemoiselle.util.ServletListener</listener-class> 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<!-- If you are using tomcat6/tomcat7/gae then uncomment this listener <listener> 
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class> 
+		</listener> If you are using servlet 2.5 then uncomment this listener <listener> 
+		<listener-class>br.gov.frameworkdemoiselle.util.ServletListener</listener-class> 
 		</listener> <filter> <filter-name>Demoiselle Servlet Filter</filter-name> 
 		<filter-class>br.gov.frameworkdemoiselle.util.ServletFilter</filter-class> 
 		</filter> <filter-mapping> <filter-name>Demoiselle Servlet Filter</filter-name> 
 		<url-pattern>/*</url-pattern> </filter-mapping> -->
- <display-name>linkedmed</display-name>
- <!-- <context-param> <param-name>javax.faces.PROJECT_STAGE</param-name> 
+	<display-name>linkedmed</display-name>
+	<!-- <context-param> <param-name>javax.faces.PROJECT_STAGE</param-name> 
 		<param-value>Development</param-value> </context-param> <context-param> <param-name>javax.faces.SKIP_COMMENTS</param-name> 
 		<param-value>true</param-value> </context-param> <context-param> <param-name>javax.faces.STATE_SAVING_METHOD</param-name> 
 		<param-value>client</param-value> </context-param> <context-param> <param-name>org.richfaces.resourceMapping.enabled</param-name> 
 		<param-value>true</param-value> </context-param> -->
- <context-param>
-  <param-name>primefaces.THEME</param-name>
-  <param-value>cupertino</param-value>
- </context-param>
- <servlet>
-  <servlet-name>Faces Servlet</servlet-name>
-  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
- </servlet>
- <servlet-mapping>
-  <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>*.jsf</url-pattern>
- </servlet-mapping>
- <session-config>
-  <session-timeout>30</session-timeout>
- </session-config>
- <error-page>
-  <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-  <location>/index.html</location>
- </error-page>
- <security-constraint>
-  <display-name>Restrict raw XHTML Documents</display-name>
-  <web-resource-collection>
-   <web-resource-name>XHTML</web-resource-name>
-   <url-pattern>*.xhtml</url-pattern>
-  </web-resource-collection>
-  <auth-constraint/>
- </security-constraint>
- <locale-encoding-mapping-list>
-  <locale-encoding-mapping>
-   <locale>pt_BR</locale>
-   <encoding>UTF-8</encoding>
-  </locale-encoding-mapping>
- </locale-encoding-mapping-list>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>cupertino</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/index.html</location>
+	</error-page>
+	<security-constraint>
+		<display-name>Restrict raw XHTML Documents</display-name>
+		<web-resource-collection>
+			<web-resource-name>XHTML</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+	<locale-encoding-mapping-list>
+		<locale-encoding-mapping>
+			<locale>pt_BR</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+	</locale-encoding-mapping-list>
+	<filter>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>br.com.linkedmed.util.ParametersEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
