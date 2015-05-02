@@ -113,6 +113,100 @@
 
 			</p:fieldset>
 		</div>
+		<div class="fieldSetScroll">
+			<p:fieldset legend="Atendentes" toggleable="true">
+				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
+
+					<h:panelGroup>
+						<p:outputLabel for="atendente" value="Atendente:" />
+
+						<p:autoComplete id="atendente" size="50"
+							value="#{editarAgenda.event.evento.paciente}"
+							completeMethod="#{editarAgenda.completePaciente}"
+							itemLabel="#{pac.nome}" required="true"
+							converter="defaultConverterJSF2" var="pac" itemValue="#{pac}"
+							forceSelection="true" minQueryLength="3">
+							<p:column>
+								<p:graphicImage value="/photocam/#{pac.nomeFoto}.png" width="45"
+									height="45" />
+							</p:column>
+							<p:column>#{pac.id} - #{pac.nome} - #{pac.fone} </p:column>
+							<p:column>
+								<h:outputText value="#{pac.dataAniversario}">
+									<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo" />
+								</h:outputText>
+							</p:column>
+
+						</p:autoComplete>
+						<p:commandButton value="Adicionar"></p:commandButton>
+					</h:panelGroup>
+					<br />
+
+					<h:panelGroup>
+						<p:dataTable align="center" width="100%" id="listagem"
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" rows="10"
+							value="#{editarClinicaMB.clinica.eventos}" var="linhaCorrente"
+							emptyMessage="Listagem vazia!">
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText styleClass="headerText" value="Editar" />
+								</f:facet>
+								<div align="center">
+									<p:commandButton ajax="false" id="btEditar" alt="Editar"
+										icon="ui-icon-folder-open"
+										action="#{editarClinicaMB.cancelar}">
+
+									</p:commandButton>
+								</div>
+							</p:column>
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText styleClass="headerText" value="Excluir" />
+								</f:facet>
+								<div align="center">
+									<p:commandButton ajax="false" alt="Excluir" id="btExcluir"
+										action="#{editarClinicaMB.cancelar}" icon="ui-icon-trash">
+
+									</p:commandButton>
+								</div>
+							</p:column>
+
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText value="ID" />
+								</f:facet>
+								<div align="center">
+									<h:outputText value="#{linhaCorrente.id}" />
+								</div>
+							</p:column>
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText value="Data Cadastro" />
+								</f:facet>
+								<div align="center">
+									<h:outputText value="#{linhaCorrente.dataCadastro}" />
+								</div>
+							</p:column>
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText value="Usuario Cadastrador" />
+								</f:facet>
+								<div align="center">
+									<h:outputText value="#{linhaCorrente.usuarioCriador}" />
+								</div>
+							</p:column>
+
+						</p:dataTable>
+
+					</h:panelGroup>
+
+
+				</h:panelGrid>
+
+			</p:fieldset>
+		</div>
 
 
 		<br />

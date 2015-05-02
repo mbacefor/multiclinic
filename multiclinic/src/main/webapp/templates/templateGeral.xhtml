@@ -157,6 +157,18 @@ Released   : 20090802
 												value="/templates/templateUsuario.xhtml"
 												target="#{geralMB.templateAtual}" />
 										</h:commandLink></li>
+									<li><h:commandLink value="Pacientes"
+											action="/pages/geral/indexTemplateAtual.xhtml">
+											<f:setPropertyActionListener
+												value="/templates/templatePaciente.xhtml"
+												target="#{geralMB.templateAtual}" />
+										</h:commandLink></li>
+										<li><h:commandLink value="Profissionais"
+											action="/pages/geral/indexTemplateAtual.xhtml">
+											<f:setPropertyActionListener
+												value="/templates/templateProfissional.xhtml"
+												target="#{geralMB.templateAtual}" />
+										</h:commandLink></li>	
 									<li><h:commandLink value="Clínicas"
 											rendered="#{loginMB.validaAcesso('Area-Clinicas')}"
 											action="/pages/geral/indexTemplateAtual.xhtml">

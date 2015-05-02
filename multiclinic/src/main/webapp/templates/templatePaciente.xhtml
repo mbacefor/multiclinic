@@ -8,7 +8,7 @@
 <body>
 	<ui:composition template="/templates/templatePrincipal.xhtml">
 
-		<ui:define name="tituloPainelPrincipal">Área de Usuários</ui:define>
+		<ui:define name="tituloPainelPrincipal">Área de Pacientes</ui:define>
 
 		<ui:define name="panel-info"> Postador por <a href="#">Marcelo
 				Bezerrra</a> em
@@ -17,14 +17,14 @@
 				article</a>
 		</ui:define>
 		<ui:define name="panel-body">
-			<p>Este ambiente foi desenvolvido para o cadastro de usuários do
+			<p>Este ambiente foi desenvolvido para o cadastro de pacientes do
 				sistema.</p>
 			<p>
 				<a href="#" class="btn btn-primary">Read More</a>
 			</p>
 		</ui:define>
 
-		<ui:define name="sidebar-painel-heading">Usuários</ui:define>
+		<ui:define name="sidebar-painel-heading">Pacientes</ui:define>
 
 		<ui:define name="sidebar-panel-body-image">
 			<img
@@ -33,19 +33,14 @@
 		</ui:define>
 
 		<ui:define name="sidebar-panel-body-texto">Área dedicada ao cadastro de
-							usuários do sistema</ui:define>
+							pacientes do sistema.</ui:define>
 		<ui:define name="panel-funcionalidades">
-			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
-					value="Editar Dados do Usuario"
-					action="#{editarUsuarioMB.prepararEditarUsuarioCorrente}" /></li>
-			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
-					value="Cadastrar Novo Usuario"
-					action="#{editarUsuarioMB.prepararNovo}" /></li>
-			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
-					value="Listar Usuario" action="#{listarUsuarioMB.prepararListar}"
-					disabled="#{!loginMB.validaAcesso('ManterUsuario-listar')}" /></li>
 
-
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
+					value="Novo de Paciente" action="#{listarPacienteMB.prepararNovo}" /></li>
+			<li class="list-group-item #{geralMB.ocultaTAGUsuarioNaoLogado}"><h:commandLink
+					value="Listagem de Paciente"
+					action="#{listarPacienteMB.prepararListar}" /></li>
 		</ui:define>
 	</ui:composition>
 </body>
