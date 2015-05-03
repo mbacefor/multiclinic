@@ -121,7 +121,7 @@
 						<p:outputLabel for="atendente" value="Atendente:" />
 
 						<p:autoComplete id="atendente" size="50"
-							value="#{editarAgenda.event.evento.paciente}"
+							value="#{editarClinicaMB.paciente}"
 							completeMethod="#{editarAgenda.completePaciente}"
 							itemLabel="#{pac.nome}" required="true"
 							converter="defaultConverterJSF2" var="pac" itemValue="#{pac}"
@@ -136,9 +136,9 @@
 									<f:convertDateTime locale="pt_BR" timeZone="America/Sao_Paulo" />
 								</h:outputText>
 							</p:column>
-
 						</p:autoComplete>
-						<p:commandButton value="Adicionar"></p:commandButton>
+						<p:commandButton value="Adicionar"
+							action="#{editarClinicaMB.adicionarAtendente}" update="listagem" ></p:commandButton>
 					</h:panelGroup>
 					<br />
 
@@ -147,8 +147,8 @@
 							paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="5,10,15" rows="10"
-							value="#{editarClinicaMB.clinica.eventos}" var="linhaCorrente"
-							emptyMessage="Listagem vazia!">
+							value="#{editarClinicaMB.clinica.meusRelacionamentos}"
+							var="linhaCorrente" emptyMessage="Listagem vazia!">
 							<p:column width="7%">
 								<f:facet name="header">
 									<h:outputText styleClass="headerText" value="Editar" />
@@ -183,10 +183,18 @@
 							</p:column>
 							<p:column width="7%">
 								<f:facet name="header">
-									<h:outputText value="Data Cadastro" />
+									<h:outputText value="Nome" />
 								</f:facet>
 								<div align="center">
-									<h:outputText value="#{linhaCorrente.dataCadastro}" />
+									<h:outputText value="#{linhaCorrente.nome}" />
+								</div>
+							</p:column>
+							<p:column width="7%">
+								<f:facet name="header">
+									<h:outputText value="Descricao" />
+								</f:facet>
+								<div align="center">
+									<h:outputText value="#{linhaCorrente.destino.descricao}" />
 								</div>
 							</p:column>
 							<p:column width="7%">
@@ -194,7 +202,7 @@
 									<h:outputText value="Usuario Cadastrador" />
 								</f:facet>
 								<div align="center">
-									<h:outputText value="#{linhaCorrente.usuarioCriador}" />
+									<h:outputText value="#{linhaCorrente.usuarioCriador.email}" />
 								</div>
 							</p:column>
 

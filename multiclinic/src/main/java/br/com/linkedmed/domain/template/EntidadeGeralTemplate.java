@@ -3,20 +3,28 @@ package br.com.linkedmed.domain.template;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import br.com.linkedmed.domain.Relacionamento;
 import br.com.linkedmed.domain.Usuario;
 
 @Entity
@@ -41,6 +49,14 @@ abstract public class EntidadeGeralTemplate implements Serializable {
 	protected Usuario usuarioCriador;
 	@Transient
 	private String dataCadastroFormatada;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "origem", cascade = CascadeType.ALL)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Relacionamento> meusRelacionamentos;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "destino", cascade = CascadeType.ALL)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Relacionamento> meusRelacionados;
 
 	public Long getId() {
 		return id;
@@ -118,6 +134,14 @@ abstract public class EntidadeGeralTemplate implements Serializable {
 
 	public void setDataCadastroFormatada(String dataCadastroFormatada) {
 		this.dataCadastroFormatada = dataCadastroFormatada;
+	}
+
+	public List<Relacionamento> getMeusRelacionamentos() {
+		return meusRelacionamentos;
+	}
+
+	public void setMeusRelacionamentos(List<Relacionamento> meusRelacionamentos) {
+		this.meusRelacionamentos = meusRelacionamentos;
 	}
 
 }
