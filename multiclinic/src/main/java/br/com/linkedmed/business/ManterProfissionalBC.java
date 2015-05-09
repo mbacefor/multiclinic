@@ -3,6 +3,8 @@
  */
 package br.com.linkedmed.business;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.linkedmed.domain.Profissional;
@@ -26,10 +28,15 @@ public class ManterProfissionalBC extends
 	Fonetizador fonetizador;
 
 	public void salvar(Profissional profissional, Usuario usuarioLogado) {
-		profissional.setNomeFonetico(fonetizador.fornetizarComDicionario((profissional
-				.getNome())));
+		profissional.setNomeFonetico(fonetizador
+				.fornetizarComDicionario((profissional.getNome())));
 
 		super.salvar(profissional, usuarioLogado);
+	}
+
+	public List<Profissional> buscaFoneticaNome(String query) {
+		query = fonetizador.fornetizarComDicionario(query);
+		return ((ProfissionalDAO) getDelegate()).buscaFoneticaNome(query);
 	}
 
 }

@@ -21,6 +21,7 @@
 		<class>br.com.linkedmed.domain.Paciente</class>
 		<class>br.com.linkedmed.domain.Evento</class>
 		<class>br.com.linkedmed.domain.Relacionamento</class>
+		<class>br.com.linkedmed.domain.RelacionamentoTrabalha</class>
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />

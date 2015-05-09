@@ -52,10 +52,12 @@ abstract public class EntidadeGeralTemplate implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "origem", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
+	@Column(insertable = false, updatable = false)
 	private List<Relacionamento> meusRelacionamentos;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "destino", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
+	@Column(insertable = false, updatable = false)
 	private List<Relacionamento> meusRelacionados;
 
 	public Long getId() {

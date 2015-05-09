@@ -45,7 +45,7 @@ public class Relacionamento implements Serializable {
 
 	@ManyToOne()
 	private EntidadeGeralTemplate origem;
-	
+
 	@ManyToOne()
 	private EntidadeGeralTemplate destino;
 

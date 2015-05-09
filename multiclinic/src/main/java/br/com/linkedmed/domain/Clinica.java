@@ -5,6 +5,7 @@ package br.com.linkedmed.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,12 +46,16 @@ public class Clinica extends EntidadeGeralTemplate {
 	@Column(nullable = true)
 	private Double coordY;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="clinica")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clinica")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Evento> eventos;
 
 	@OneToMany(mappedBy = "clinica")
 	private List<Sala> salas;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empregador", cascade = CascadeType.ALL)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<RelacionamentoTrabalha> trabalhaClinica;
 
 	/**
 	 * @return the id
@@ -146,6 +151,14 @@ public class Clinica extends EntidadeGeralTemplate {
 
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
+	}
+
+	public List<RelacionamentoTrabalha> getTrabalhaClinica() {
+		return trabalhaClinica;
+	}
+
+	public void setTrabalhaClinica(List<RelacionamentoTrabalha> trabalhaClinica) {
+		this.trabalhaClinica = trabalhaClinica;
 	}
 
 }

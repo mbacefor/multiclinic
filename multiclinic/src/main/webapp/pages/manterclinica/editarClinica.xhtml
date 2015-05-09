@@ -114,15 +114,15 @@
 			</p:fieldset>
 		</div>
 		<div class="fieldSetScroll">
-			<p:fieldset legend="Atendentes" toggleable="true">
+			<p:fieldset legend="Empregados" toggleable="true">
 				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 
 					<h:panelGroup>
-						<p:outputLabel for="atendente" value="Atendente:" />
+						<p:outputLabel for="atendente" value="Profissional:" />
 
 						<p:autoComplete id="atendente" size="50"
-							value="#{editarClinicaMB.paciente}"
-							completeMethod="#{editarAgenda.completePaciente}"
+							value="#{editarClinicaMB.profissional}"
+							completeMethod="#{editarClinicaMB.completeProfissional}"
 							itemLabel="#{pac.nome}" required="true"
 							converter="defaultConverterJSF2" var="pac" itemValue="#{pac}"
 							forceSelection="true" minQueryLength="3">
@@ -138,7 +138,7 @@
 							</p:column>
 						</p:autoComplete>
 						<p:commandButton value="Adicionar"
-							action="#{editarClinicaMB.adicionarAtendente}" update="listagem" ></p:commandButton>
+							action="#{editarClinicaMB.adicionarAtendente}" update="listagem"></p:commandButton>
 					</h:panelGroup>
 					<br />
 
@@ -147,33 +147,22 @@
 							paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="5,10,15" rows="10"
-							value="#{editarClinicaMB.clinica.meusRelacionamentos}"
+							value="#{editarClinicaMB.clinica.trabalhaClinica}"
 							var="linhaCorrente" emptyMessage="Listagem vazia!">
-							<p:column width="7%">
-								<f:facet name="header">
-									<h:outputText styleClass="headerText" value="Editar" />
-								</f:facet>
-								<div align="center">
-									<p:commandButton ajax="false" id="btEditar" alt="Editar"
-										icon="ui-icon-folder-open"
-										action="#{editarClinicaMB.cancelar}">
-
-									</p:commandButton>
-								</div>
-							</p:column>
-							<p:column width="7%">
+							<p:column width="3%">
 								<f:facet name="header">
 									<h:outputText styleClass="headerText" value="Excluir" />
 								</f:facet>
 								<div align="center">
 									<p:commandButton ajax="false" alt="Excluir" id="btExcluir"
-										action="#{editarClinicaMB.cancelar}" icon="ui-icon-trash">
-
+										action="#{editarClinicaMB.excluir}" icon="ui-icon-trash">
+										<f:setPropertyActionListener value="#{linhaCorrente}"
+											target="#{editarClinicaMB.profissionalSelecionado}" />
 									</p:commandButton>
 								</div>
 							</p:column>
 
-							<p:column width="7%">
+							<p:column width="2%">
 								<f:facet name="header">
 									<h:outputText value="ID" />
 								</f:facet>
@@ -181,20 +170,20 @@
 									<h:outputText value="#{linhaCorrente.id}" />
 								</div>
 							</p:column>
-							<p:column width="7%">
+							<p:column width="12%">
 								<f:facet name="header">
 									<h:outputText value="Nome" />
 								</f:facet>
 								<div align="center">
-									<h:outputText value="#{linhaCorrente.nome}" />
+									<h:outputText value="#{linhaCorrente.trabalhador.nome}" />
 								</div>
 							</p:column>
 							<p:column width="7%">
 								<f:facet name="header">
-									<h:outputText value="Descricao" />
+									<h:outputText value="Fone" />
 								</f:facet>
 								<div align="center">
-									<h:outputText value="#{linhaCorrente.destino.descricao}" />
+									<h:outputText value="#{linhaCorrente.trabalhador.fone}" />
 								</div>
 							</p:column>
 							<p:column width="7%">

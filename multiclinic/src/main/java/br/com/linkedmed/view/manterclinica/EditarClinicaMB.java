@@ -9,9 +9,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.linkedmed.business.ManterClinicaBC;
+import br.com.linkedmed.business.ManterProfissionalBC;
 import br.com.linkedmed.domain.Clinica;
-import br.com.linkedmed.domain.Paciente;
+import br.com.linkedmed.domain.Profissional;
 import br.com.linkedmed.domain.Relacionamento;
+import br.com.linkedmed.domain.RelacionamentoTrabalha;
 import br.com.linkedmed.domain.Usuario;
 import br.com.linkedmed.util.FacesBean;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -37,10 +39,15 @@ public class EditarClinicaMB extends FacesBean {
 
 	private Clinica clinica = new Clinica();
 
-	private Paciente paciente = null;
+	private Profissional profissional = null;
+
+	private Profissional profissionalSelecionado = null;
 
 	@Inject
 	private ManterClinicaBC manterClinicaBC;
+
+	@Inject
+	private ManterProfissionalBC manterProfissionalBC;
 
 	public Clinica getClinica() {
 		return clinica;
@@ -120,11 +127,11 @@ public class EditarClinicaMB extends FacesBean {
 		String retorno = null;
 		try {
 
-			if (paciente != null) {
-				Relacionamento relacionamento = new Relacionamento();
-				relacionamento.setDestino(paciente);
-				relacionamento.setOrigem(clinica);
-				relacionamento.setNome("Atendente");
+			if (profissional != null) {
+				RelacionamentoTrabalha relacionamento = new RelacionamentoTrabalha();
+				relacionamento.setEmpregador(clinica);
+				relacionamento.setTrabalhador(profissional);
+				relacionamento.setNome("TRABALHA");
 				relacionamento.setAtivo(true);
 				relacionamento.setUsuarioCriador(obterUsuarioLogado());
 				if (clinica.getMeusRelacionamentos() != null)
@@ -141,12 +148,26 @@ public class EditarClinicaMB extends FacesBean {
 		return retorno;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public List<Profissional> completeProfissional(String query) {
+		List<Profissional> allProfissionais = manterProfissionalBC
+				.buscaFoneticaNome(query);
+		return allProfissionais;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public Profissional getProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
+
+	public Profissional getProfissionalSelecionado() {
+		return profissionalSelecionado;
+	}
+
+	public void setProfissionalSelecionado(Profissional profissionalSelecionado) {
+		this.profissionalSelecionado = profissionalSelecionado;
 	}
 
 }
