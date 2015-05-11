@@ -114,7 +114,7 @@
 			</p:fieldset>
 		</div>
 		<div class="fieldSetScroll">
-			<p:fieldset legend="Empregados" toggleable="true">
+			<p:fieldset legend="Empregados" toggleable="true" rendered="false">
 				<h:panelGrid columns="1" width="90%" cellpadding="3" cellspacing="3">
 
 					<h:panelGroup>
@@ -123,9 +123,9 @@
 						<p:autoComplete id="atendente" size="50"
 							value="#{editarClinicaMB.profissional}"
 							completeMethod="#{editarClinicaMB.completeProfissional}"
-							itemLabel="#{pac.nome}" required="true"
-							converter="defaultConverterJSF2" var="pac" itemValue="#{pac}"
-							forceSelection="true" minQueryLength="3">
+							itemLabel="#{pac.nome}" converter="defaultConverterJSF2"
+							var="pac" itemValue="#{pac}" forceSelection="true"  
+							minQueryLength="3">
 							<p:column>
 								<p:graphicImage value="/photocam/#{pac.nomeFoto}.png" width="45"
 									height="45" />

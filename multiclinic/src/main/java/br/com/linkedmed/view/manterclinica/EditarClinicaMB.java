@@ -41,7 +41,7 @@ public class EditarClinicaMB extends FacesBean {
 
 	private Profissional profissional = null;
 
-	private Profissional profissionalSelecionado = null;
+	private RelacionamentoTrabalha profissionalSelecionado = null;
 
 	@Inject
 	private ManterClinicaBC manterClinicaBC;
@@ -123,6 +123,25 @@ public class EditarClinicaMB extends FacesBean {
 	 * 
 	 * @return
 	 */
+	public String excluir() {
+		String retorno = null;
+		try {
+			if (clinica != null && clinica.getTrabalhaClinica() != null
+					&& profissionalSelecionado != null) {
+				clinica.getTrabalhaClinica().remove(profissionalSelecionado);
+
+			}
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
+		return retorno;
+	}
+
+	/**
+	 * Metodo que cancela a edição de uma clinica
+	 * 
+	 * @return
+	 */
 	public String adicionarAtendente() {
 		String retorno = null;
 		try {
@@ -162,11 +181,12 @@ public class EditarClinicaMB extends FacesBean {
 		this.profissional = profissional;
 	}
 
-	public Profissional getProfissionalSelecionado() {
+	public RelacionamentoTrabalha getProfissionalSelecionado() {
 		return profissionalSelecionado;
 	}
 
-	public void setProfissionalSelecionado(Profissional profissionalSelecionado) {
+	public void setProfissionalSelecionado(
+			RelacionamentoTrabalha profissionalSelecionado) {
 		this.profissionalSelecionado = profissionalSelecionado;
 	}
 
