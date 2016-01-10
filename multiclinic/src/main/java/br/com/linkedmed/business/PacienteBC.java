@@ -3,6 +3,7 @@
  */
 package br.com.linkedmed.business;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,7 +30,7 @@ public class PacienteBC extends GenericoBC<Paciente, Long, PacienteDAO> {
 	public void salvar(Paciente paciente, Usuario usuarioLogado) {
 		paciente.setNomeFonetico(fonetizador.fornetizarComDicionario((paciente
 				.getNome())));
-
+		paciente.getCpfNulo();
 		super.salvar(paciente, usuarioLogado);
 	}
 

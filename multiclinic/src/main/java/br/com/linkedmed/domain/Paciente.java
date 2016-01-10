@@ -1,5 +1,6 @@
 package br.com.linkedmed.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +29,11 @@ import br.com.linkedmed.domain.template.EntidadeGeralTemplate;
 @NamedQueries({
 		@NamedQuery(name = "Paciente.findAll", query = "SELECT c FROM Paciente c"),
 		@NamedQuery(name = "Paciente.findByName", query = "SELECT c FROM Paciente c WHERE c.nomeFonetico like :busca"), })
-@Table(uniqueConstraints = @UniqueConstraint(name = "unicidadePaciente", columnNames = {
-		"nomeFonetico", "fone", "sexo", "dataAniversario" }))
+@Table(uniqueConstraints = {
+		@UniqueConstraint(name = "unicidadePaciente", columnNames = {
+				"nomeFonetico", "fone", "sexo", "dataAniversario" }),
+		@UniqueConstraint(name = "unicidadeCPF", columnNames = { "cpf",
+				"cpfNulo" }) })
 public class Paciente extends EntidadeGeralTemplate {
 
 	/**
@@ -59,8 +63,11 @@ public class Paciente extends EntidadeGeralTemplate {
 	@Column(nullable = true, length = TAMANHO_FONE)
 	private String foneAdicional;
 
-	@Column(nullable = true, length = TAMANHO_CPF, unique = true)
+	@Column(nullable = true, length = TAMANHO_CPF)
 	private String cpf;
+
+	@Column(nullable = true)
+	private Long cpfNulo;
 
 	@Column(nullable = true, length = TAMANHO_NOME)
 	private String nomeFoto;
@@ -328,4 +335,20 @@ public class Paciente extends EntidadeGeralTemplate {
 		this.eventosPaciente = eventosPaciente;
 	}
 
+	public Long getCpfNulo() {
+		if (cpf != null && !cpf.isEmpty())
+			cpfNulo = 0L;
+		else
+			cpfNulo = (Calendar.getInstance().getTimeInMillis());
+
+		return cpfNulo;
+	}
+
+	public void setCpfNulo(Long cpfNulo) {
+		if (cpf != null && !cpf.isEmpty())
+			cpfNulo = 0L;
+		else
+			cpfNulo = (Calendar.getInstance().getTimeInMillis());
+		this.cpfNulo = cpfNulo;
+	}
 }

@@ -86,7 +86,8 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<scope>compile</scope>
+			<scope>runtime</scope>
+			<version>5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>br.gov.frameworkdemoiselle.component</groupId>
@@ -107,7 +108,8 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>5.1</version>
+			<version>5.3</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>br.gov.incor</groupId>
