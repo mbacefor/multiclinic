@@ -31,7 +31,16 @@
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="5,10,15" rows="10" value="#{bean.lista}"
 							var="linhaCorrente" emptyMessage="Listagem vazia!">
-							<p:column width="7%">
+
+							<f:facet name="header">
+								<p:commandButton ajax="false" alt="Exportar Tabela"
+									id="btExportar" value="Exportar Excel">
+									<p:dataExporter type="xls" target="listagem"
+										fileName="exportacao" />
+								</p:commandButton>
+							</f:facet>
+
+							<p:column width="7%" exportable="false">
 								<f:facet name="header">
 									<h:outputText styleClass="headerText" value="Editar" />
 								</f:facet>
@@ -43,7 +52,7 @@
 									</p:commandButton>
 								</div>
 							</p:column>
-							<p:column width="7%">
+							<p:column width="7%" exportable="false">
 								<f:facet name="header">
 									<h:outputText styleClass="headerText" value="Excluir" />
 								</f:facet>
@@ -56,21 +65,18 @@
 								</div>
 							</p:column>
 
-							<p:column width="7%">
+							<p:column width="7%" style="text-align: center;">
 								<f:facet name="header">
 									<h:outputText value="ID" />
 								</f:facet>
-								<div align="center">
-									<h:outputText value="#{linhaCorrente.id}" />
-								</div>
+
+								<h:outputText value="#{linhaCorrente.id}" />
 							</p:column>
 
 							<ui:insert name="camposListagem"></ui:insert>
 
 						</p:dataTable>
-
 					</p:fieldset>
-
 				</h:form>
 			</div>
 		</div>

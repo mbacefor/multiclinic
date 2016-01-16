@@ -7,9 +7,7 @@
 
 <ui:composition template="/templates/listarTemplate.xhtml">
 	<ui:define name="camposListagem">
-
-
-		<p:column>
+		<p:column exportable="false">
 			<f:facet name="header">
 				<h:outputText value="Foto" />
 			</f:facet>
@@ -32,6 +30,26 @@
 			filterMatchMode="contains" headerText="Fone Adicional">
 			<h:outputText value="#{linhaCorrente.foneAdicional}" />
 		</p:column>
+		<p:column filterBy="#{linhaCorrente.sexo}"
+			filterMatchMode="contains" headerText="Sexo">
+			<h:outputText value="#{linhaCorrente.sexo}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.dataAniversario}"
+			filterMatchMode="contains" headerText="Data Aniversário">
+			<h:outputText value="#{linhaCorrente.dataAniversario}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.endereco}"
+			filterMatchMode="contains" headerText="Data Endereço">
+			<h:outputText value="#{linhaCorrente.endereco}" />
+		</p:column>
+		<p:column filterBy="#{linhaCorrente.dataCadastroFormatada}"
+			filterMatchMode="contains" headerText="Data Cadastro">
+
+			<h:outputText value="#{linhaCorrente.dataCadastroFormatada}">
+			</h:outputText>
+
+		</p:column>
+
 
 
 	</ui:define>
